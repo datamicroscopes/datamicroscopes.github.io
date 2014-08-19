@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="datamicroscopes 0.1.0 documentation" href="index.html" />
     <link rel="next" title="irm" href="microscopes.irm.html" />
-    <link rel="prev" title="util" href="microscopes.common.util.html" /> 
+    <link rel="prev" title="parallel" href="microscopes.kernels.parallel.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="microscopes.irm.html" title="irm"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="microscopes.common.util.html" title="util"
+          <a href="microscopes.kernels.parallel.html" title="parallel"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -53,13 +53,15 @@
 <li><a class="reference internal" href="#">mixturemodel</a><ul>
 <li><a class="reference internal" href="#module-microscopes.mixture.definition">microscopes.mixture.definition</a></li>
 <li><a class="reference internal" href="#module-microscopes.mixture.model">microscopes.mixture.model</a></li>
+<li><a class="reference internal" href="#module-microscopes.mixture.runner">microscopes.mixture.runner</a></li>
+<li><a class="reference internal" href="#module-microscopes.mixture.query">microscopes.mixture.query</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="microscopes.common.util.html"
-                        title="previous chapter">util</a></p>
+  <p class="topless"><a href="microscopes.kernels.parallel.html"
+                        title="previous chapter">parallel</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="microscopes.irm.html"
                         title="next chapter">irm</a></p>
@@ -96,9 +98,46 @@
 <dl class="class">
 <dt id="microscopes.mixture.definition.fixed_model_definition">
 <em class="property">class </em><tt class="descclassname">microscopes.mixture.definition.</tt><tt class="descname">fixed_model_definition</tt><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Structural definition for a fixed mixture model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n</strong> : int</p>
+<blockquote>
+<div><p>Number of observations</p>
+</div></blockquote>
+<p><strong>groups</strong> : int</p>
+<blockquote>
+<div><p>Number of groups (fixed)</p>
+</div></blockquote>
+<p><strong>models</strong> : iterable of model descriptors</p>
+<blockquote class="last">
+<div><p>The component likelihood models. Each element is either <cite>x</cite> or
+<cite>(x, y)</cite>, where <cite>x</cite> is a <tt class="docutils literal"><span class="pre">model_descriptor</span></tt> and <cite>y</cite> is a dict
+containing the hyperpriors. If <cite>y</cite> is not given, then the default
+hyperpriors are used per model.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>There is currently no interface to express a hyperprior on the dirichlet
+distribution which governs the clustering behavior.</p>
+<dl class="method">
 <dt id="microscopes.mixture.definition.fixed_model_definition.groups">
 <tt class="descname">groups</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.mixture.definition.fixed_model_definition.hyperpriors">
+<tt class="descname">hyperpriors</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.hyperpriors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.mixture.definition.fixed_model_definition.models">
+<tt class="descname">models</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.models" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -111,7 +150,46 @@
 <dl class="class">
 <dt id="microscopes.mixture.definition.model_definition">
 <em class="property">class </em><tt class="descclassname">microscopes.mixture.definition.</tt><tt class="descname">model_definition</tt><a class="headerlink" href="#microscopes.mixture.definition.model_definition" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Structural definition for a dirichlet process mixture model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n</strong> : int</p>
+<blockquote>
+<div><p>Number of observations</p>
+</div></blockquote>
+<p><strong>models</strong> : iterable of model descriptors</p>
+<blockquote>
+<div><p>The component likelihood models. Each element is either <cite>x</cite> or
+<cite>(x, y)</cite>, where <cite>x</cite> is a <tt class="docutils literal"><span class="pre">model_descriptor</span></tt> and <cite>y</cite> is a dict
+containing the hyperpriors. If <cite>y</cite> is not given, then the default
+hyperpriors are used per model.</p>
+</div></blockquote>
+<p><strong>cluster_hyperprior</strong> : dict, optional</p>
+<blockquote class="last">
+<div><p>Describes the hyperior for the CRP</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="microscopes.mixture.definition.model_definition.cluster_hyperprior">
+<tt class="descname">cluster_hyperprior</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.model_definition.cluster_hyperprior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.mixture.definition.model_definition.hyperpriors">
+<tt class="descname">hyperpriors</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.model_definition.hyperpriors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.mixture.definition.model_definition.models">
+<tt class="descname">models</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.model_definition.models" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="microscopes.mixture.definition.model_definition.n">
 <tt class="descname">n</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.mixture.definition.model_definition.n" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -125,6 +203,8 @@
 <dt id="microscopes.mixture.model.state">
 <em class="property">class </em><tt class="descclassname">microscopes.mixture.model.</tt><tt class="descname">state</tt><a class="headerlink" href="#microscopes.mixture.model.state" title="Permalink to this definition">¶</a></dt>
 <dd><p>The underlying state of a Dirichlet Process mixture model.</p>
+<p>You should not explicitly construct a state object.
+Instead, use <cite>initialize</cite>.</p>
 <dl class="method">
 <dt id="microscopes.mixture.model.state.add_value">
 <tt class="descname">add_value</tt><big>(</big><em>self</em>, <em>int gid</em>, <em>int eid</em>, <em>y</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.mixture.model.state.add_value" title="Permalink to this definition">¶</a></dt>
@@ -266,6 +346,8 @@
 <dt id="microscopes.mixture.model.fixed_state">
 <em class="property">class </em><tt class="descclassname">microscopes.mixture.model.</tt><tt class="descname">fixed_state</tt><a class="headerlink" href="#microscopes.mixture.model.fixed_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>The underlying state of a fixed group bayesian mixture model.</p>
+<p>You should not explicitly construct a fixed_state object.
+Instead, use <cite>initialize_fixed</cite>.</p>
 <dl class="method">
 <dt id="microscopes.mixture.model.fixed_state.add_value">
 <tt class="descname">add_value</tt><big>(</big><em>self</em>, <em>int gid</em>, <em>int eid</em>, <em>y</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.mixture.model.fixed_state.add_value" title="Permalink to this definition">¶</a></dt>
@@ -391,12 +473,36 @@
 <dl class="function">
 <dt id="microscopes.mixture.model.initialize">
 <tt class="descclassname">microscopes.mixture.model.</tt><tt class="descname">initialize</tt><big>(</big><em>model_definition defn</em>, <em>abstract_dataview data</em>, <em>rng r</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#microscopes.mixture.model.initialize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initialize state to a random, valid point in the state space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p><strong>data</strong> : recarray dataview</p>
+<p class="last"><strong>rng</strong> : random state</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="microscopes.mixture.model.initialize_fixed">
 <tt class="descclassname">microscopes.mixture.model.</tt><tt class="descname">initialize_fixed</tt><big>(</big><em>fixed_model_definition defn</em>, <em>abstract_dataview data</em>, <em>rng r</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#microscopes.mixture.model.initialize_fixed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initialize state to a random, valid point in the state space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : fixed model definition</p>
+<p><strong>data</strong> : recarray dataview</p>
+<p class="last"><strong>rng</strong> : random state</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="microscopes.mixture.model.bind">
@@ -411,12 +517,278 @@
 <dl class="function">
 <dt id="microscopes.mixture.model.deserialize">
 <tt class="descclassname">microscopes.mixture.model.</tt><tt class="descname">deserialize</tt><big>(</big><em>model_definition defn</em>, <em>bytes</em><big>)</big><a class="headerlink" href="#microscopes.mixture.model.deserialize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Restore a state object from a bytestring representation.</p>
+<p>Note that a serialized representation of a state object does
+not contain its own structural definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p class="last"><strong>bytes</strong> : bytestring representation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="microscopes.mixture.model.deserialize_fixed">
 <tt class="descclassname">microscopes.mixture.model.</tt><tt class="descname">deserialize_fixed</tt><big>(</big><em>fixed_model_definition defn</em>, <em>bytes</em><big>)</big><a class="headerlink" href="#microscopes.mixture.model.deserialize_fixed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Restore a fixed state object from a bytestring representation.</p>
+<p>Note that a serialized representation of a fixed state object does
+not contain its own structural definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p class="last"><strong>bytes</strong> : bytestring representation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-microscopes.mixture.runner">
+<span id="microscopes-mixture-runner"></span><h2>microscopes.mixture.runner<a class="headerlink" href="#module-microscopes.mixture.runner" title="Permalink to this headline">¶</a></h2>
+<p>Implements the Runner interface for mixture models</p>
+<dl class="function">
+<dt id="microscopes.mixture.runner.default_assign_kernel_config">
+<tt class="descclassname">microscopes.mixture.runner.</tt><tt class="descname">default_assign_kernel_config</tt><big>(</big><em>defn</em><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.default_assign_kernel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default kernel configuration for sampling the assignment
+(clustering) vector. The default kernel is currently a gibbs sampler.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>defn</strong> : mixturemodel definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.mixture.runner.default_cluster_hp_kernel_config">
+<tt class="descclassname">microscopes.mixture.runner.</tt><tt class="descname">default_cluster_hp_kernel_config</tt><big>(</big><em>defn</em><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.default_cluster_hp_kernel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default kernel configuration for sampling the clustering
+(Chinese Restaurant Process) model hyper-parameter. The default kernel is
+currently a one-dimensional slice sampler.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : mixturemodel definition</p>
+<blockquote class="last">
+<div><p>The hyper-priors set in the definition are used to configure the
+hyper-parameter sampling kernels.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.mixture.runner.default_feature_hp_kernel_config">
+<tt class="descclassname">microscopes.mixture.runner.</tt><tt class="descname">default_feature_hp_kernel_config</tt><big>(</big><em>defn</em><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.default_feature_hp_kernel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default kernel configuration for sampling the component
+(feature) model hyper-parameters. The default kernel is currently
+a one-dimensional slice sampler.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : mixturemodel definition</p>
+<blockquote class="last">
+<div><p>The hyper-priors set in the definition are used to configure the
+hyper-parameter sampling kernels.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.mixture.runner.default_kernel_config">
+<tt class="descclassname">microscopes.mixture.runner.</tt><tt class="descname">default_kernel_config</tt><big>(</big><em>defn</em><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.default_kernel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default kernel configuration suitable for general purpose
+inference. Currently configures an assignment sampler followed by a
+component hyper-parameter sampler.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>defn</strong> : mixturemodel definition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="microscopes.mixture.runner.runner">
+<em class="property">class </em><tt class="descclassname">microscopes.mixture.runner.</tt><tt class="descname">runner</tt><big>(</big><em>defn</em>, <em>view</em>, <em>latent</em>, <em>kernel_config</em><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.runner" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dirichlet process mixture model runner</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : <tt class="docutils literal"><span class="pre">model_definition</span></tt> or <tt class="docutils literal"><span class="pre">fixed_model_definition</span></tt></p>
+<blockquote>
+<div><p>The structural definition.</p>
+</div></blockquote>
+<p><strong>view</strong> : a recarray dataview</p>
+<blockquote>
+<div><p>The observations.</p>
+</div></blockquote>
+<p><strong>latent</strong> : <tt class="docutils literal"><span class="pre">state</span></tt> or <tt class="docutils literal"><span class="pre">fixed_state</span></tt></p>
+<blockquote>
+<div><p>The initialization state.</p>
+</div></blockquote>
+<p><strong>kernel_config</strong> : list</p>
+<blockquote class="last">
+<div><p>A list of either <cite>x</cite> strings or <cite>(x, y)</cite> tuples, where <cite>x</cite> is a string
+containing the name of the kernel and <cite>y</cite> is a dict which configures
+the particular kernel. In the former case where <cite>y</cite> is omitted, then
+the defaults parameters for each kernel are used.</p>
+<p>Possible values of <cite>x</cite> are:
+{&#8216;assign_fixed&#8217;, &#8216;assign&#8217;, &#8216;assign_resample&#8217;,</p>
+<blockquote>
+<div><p>&#8216;feature_hp&#8217;, &#8216;cluster_hp&#8217;}</p>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="microscopes.mixture.runner.runner.get_latent">
+<tt class="descname">get_latent</tt><big>(</big><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.runner.get_latent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current value of the underlying state object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="microscopes.mixture.runner.runner.run">
+<tt class="descname">run</tt><big>(</big><em>r</em>, <em>niters=10000</em><big>)</big><a class="headerlink" href="#microscopes.mixture.runner.runner.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the specified mixturemodel kernel for <cite>niters</cite>, in a single
+thread.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>r</strong> : random state</p>
+<p class="last"><strong>niters</strong> : int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-microscopes.mixture.query">
+<span id="microscopes-mixture-query"></span><h2>microscopes.mixture.query<a class="headerlink" href="#module-microscopes.mixture.query" title="Permalink to this headline">¶</a></h2>
+<p>The query interface for mixturemodels.</p>
+<p>Note that the methods of this interface all take a list of latent state objects
+(as opposed to a single latent).</p>
+<dl class="function">
+<dt id="microscopes.mixture.query.posterior_predictive">
+<tt class="descclassname">microscopes.mixture.query.</tt><tt class="descname">posterior_predictive</tt><big>(</big><em>q</em>, <em>latents</em>, <em>r</em>, <em>samples_per_chain=1</em><big>)</big><a class="headerlink" href="#microscopes.mixture.query.posterior_predictive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a bag of samples from the posterior distribution of each
+mixturemodel state object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>q</strong> : (N,) masked recarray</p>
+<blockquote>
+<div><p>The query object</p>
+</div></blockquote>
+<p><strong>latents</strong> : list of mixturemodel latent objects</p>
+<p><strong>r</strong> : random state</p>
+<p><strong>samples_per_chain</strong> : int, optional</p>
+<blockquote>
+<div><p>Default is 1.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>samples</strong> : (N, M) recarray</p>
+<blockquote class="last">
+<div><p>where <tt class="docutils literal"><span class="pre">M</span> <span class="pre">=</span> <span class="pre">len(latents)</span> <span class="pre">*</span> <span class="pre">samples_per_chain</span></tt></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If <tt class="docutils literal"><span class="pre">N=1</span></tt>, the resultng <cite>samples</cite> will <em>not</em> be collasped into a (M,) shape
+recarray for consistency purposes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.mixture.query.posterior_predictive_statistic">
+<tt class="descclassname">microscopes.mixture.query.</tt><tt class="descname">posterior_predictive_statistic</tt><big>(</big><em>q</em>, <em>latents</em>, <em>r</em>, <em>samples_per_chain=1</em>, <em>merge='avg'</em><big>)</big><a class="headerlink" href="#microscopes.mixture.query.posterior_predictive_statistic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample many values and combine each feature independently using the
+given <cite>merge</cite> strategy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>q</strong> : (N,) masked recarray</p>
+<blockquote>
+<div><p>The query object</p>
+</div></blockquote>
+<p><strong>latents</strong> : list of mixturemodel latent objects</p>
+<p><strong>r</strong> : random state</p>
+<p><strong>samples_per_chain</strong> : int, optional</p>
+<blockquote>
+<div><p>Default is 1.</p>
+</div></blockquote>
+<p><strong>merge</strong> : str or list of strs, each str is one of {&#8216;avg&#8217;, &#8216;mode&#8217;}</p>
+<blockquote>
+<div><p>Note that &#8216;mode&#8217; only works for discrete data types.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>statistic</strong> : (N,) recarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This method exists as a convenience, primarily because ndarray methods such
+as <cite>mean()</cite> do not work with recarrays.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.mixture.query.zmatrix">
+<tt class="descclassname">microscopes.mixture.query.</tt><tt class="descname">zmatrix</tt><big>(</big><em>latents</em><big>)</big><a class="headerlink" href="#microscopes.mixture.query.zmatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a z-matrix (cluster co-assignment matrix). The ij-th entry of a
+z-matrix is a real value scalar between [0, 1] indicating the frequency of
+how often entities i and j appear in the same cluster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>latents</strong> : list of mixturemodel latent objects</p>
+<blockquote>
+<div><p>The latents should all be points in the state space of the same
+structural model. The implementation currently does not check for this.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>zmat</strong> : (N, N) ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Currently does not support a sparse zmatrix representation, so only use
+this for small N.</p>
+</dd></dl>
 
 </div>
 </div>
@@ -440,7 +812,7 @@
           <a href="microscopes.irm.html" title="irm"
              >next</a> |</li>
         <li class="right" >
-          <a href="microscopes.common.util.html" title="util"
+          <a href="microscopes.kernels.parallel.html" title="parallel"
              >previous</a> |</li>
         <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
