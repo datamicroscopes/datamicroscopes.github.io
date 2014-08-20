@@ -27,11 +27,11 @@ TRANSLATION_FEED_ATOM = None
 #SOCIAL = (('You can add links in your config file', '#'),
 #          ('Another social link', '#'),)
 
-MENUITEMS = [('Docs', 'docs/latest')]
-
 DEFAULT_PAGINATION = 10
 
 GITHUB_URL = 'https://github.com/datamicroscopes'
+
+MENUITEMS = [('Docs', 'docs/latest'), ('Source', GITHUB_URL)]
 
 THEME = 'pelican-bootstrap3'
 
