@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Home - data-microscopes</title>
+    <title>data-microscopes - data-microscopes</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 
     <!-- Open Graph tags -->
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="Home"/>
+            <meta property="og:title" content="data-microscopes"/>
             <meta property="og:url" content="https://datamicroscopes.github.io/"/>
 
     <!-- Bootstrap -->
@@ -44,7 +44,7 @@ data-microscopes            </a>
             <ul class="nav navbar-nav">
                     <li><a href="docs/latest">Docs</a></li>
                          <li class="active"><a href="https://datamicroscopes.github.io/">
-                             Home
+                             data-microscopes
                           </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -60,10 +60,18 @@ data-microscopes            </a>
         <div class="col-lg-12">
 
     <section id="content" class="body">
-        <h1 class="entry-title">Home</h1>
+        <h1 class="entry-title">data-microscopes</h1>
         
         <div class="entry-content">
-            <p>data-microscopes</p>
+            <p><code>data-microscopes</code> is a library for doing inference in various Bayesian
+non-parametric models, such as the Dirichlet Process Mixture Model (DPMM) and
+the Infinite Relational Model (IRM).</p>
+<h2>Install</h2>
+<p>First, install <a href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>. Then</p>
+<div class="highlight"><pre><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">distributions</span>
+<span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">datamicroscopes</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">microscopes</span><span class="o">-</span><span class="p">{</span><span class="n">common</span><span class="p">,</span><span class="n">kernels</span><span class="p">,</span><span class="n">mixturemodel</span><span class="p">,</span><span class="n">irm</span><span class="p">}</span>
+</pre></div>
         </div>
     </section>
         </div>
