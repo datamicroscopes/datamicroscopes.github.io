@@ -143,10 +143,11 @@ and are used as inputs to the <tt class="docutils literal"><span class="pre">mix
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><pre>&gt;&gt;&gt; Y = np.array([[1, 2], [3, 4]])
-&gt;&gt;&gt; view = numpy_dataview(Y)
-&gt;&gt;&gt; print view.shape()
-(2, 2)</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span> <span class="o">=</span> <span class="n">numpy_dataview</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">view</span><span class="o">.</span><span class="n">shape</span><span class="p">()</span>
+<span class="go">(2, 2)</span>
+</pre></div>
 </div>
 <dl class="method">
 <dt id="microscopes.common.relation.dataview.numpy_dataview.digest">
@@ -178,10 +179,11 @@ and are used as inputs to the <tt class="docutils literal"><span class="pre">mix
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><pre>&gt;&gt;&gt; Y = scipy.sparse.coo_matrix((3, 4))
-&gt;&gt;&gt; view = sparse_2d_dataview(Y)
-&gt;&gt;&gt; print view.shape()
-(3, 4)</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span> <span class="o">=</span> <span class="n">sparse_2d_dataview</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">view</span><span class="o">.</span><span class="n">shape</span><span class="p">()</span>
+<span class="go">(3, 4)</span>
+</pre></div>
 </div>
 <dl class="method">
 <dt id="microscopes.common.relation.dataview.sparse_2d_dataview.digest">
@@ -239,7 +241,7 @@ and are used as inputs to the <tt class="docutils literal"><span class="pre">mix
     </div>
     <div class="footer">
         &copy; Copyright 2014, Stephen Tu and Eric Jonas.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>
