@@ -96,13 +96,18 @@
 <p>Note you should generally be calling the model-specific query interfaces.</p>
 <dl class="function">
 <dt id="microscopes.common.query.groups">
-<tt class="descclassname">microscopes.common.query.</tt><tt class="descname">groups</tt><big>(</big><em>avec</em><big>)</big><a class="headerlink" href="#microscopes.common.query.groups" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">microscopes.common.query.</tt><tt class="descname">groups</tt><big>(</big><em>avec</em>, <em>sort=False</em><big>)</big><a class="headerlink" href="#microscopes.common.query.groups" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turn an assignment vector in a clustering.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>avec</strong> : assignment vector</p>
+<p><strong>sort</strong> : bool, default False</p>
+<blockquote>
+<div><p>Whether or not the order of the clusters should be sorted by descending
+size (largest groups first)</p>
+</div></blockquote>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>clustering</strong> : a list of lists</p>
@@ -134,7 +139,7 @@ in block-diagonal sub-matrices.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>order</strong> : (N,)  ndarray</p>
 <blockquote class="last">
-<div><p>A permutation on <span class="math">[N]</span> which heuristically generates the most
+<div><p>A permutation on <img class="math" src="_images/math/13246db4287e11730a08af834fe1eba381658ed1.png" alt="[N]"/> which heuristically generates the most
 block diagonal sub-matrices after re-ordering</p>
 </div></blockquote>
 </td>
@@ -195,7 +200,7 @@ according to <cite>order</cite>.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Stephen Tu and Eric Jonas.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>
