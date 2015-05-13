@@ -27,8 +27,8 @@
     <link rel="next" title="query" href="microscopes.common.query.html" />
     <link rel="prev" title="dataviews" href="microscopes.common.dataview.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -43,10 +43,10 @@
         <li class="right" >
           <a href="microscopes.common.dataview.html" title="dataviews"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="microscopes.common.dataview.html"
@@ -54,12 +54,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="microscopes.common.query.html"
                         title="next chapter">query</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/microscopes.common.util.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/microscopes.common.util.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -78,49 +80,49 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="module-microscopes.common.util">
 <span id="util"></span><h1>util<a class="headerlink" href="#module-microscopes.common.util" title="Permalink to this headline">¶</a></h1>
 <p>common utility functions</p>
 <dl class="function">
 <dt id="microscopes.common.util.KL_approx">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">KL_approx</tt><big>(</big><em>a</em>, <em>b</em>, <em>dA</em><big>)</big><a class="headerlink" href="#microscopes.common.util.KL_approx" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">KL_approx</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>dA</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.KL_approx" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.KL_discrete">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">KL_discrete</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#microscopes.common.util.KL_discrete" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">KL_discrete</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.KL_discrete" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.almost_eq">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">almost_eq</tt><big>(</big><em>a</em>, <em>b</em>, <em>tol=1e-05</em><big>)</big><a class="headerlink" href="#microscopes.common.util.almost_eq" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">almost_eq</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>tol=1e-05</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.almost_eq" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.mkdirp">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">mkdirp</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#microscopes.common.util.mkdirp" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">mkdirp</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.mkdirp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.random_assignment_vector">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">random_assignment_vector</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#microscopes.common.util.random_assignment_vector" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">random_assignment_vector</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.random_assignment_vector" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.random_orthogonal_matrix">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">random_orthogonal_matrix</tt><big>(</big><em>m</em>, <em>n</em><big>)</big><a class="headerlink" href="#microscopes.common.util.random_orthogonal_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">random_orthogonal_matrix</code><span class="sig-paren">(</span><em>m</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.random_orthogonal_matrix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.random_orthonormal_matrix">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">random_orthonormal_matrix</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#microscopes.common.util.random_orthonormal_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">random_orthonormal_matrix</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.random_orthonormal_matrix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.util.rank">
-<tt class="descclassname">microscopes.common.util.</tt><tt class="descname">rank</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#microscopes.common.util.rank" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.util.</code><code class="descname">rank</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.rank" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -131,7 +133,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -146,12 +148,12 @@
         <li class="right" >
           <a href="microscopes.common.dataview.html" title="dataviews"
              >previous</a> |</li>
-        <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Stephen Tu and Eric Jonas.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Qadium.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

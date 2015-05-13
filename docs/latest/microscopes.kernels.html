@@ -26,8 +26,8 @@
     <link rel="top" title="datamicroscopes 0.1.0 documentation" href="index.html" />
     <link rel="prev" title="irm" href="microscopes.irm.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -39,10 +39,10 @@
         <li class="right" >
           <a href="microscopes.irm.html" title="irm"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -57,12 +57,14 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="microscopes.irm.html"
                         title="previous chapter">irm</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/microscopes.kernels.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/microscopes.kernels.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -81,7 +83,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="kernels">
 <h1>kernels<a class="headerlink" href="#kernels" title="Permalink to this headline">¶</a></h1>
@@ -89,27 +91,22 @@
 <span id="microscopes-kernels-gibbs"></span><h2>microscopes.kernels.gibbs<a class="headerlink" href="#module-microscopes.kernels.gibbs" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="microscopes.kernels.gibbs.assign">
-<tt class="descclassname">microscopes.kernels.gibbs.</tt><tt class="descname">assign</tt><big>(</big><em>entity_based_state_object s</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.kernels.gibbs.assign" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="microscopes.kernels.gibbs.assign_fixed">
-<tt class="descclassname">microscopes.kernels.gibbs.</tt><tt class="descname">assign_fixed</tt><big>(</big><em>fixed_entity_based_state_object s</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.kernels.gibbs.assign_fixed" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.gibbs.</code><code class="descname">assign</code><span class="sig-paren">(</span><em>entity_based_state_object s</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.gibbs.assign" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.kernels.gibbs.assign_resample">
-<tt class="descclassname">microscopes.kernels.gibbs.</tt><tt class="descname">assign_resample</tt><big>(</big><em>entity_based_state_object s</em>, <em>int m</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.kernels.gibbs.assign_resample" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.gibbs.</code><code class="descname">assign_resample</code><span class="sig-paren">(</span><em>entity_based_state_object s</em>, <em>int m</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.gibbs.assign_resample" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.kernels.gibbs.hp">
-<tt class="descclassname">microscopes.kernels.gibbs.</tt><tt class="descname">hp</tt><big>(</big><em>fixed_entity_based_state_object s</em>, <em>dict params</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.kernels.gibbs.hp" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.gibbs.</code><code class="descname">hp</code><span class="sig-paren">(</span><em>entity_based_state_object s</em>, <em>dict params</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.gibbs.hp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.kernels.gibbs.perftest">
-<tt class="descclassname">microscopes.kernels.gibbs.</tt><tt class="descname">perftest</tt><big>(</big><em>entity_based_state_object s</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.kernels.gibbs.perftest" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.gibbs.</code><code class="descname">perftest</code><span class="sig-paren">(</span><em>entity_based_state_object s</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.gibbs.perftest" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -117,7 +114,7 @@
 <span id="microscopes-kernels-slice"></span><h2>microscopes.kernels.slice<a class="headerlink" href="#module-microscopes.kernels.slice" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="microscopes.kernels.slice.hp">
-<tt class="descclassname">microscopes.kernels.slice.</tt><tt class="descname">hp</tt><big>(</big><em>fixed_entity_based_state_object s</em>, <em>rng r</em>, <em>cparam={}</em>, <em>hparams={}</em><big>)</big><a class="headerlink" href="#microscopes.kernels.slice.hp" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.slice.</code><code class="descname">hp</code><span class="sig-paren">(</span><em>entity_based_state_object s</em>, <em>rng r</em>, <em>cparam={}</em>, <em>hparams={}</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.slice.hp" title="Permalink to this definition">¶</a></dt>
 <dd><p>example invocation:</p>
 <dl class="docutils">
 <dt>hparams = {</dt>
@@ -142,12 +139,12 @@ hp(s, None, hparams, r)</p>
 
 <dl class="function">
 <dt id="microscopes.kernels.slice.sample">
-<tt class="descclassname">microscopes.kernels.slice.</tt><tt class="descname">sample</tt><big>(</big><em>scalar_function func</em>, <em>float x0</em>, <em>float w</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.kernels.slice.sample" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.slice.</code><code class="descname">sample</code><span class="sig-paren">(</span><em>scalar_function func</em>, <em>float x0</em>, <em>float w</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.slice.sample" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.kernels.slice.theta">
-<tt class="descclassname">microscopes.kernels.slice.</tt><tt class="descname">theta</tt><big>(</big><em>fixed_entity_based_state_object s</em>, <em>rng r</em>, <em>tparams={}</em><big>)</big><a class="headerlink" href="#microscopes.kernels.slice.theta" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.slice.</code><code class="descname">theta</code><span class="sig-paren">(</span><em>entity_based_state_object s</em>, <em>rng r</em>, <em>tparams={}</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.slice.theta" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -155,7 +152,7 @@ hp(s, None, hparams, r)</p>
 <span id="microscopes-kernels-mh"></span><h2>microscopes.kernels.mh<a class="headerlink" href="#module-microscopes.kernels.mh" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="microscopes.kernels.mh.sample">
-<tt class="descclassname">microscopes.kernels.mh.</tt><tt class="descname">sample</tt><big>(</big><em>xt</em>, <em>pdf</em>, <em>condpdf</em>, <em>condsamp</em><big>)</big><a class="headerlink" href="#microscopes.kernels.mh.sample" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.kernels.mh.</code><code class="descname">sample</code><span class="sig-paren">(</span><em>xt</em>, <em>pdf</em>, <em>condpdf</em>, <em>condsamp</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.mh.sample" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -167,7 +164,7 @@ hp(s, None, hparams, r)</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -179,12 +176,12 @@ hp(s, None, hparams, r)</p>
         <li class="right" >
           <a href="microscopes.irm.html" title="irm"
              >previous</a> |</li>
-        <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Stephen Tu and Eric Jonas.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Qadium.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

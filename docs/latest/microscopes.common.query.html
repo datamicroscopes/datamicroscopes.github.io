@@ -27,8 +27,8 @@
     <link rel="next" title="parallel" href="microscopes.kernels.parallel.html" />
     <link rel="prev" title="util" href="microscopes.common.util.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -43,10 +43,10 @@
         <li class="right" >
           <a href="microscopes.common.util.html" title="util"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -62,12 +62,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="microscopes.kernels.parallel.html"
                         title="next chapter">parallel</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/microscopes.common.query.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/microscopes.common.query.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -86,7 +88,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="query">
 <h1>query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h1>
@@ -96,18 +98,23 @@
 <p>Note you should generally be calling the model-specific query interfaces.</p>
 <dl class="function">
 <dt id="microscopes.common.query.groups">
-<tt class="descclassname">microscopes.common.query.</tt><tt class="descname">groups</tt><big>(</big><em>avec</em><big>)</big><a class="headerlink" href="#microscopes.common.query.groups" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.query.</code><code class="descname">groups</code><span class="sig-paren">(</span><em>avec</em>, <em>sort=False</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.query.groups" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turn an assignment vector in a clustering.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>avec</strong> : assignment vector</p>
+<p><strong>sort</strong> : bool, default False</p>
+<blockquote>
+<div><p>Whether or not the order of the clusters should be sorted by descending
+size (largest groups first)</p>
+</div></blockquote>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>clustering</strong> : a list of lists</p>
 <blockquote class="last">
-<div><p>Note that <tt class="docutils literal"><span class="pre">len(clustering)</span> <span class="pre">==</span> <span class="pre">len(np.unique(avec))</span></tt></p>
+<div><p>Note that <code class="docutils literal"><span class="pre">len(clustering)</span> <span class="pre">==</span> <span class="pre">len(np.unique(avec))</span></code></p>
 </div></blockquote>
 </td>
 </tr>
@@ -117,12 +124,12 @@
 
 <dl class="function">
 <dt id="microscopes.common.query.zmatrix">
-<tt class="descclassname">microscopes.common.query.</tt><tt class="descname">zmatrix</tt><big>(</big><em>assignments</em><big>)</big><a class="headerlink" href="#microscopes.common.query.zmatrix" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.query.</code><code class="descname">zmatrix</code><span class="sig-paren">(</span><em>assignments</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.query.zmatrix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="microscopes.common.query.zmatrix_heuristic_block_ordering">
-<tt class="descclassname">microscopes.common.query.</tt><tt class="descname">zmatrix_heuristic_block_ordering</tt><big>(</big><em>zmat</em><big>)</big><a class="headerlink" href="#microscopes.common.query.zmatrix_heuristic_block_ordering" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.query.</code><code class="descname">zmatrix_heuristic_block_ordering</code><span class="sig-paren">(</span><em>zmat</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.query.zmatrix_heuristic_block_ordering" title="Permalink to this definition">¶</a></dt>
 <dd><p>Heuristically generate a permutation of the axes of <cite>zmat</cite> which results
 in block-diagonal sub-matrices.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -145,7 +152,7 @@ block diagonal sub-matrices after re-ordering</p>
 
 <dl class="function">
 <dt id="microscopes.common.query.zmatrix_reorder">
-<tt class="descclassname">microscopes.common.query.</tt><tt class="descname">zmatrix_reorder</tt><big>(</big><em>zmat</em>, <em>order</em><big>)</big><a class="headerlink" href="#microscopes.common.query.zmatrix_reorder" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">microscopes.common.query.</code><code class="descname">zmatrix_reorder</code><span class="sig-paren">(</span><em>zmat</em>, <em>order</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.query.zmatrix_reorder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reorder a z-matrix given a permutation</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -175,7 +182,7 @@ according to <cite>order</cite>.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -190,12 +197,12 @@ according to <cite>order</cite>.</p>
         <li class="right" >
           <a href="microscopes.common.util.html" title="util"
              >previous</a> |</li>
-        <li><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">datamicroscopes 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Stephen Tu and Eric Jonas.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Qadium.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>
