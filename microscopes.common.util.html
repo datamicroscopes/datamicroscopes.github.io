@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>datamicroscopes: Baysian nonparametric models in Python</title>
+    <title>util</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -28,8 +28,10 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="None" href="#" />
-    <link rel="next" title="Datatypes and likelihood models in datamicroscopes" href="docs.html" />
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="microscopes.common.random" href="microscopes.common.random.html" />
+    <link rel="prev" title="dataviews" href="microscopes.common.dataview.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -47,7 +49,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           datamicroscopes</a>
         <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
       </div>
@@ -64,10 +66,10 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="#">Site <b class="caret"></b></a>
+     href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
@@ -82,9 +84,9 @@
 <li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
-<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">util</a></li>
 <li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
 <li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
@@ -108,8 +110,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">datamicroscopes: Baysian nonparametric models in Python</a></li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#">util</a></li>
 </ul>
 </ul>
 </li>
@@ -121,7 +122,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/index.txt"
+  <a href="_sources/microscopes.common.util.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -145,22 +146,49 @@
   <div class="row">
     <div class="col-md-12">
       
-  <span class="target" id="index"></span><div class="section" id="datamicroscopes-baysian-nonparametric-models-in-python">
-<h1>datamicroscopes: Baysian nonparametric models in Python<a class="headerlink" href="#datamicroscopes-baysian-nonparametric-models-in-python" title="Permalink to this headline">¶</a></h1>
-<p>datamicroscopes is a library for inference in various Bayesian nonparametric models, such as the Dirichlet Process Mixture Model (DPMM) and the Infinite Relational Model (IRM).  Our API allows for the flexible choice of likelihood models for various datatypes.  To read more about the models in datamicroscopes, please refer to our <a class="reference internal" href="datatypes.html#datatypes"><span>datatypes available</span></a>.</p>
-<p>For further information, please see our available <a class="reference internal" href="docs.html#docs"><span>likelihood documentation, examples,</span></a> and <a class="reference internal" href="api.html#api"><span>api</span></a>.</p>
-</div>
-<div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>First, install <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>. Then in the terminal type:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>conda config --add channels distributions
-<span class="nv">$ </span>conda config --add channels datamicroscopes
-<span class="nv">$ </span>conda install microscopes-common
-<span class="nv">$ </span>conda install microscopes-<span class="o">{</span>mixturemodel, irm<span class="o">}</span>
-</pre></div>
-</div>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="module-microscopes.common.util">
+<span id="util"></span><h1>util<a class="headerlink" href="#module-microscopes.common.util" title="Permalink to this headline">¶</a></h1>
+<p>common utility functions</p>
+<dl class="function">
+<dt id="microscopes.common.util.KL_approx">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">KL_approx</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>dA</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.KL_approx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.KL_discrete">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">KL_discrete</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.KL_discrete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.almost_eq">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">almost_eq</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>tol=1e-05</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.almost_eq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.mkdirp">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">mkdirp</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.mkdirp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.random_assignment_vector">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">random_assignment_vector</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.random_assignment_vector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.random_orthogonal_matrix">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">random_orthogonal_matrix</code><span class="sig-paren">(</span><em>m</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.random_orthogonal_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.random_orthonormal_matrix">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">random_orthonormal_matrix</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.random_orthonormal_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.common.util.rank">
+<code class="descclassname">microscopes.common.util.</code><code class="descname">rank</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.util.rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Digit recognition with the MNIST dataset</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="Datatypes and likelihood models in datamicroscopes" href="docs.html" />
+    <link rel="next" title="Clustering the Enron e-mail corpus using the Infinite Relational Model" href="enron-email.html" />
+    <link rel="prev" title="Inferring Gaussians wiht the Dirichlet Process Mixture Model" href="gauss2d.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dirichlet-discrete.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-wishart.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-chisquare.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html#examples">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians wiht the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Digit recognition with the MNIST dataset</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/mnist-predictions.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="digit-recognition-with-the-mnist-dataset">
+<h1>Digit recognition with the MNIST dataset<a class="headerlink" href="#digit-recognition-with-the-mnist-dataset" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>Let&#8217;s set up our environment</p>
+<div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
+import matplotlib.pylab as plt
+import numpy as np
+import numpy.ma as ma
+import time
+import math
+import seaborn as sns
+
+from PIL import Image, ImageOps
+from sklearn.datasets import fetch_mldata
+</pre></div>
+</div>
+<p>Now let&#8217;s get our functions from datamicroscopes</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">bb</span> <span class="k">as</span> <span class="n">beta_bernoulli</span>
+<span class="kn">from</span> <span class="nn">microscopes.mixture.definition</span> <span class="kn">import</span> <span class="n">model_definition</span>
+<span class="kn">from</span> <span class="nn">microscopes.common.rng</span> <span class="kn">import</span> <span class="n">rng</span>
+<span class="kn">from</span> <span class="nn">microscopes.common.recarray.dataview</span> <span class="kn">import</span> <span class="n">numpy_dataview</span>
+<span class="kn">from</span> <span class="nn">microscopes.mixture</span> <span class="kn">import</span> <span class="n">model</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">query</span>
+<span class="kn">from</span> <span class="nn">microscopes.kernels</span> <span class="kn">import</span> <span class="n">parallel</span>
+</pre></div>
+</div>
+<p>Let&#8217;s focus on classifying 2&#8217;s and 3&#8217;s</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">fetch_mldata</span><span class="p">(</span><span class="s">&#39;MNIST original&#39;</span><span class="p">)</span>
+<span class="n">Y_2</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mnist_dataset</span><span class="p">[</span><span class="s">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">2.</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">Y_3</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mnist_dataset</span><span class="p">[</span><span class="s">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">3.</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="k">print</span> <span class="s">&#39;number of twos:&#39;</span><span class="p">,</span> <span class="n">Y_2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="s">&#39;number of threes:&#39;</span><span class="p">,</span> <span class="n">Y_3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>number of twos: 6990
+number of threes: 7141
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;number of dimensions: </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y_2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>number of dimensions: 2
+</pre></div>
+</div>
+<p>Our data is 2 dimensional, which means each observation is a vector.</p>
+<p>We can reformat our data to show the digits as images</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">_</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">Y_3</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">W</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">W</span> <span class="o">*</span> <span class="n">W</span> <span class="o">==</span> <span class="n">D</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Y_3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">W</span><span class="p">)),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Example MNIST Digit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x119273fd0&gt;
+</pre></div>
+</div>
+<img alt="_images/mnist-predictions_8_1.png" src="_images/mnist-predictions_8_1.png" />
+<p>For simplicity, we&#8217;ll convert these grayscale images into binary images</p>
+<p>To pass our data into datamicroscopes, we&#8217;ll also munge the data into
+recarray format</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">Y_2</span><span class="p">,</span> <span class="n">Y_3</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">Y</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)]</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s look at an example image</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">W</span><span class="p">)),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1134c8cd0&gt;
+</pre></div>
+</div>
+<img alt="_images/mnist-predictions_12_1.png" src="_images/mnist-predictions_12_1.png" />
+<p>Now, we can initialize our model. To do so, we must:</p>
+<ol class="arabic simple">
+<li>Specify the number of chains</li>
+<li>Import the data</li>
+<li>Define the model</li>
+<li>Initialize the model</li>
+<li>Initialize the samplers, aka <code class="docutils literal"><span class="pre">runners</span></code></li>
+</ol>
+<p>For this classification task, we&#8217;ll use a Dirichlet Process Mixture
+Model</p>
+<p>Since we converted the data into binary vectors for each pixel, we&#8217;ll
+define our likelihood of the model as a beta-bernouli. In this case, the
+likelihood is the probability that each of the <img class="math" src="_images/math/9dfa31437b58c0473299320aa638151cd88cf61b.png" alt="D"/> pixels in the
+image is <code class="docutils literal"><span class="pre">True</span></code> or <code class="docutils literal"><span class="pre">False</span></code>. Note, these pixel assignments are
+assumed to be <strong>independent</strong>.</p>
+<div class="math">
+<p><img src="_images/math/1bcaf0735b2af9de2edf55d4c794cbbcd5dcb23a.png" alt="\forall\hspace{2mm} d \in [0,1,..,D],\hspace{2mm} k \in [0,..,K], \hspace{2mm} P(pixel_d = True|cluster=k) \sim BetaBernoulli(\alpha_k,\beta_k)"/></p>
+</div><div class="math">
+<p><img src="_images/math/6c7b858e4431ceda4139ec1557f80d28f5161518.png" alt="\forall \hspace{2mm} d\neq c \hspace{2mm} P(pixel_d = True|cluster=k) \perp P(pixel_c = True|cluster=k)\hspace{2mm}"/></p>
+</div><p>Recall that since we&#8217;re using a Dirichlet Process Mixture Model,
+<img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> is also latent variable which we learn at these same time as
+the each cluster&#8217;s parameters</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">view</span> <span class="o">=</span> <span class="n">numpy_dataview</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">beta_bernoulli</span><span class="p">]</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+<span class="n">prng</span> <span class="o">=</span> <span class="n">rng</span><span class="p">()</span>
+<span class="n">kc</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">default_kernel_config</span><span class="p">(</span><span class="n">defn</span><span class="p">)</span>
+<span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">prng</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nchains</span><span class="p">)]</span>
+<span class="n">runners</span> <span class="o">=</span> <span class="p">[</span><span class="n">runner</span><span class="o">.</span><span class="n">runner</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">latent</span><span class="p">,</span> <span class="n">kc</span><span class="p">)</span> <span class="k">for</span> <span class="n">latent</span> <span class="ow">in</span> <span class="n">latents</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">parallel</span><span class="o">.</span><span class="n">runner</span><span class="p">(</span><span class="n">runners</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s"> betabernouli likelihoods: one for each pixel&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">defn</span><span class="o">.</span><span class="n">models</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>784 betabernouli likelihoods: one for each pixel
+</pre></div>
+</div>
+<p>Now let&#8217;s run each chain in parallel for 5 iterations</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">iters</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">r</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">niters</span><span class="o">=</span><span class="n">iters</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;mcmc took&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="mf">60.</span><span class="p">,</span> <span class="s">&quot;minutes&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>mcmc took 156.391473516 minutes
+mcmc took 156.391473516 minutes
+</pre></div>
+</div>
+<p>To save our results, we can get the latest assignment of each
+observation and pickle the output</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">infers</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_latents</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># save to disk</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;mnist-predictions-infers.pickle&quot;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">infers</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="n">infers</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&quot;mnist-predictions-infers.pickle&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>With our saved results, we can plot our learned clusters</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_clusters</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">scalebysize</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">hps</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">get_feature_hp</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">D</span><span class="p">)]</span>
+    <span class="k">def</span> <span class="nf">prior_prob</span><span class="p">(</span><span class="n">hp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">hp</span><span class="p">[</span><span class="s">&#39;alpha&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">hp</span><span class="p">[</span><span class="s">&#39;alpha&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">hp</span><span class="p">[</span><span class="s">&#39;beta&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">data_for_group</span><span class="p">(</span><span class="n">gid</span><span class="p">):</span>
+        <span class="n">suffstats</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">get_suffstats</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">D</span><span class="p">)]</span>
+        <span class="k">def</span> <span class="nf">prob</span><span class="p">(</span><span class="n">hp</span><span class="p">,</span> <span class="n">ss</span><span class="p">):</span>
+            <span class="n">top</span> <span class="o">=</span> <span class="n">hp</span><span class="p">[</span><span class="s">&#39;alpha&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ss</span><span class="p">[</span><span class="s">&#39;heads&#39;</span><span class="p">]</span>
+            <span class="n">bot</span> <span class="o">=</span> <span class="n">top</span> <span class="o">+</span> <span class="n">hp</span><span class="p">[</span><span class="s">&#39;beta&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ss</span><span class="p">[</span><span class="s">&#39;tails&#39;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">top</span> <span class="o">/</span> <span class="n">bot</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">prob</span><span class="p">(</span><span class="n">hp</span><span class="p">,</span> <span class="n">ss</span><span class="p">)</span> <span class="k">for</span> <span class="n">hp</span><span class="p">,</span> <span class="n">ss</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">hps</span><span class="p">,</span> <span class="n">suffstats</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">W</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>
+        <span class="n">newW</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">weight</span> <span class="o">*</span> <span class="n">W</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">newW</span><span class="p">,</span> <span class="n">newW</span><span class="p">))</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">ImageOps</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="p">(</span><span class="n">W</span> <span class="o">-</span> <span class="n">newW</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">W</span><span class="p">:</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">W</span><span class="p">:</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:</span><span class="n">W</span><span class="p">,:]</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">W</span><span class="p">:</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">W</span><span class="p">)[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">W</span><span class="p">:</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[:,:</span><span class="n">W</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">im</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">groupsbysize</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">[(</span><span class="n">gid</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">groupsize</span><span class="p">(</span><span class="n">gid</span><span class="p">))</span> <span class="k">for</span> <span class="n">gid</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">groups</span><span class="p">()]</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">counts</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">data_for_group</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">cnt</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="n">groupsbysize</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
+    <span class="n">largest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cnt</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">scale</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">cnt</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">largest</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">scalebysize</span> <span class="k">else</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+    <span class="n">digits_per_row</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">rem</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">%</span> <span class="n">digits_per_row</span>
+    <span class="k">if</span> <span class="n">rem</span><span class="p">:</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="n">digits_per_row</span> <span class="o">-</span> <span class="n">rem</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">fill</span><span class="p">):</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="n">digits_per_row</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">W</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">digits_per_row</span><span class="p">]])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">digits_per_row</span><span class="p">)])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Let&#8217;s show all groups (also by size) for the first set of assignments</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plot_clusters</span><span class="p">(</span><span class="n">infers</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plot_clusters</span><span class="p">(</span><span class="n">infers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scalebysize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/mnist-predictions_24_0.png" src="_images/mnist-predictions_24_0.png" />
+<img alt="_images/mnist-predictions_24_1.png" src="_images/mnist-predictions_24_1.png" />
+<img alt="_images/mnist-predictions_24_2.png" src="_images/mnist-predictions_24_2.png" />
+<img alt="_images/mnist-predictions_24_3.png" src="_images/mnist-predictions_24_3.png" />
+<p>Now, let&#8217;s used our learned clusters to make predictions when presented
+with only the top half of the digit image</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">present</span> <span class="o">=</span> <span class="n">D</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">absent</span> <span class="o">=</span> <span class="n">D</span><span class="o">-</span><span class="n">present</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">Y_2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">Y_2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])[:</span><span class="mi">4</span><span class="p">]]</span> <span class="o">+</span> \
+          <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">Y_3</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">Y_3</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])[:</span><span class="mi">4</span><span class="p">]]</span>
+
+<span class="n">queries_masked</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="nb">bool</span><span class="p">)]</span><span class="o">*</span><span class="n">D</span><span class="p">),</span>
+    <span class="n">mask</span><span class="o">=</span><span class="p">[(</span><span class="bp">False</span><span class="p">,)</span><span class="o">*</span><span class="n">present</span> <span class="o">+</span> <span class="p">(</span><span class="bp">True</span><span class="p">,)</span><span class="o">*</span><span class="n">absent</span><span class="p">])</span>
+
+<span class="n">statistics</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">posterior_predictive_statistic</span><span class="p">(</span><span class="n">queries_masked</span><span class="p">,</span> <span class="n">infers</span><span class="p">,</span> <span class="n">prng</span><span class="p">,</span> <span class="n">samples_per_chain</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">merge</span><span class="o">=</span><span class="s">&#39;avg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">data0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">W</span><span class="p">,</span><span class="n">W</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statistics</span><span class="p">])</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">),</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">W</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">data0</span><span class="p">,</span> <span class="n">data1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.image.AxesImage at 0x1256f1890&gt;
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.image.AxesImage at 0x1256f1890&gt;
+</pre></div>
+</div>
+<img alt="_images/mnist-predictions_27_2.png" src="_images/mnist-predictions_27_2.png" />
+<img alt="_images/mnist-predictions_27_3.png" src="_images/mnist-predictions_27_3.png" />
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

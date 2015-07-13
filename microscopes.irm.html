@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>irm</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="kernels" href="microscopes.kernels.html" />
+    <link rel="prev" title="mixturemodel" href="microscopes.mixture.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dirichlet-discrete.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-wishart.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-chisquare.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians wiht the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist-predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">irm</a><ul>
+<li><a class="reference internal" href="#module-microscopes.irm.definition">microscopes.irm.definition</a></li>
+<li><a class="reference internal" href="#module-microscopes.irm.model">microscopes.irm.model</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/microscopes.irm.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="irm">
+<h1>irm<a class="headerlink" href="#irm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-microscopes.irm.definition">
+<span id="microscopes-irm-definition"></span><h2>microscopes.irm.definition<a class="headerlink" href="#module-microscopes.irm.definition" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="microscopes.irm.definition.model_definition">
+<em class="property">class </em><code class="descclassname">microscopes.irm.definition.</code><code class="descname">model_definition</code><a class="headerlink" href="#microscopes.irm.definition.model_definition" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="microscopes.irm.definition.model_definition.domain_hyperpriors">
+<code class="descname">domain_hyperpriors</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.definition.model_definition.domain_hyperpriors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.domains">
+<code class="descname">domains</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.definition.model_definition.domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.relation_hyperpriors">
+<code class="descname">relation_hyperpriors</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.definition.model_definition.relation_hyperpriors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.relation_models">
+<code class="descname">relation_models</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.definition.model_definition.relation_models" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.relations">
+<code class="descname">relations</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.definition.model_definition.relations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.shape">
+<code class="descname">shape</code><span class="sig-paren">(</span><em>self</em>, <em>relation</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.definition.model_definition.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-microscopes.irm.model">
+<span id="microscopes-irm-model"></span><h2>microscopes.irm.model<a class="headerlink" href="#module-microscopes.irm.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="microscopes.irm.model.state">
+<em class="property">class </em><code class="descclassname">microscopes.irm.model.</code><code class="descname">state</code><a class="headerlink" href="#microscopes.irm.model.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The underlying state of an Infinite Relational Model.</p>
+<p>You should not explicitly construct a state object.
+Instead, use <a class="reference internal" href="#microscopes.irm.model.initialize" title="microscopes.irm.model.initialize"><code class="xref py py-func docutils literal"><span class="pre">initialize()</span></code></a>.</p>
+<p class="rubric">Notes</p>
+<p>This class is not meant to be sub-classed.</p>
+<dl class="method">
+<dt id="microscopes.irm.model.state.assignments">
+<code class="descname">assignments</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.assignments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.empty_groups">
+<code class="descname">empty_groups</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.empty_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.entity_data_positions">
+<code class="descname">entity_data_positions</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em>, <em>int eid</em>, <em>relations</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.entity_data_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.get_domain_hp">
+<code class="descname">get_domain_hp</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.get_domain_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.get_relation_hp">
+<code class="descname">get_relation_hp</code><span class="sig-paren">(</span><em>self</em>, <em>int relation</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.get_relation_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.get_suffstats">
+<code class="descname">get_suffstats</code><span class="sig-paren">(</span><em>self</em>, <em>int relation</em>, <em>gids</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.get_suffstats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.groups">
+<code class="descname">groups</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.groupsize">
+<code class="descname">groupsize</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em>, <em>int gid</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.groupsize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.isactivegroup">
+<code class="descname">isactivegroup</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em>, <em>int gid</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.isactivegroup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.models">
+<code class="descname">models</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.models" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.ndomains">
+<code class="descname">ndomains</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.ndomains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.nentities">
+<code class="descname">nentities</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.nentities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.ngroups">
+<code class="descname">ngroups</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.ngroups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.nrelations">
+<code class="descname">nrelations</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.nrelations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.score_assignment">
+<code class="descname">score_assignment</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.score_assignment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.score_likelihood">
+<code class="descname">score_likelihood</code><span class="sig-paren">(</span><em>self</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.score_likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.serialize">
+<code class="descname">serialize</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.set_domain_hp">
+<code class="descname">set_domain_hp</code><span class="sig-paren">(</span><em>self</em>, <em>int domain</em>, <em>dict d</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.set_domain_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.set_relation_hp">
+<code class="descname">set_relation_hp</code><span class="sig-paren">(</span><em>self</em>, <em>int relation</em>, <em>dict d</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.state.set_relation_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.irm.model.initialize">
+<code class="descclassname">microscopes.irm.model.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>model_definition defn</em>, <em>data</em>, <em>rng r</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize state to a random, valid point in the state space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p><strong>data</strong> : list of relation dataviews</p>
+<p class="last"><strong>rng</strong> : random state</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.irm.model.bind">
+<code class="descclassname">microscopes.irm.model.</code><code class="descname">bind</code><span class="sig-paren">(</span><em>state s</em>, <em>int domain</em>, <em>relations</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.bind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.irm.model.deserialize">
+<code class="descclassname">microscopes.irm.model.</code><code class="descname">deserialize</code><span class="sig-paren">(</span><em>model_definition defn</em>, <em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.irm.model.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore a state object from a bytestring representation.</p>
+<p>Note that a serialized representation of a state object does
+not contain its own structural definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p class="last"><strong>bytes</strong> : bytestring representation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
