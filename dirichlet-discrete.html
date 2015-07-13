@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Categorical Data and the Dirichlet Discrete Distribution</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="Datatypes and likelihood models in datamicroscopes" href="docs.html" />
+    <link rel="next" title="Real Valued Data and the Normal Inverse-Wishart Distribution" href="normal-inverse-wishart.html" />
+    <link rel="prev" title="Binary Data with the Beta Bernouli Distribution" href="beta-bernoulli.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-wishart.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-chisquare.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians wiht the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist-predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/dirichlet-discrete.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="categorical-data-and-the-dirichlet-discrete-distribution">
+<h1>Categorical Data and the Dirichlet Discrete Distribution<a class="headerlink" href="#categorical-data-and-the-dirichlet-discrete-distribution" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>Let&#8217;s consider some examples of data with categorical variables</p>
+<div class="code python highlight-python"><div class="highlight"><pre>import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+sns.set_context(&#39;talk&#39;)
+sns.set_style(&#39;darkgrid&#39;)
+</pre></div>
+</div>
+<p>First, the passenger list of the Titanic</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s">&quot;titanic&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.4583</td>
+      <td>Q</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Queenstown</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>54</td>
+      <td>0</td>
+      <td>0</td>
+      <td>51.8625</td>
+      <td>S</td>
+      <td>First</td>
+      <td>man</td>
+      <td>True</td>
+      <td>E</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>21.0750</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>child</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>27</td>
+      <td>0</td>
+      <td>2</td>
+      <td>11.1333</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>2</td>
+      <td>female</td>
+      <td>14</td>
+      <td>1</td>
+      <td>0</td>
+      <td>30.0708</td>
+      <td>C</td>
+      <td>Second</td>
+      <td>child</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>One of the categorical variables in this dataset is <code class="docutils literal"><span class="pre">embark_town</span></code></p>
+<p>Let&#8217;s plot the number of passengers departing from each town</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">&#39;embark_town&#39;</span><span class="p">])[</span><span class="s">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Departure Town&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Passengers&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Number of Passengers by Town of Departure&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1029b9a10&gt;
+</pre></div>
+</div>
+<img alt="_images/dirichlet-discrete_6_1.png" src="_images/dirichlet-discrete_6_1.png" />
+<p>Let&#8217;s look at another example: the <a class="reference external" href="https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Cars93.html">cars93
+dataset</a></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;https://vincentarelbundock.github.io/Rdatasets/csv/MASS/Cars93.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Type</th>
+      <th>Min.Price</th>
+      <th>Price</th>
+      <th>Max.Price</th>
+      <th>MPG.city</th>
+      <th>MPG.highway</th>
+      <th>AirBags</th>
+      <th>DriveTrain</th>
+      <th>...</th>
+      <th>Passengers</th>
+      <th>Length</th>
+      <th>Wheelbase</th>
+      <th>Width</th>
+      <th>Turn.circle</th>
+      <th>Rear.seat.room</th>
+      <th>Luggage.room</th>
+      <th>Weight</th>
+      <th>Origin</th>
+      <th>Make</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Acura</td>
+      <td>Integra</td>
+      <td>Small</td>
+      <td>12.9</td>
+      <td>15.9</td>
+      <td>18.8</td>
+      <td>25</td>
+      <td>31</td>
+      <td>None</td>
+      <td>Front</td>
+      <td>...</td>
+      <td>5</td>
+      <td>177</td>
+      <td>102</td>
+      <td>68</td>
+      <td>37</td>
+      <td>26.5</td>
+      <td>11</td>
+      <td>2705</td>
+      <td>non-USA</td>
+      <td>Acura Integra</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Acura</td>
+      <td>Legend</td>
+      <td>Midsize</td>
+      <td>29.2</td>
+      <td>33.9</td>
+      <td>38.7</td>
+      <td>18</td>
+      <td>25</td>
+      <td>Driver &amp; Passenger</td>
+      <td>Front</td>
+      <td>...</td>
+      <td>5</td>
+      <td>195</td>
+      <td>115</td>
+      <td>71</td>
+      <td>38</td>
+      <td>30.0</td>
+      <td>15</td>
+      <td>3560</td>
+      <td>non-USA</td>
+      <td>Acura Legend</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Audi</td>
+      <td>90</td>
+      <td>Compact</td>
+      <td>25.9</td>
+      <td>29.1</td>
+      <td>32.3</td>
+      <td>20</td>
+      <td>26</td>
+      <td>Driver only</td>
+      <td>Front</td>
+      <td>...</td>
+      <td>5</td>
+      <td>180</td>
+      <td>102</td>
+      <td>67</td>
+      <td>37</td>
+      <td>28.0</td>
+      <td>14</td>
+      <td>3375</td>
+      <td>non-USA</td>
+      <td>Audi 90</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Audi</td>
+      <td>100</td>
+      <td>Midsize</td>
+      <td>30.8</td>
+      <td>37.7</td>
+      <td>44.6</td>
+      <td>19</td>
+      <td>26</td>
+      <td>Driver &amp; Passenger</td>
+      <td>Front</td>
+      <td>...</td>
+      <td>6</td>
+      <td>193</td>
+      <td>106</td>
+      <td>70</td>
+      <td>37</td>
+      <td>31.0</td>
+      <td>17</td>
+      <td>3405</td>
+      <td>non-USA</td>
+      <td>Audi 100</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>BMW</td>
+      <td>535i</td>
+      <td>Midsize</td>
+      <td>23.7</td>
+      <td>30.0</td>
+      <td>36.2</td>
+      <td>22</td>
+      <td>30</td>
+      <td>Driver only</td>
+      <td>Rear</td>
+      <td>...</td>
+      <td>4</td>
+      <td>186</td>
+      <td>109</td>
+      <td>69</td>
+      <td>39</td>
+      <td>27.0</td>
+      <td>13</td>
+      <td>3640</td>
+      <td>non-USA</td>
+      <td>BMW 535i</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Manufacturer                  Acura
+Model                       Integra
+Type                          Small
+Min.Price                      12.9
+Price                          15.9
+Max.Price                      18.8
+MPG.city                         25
+MPG.highway                      31
+AirBags                        None
+DriveTrain                    Front
+Cylinders                         4
+EngineSize                      1.8
+Horsepower                      140
+RPM                            6300
+Rev.per.mile                   2890
+Man.trans.avail                 Yes
+Fuel.tank.capacity             13.2
+Passengers                        5
+Length                          177
+Wheelbase                       102
+Width                            68
+Turn.circle                      37
+Rear.seat.room                 26.5
+Luggage.room                     11
+Weight                         2705
+Origin                      non-USA
+Make                  Acura Integra
+Name: 1, dtype: object
+</pre></div>
+</div>
+<p>This dataset has multiple categorical variables</p>
+<p>Based on the description of the cars93 datatset, we&#8217;ll consider
+<code class="docutils literal"><span class="pre">Manufacturer</span></code>, and <code class="docutils literal"><span class="pre">DriveTrain</span></code> to be categorical variables</p>
+<p>Let&#8217;s plot <code class="docutils literal"><span class="pre">Manufacturer</span></code> and <code class="docutils literal"><span class="pre">DriveTrain</span></code></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Manufacturer&#39;</span><span class="p">)[</span><span class="s">&#39;Model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Cars&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Number of Cars by Manufacturer&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x114d9e6d0&gt;
+</pre></div>
+</div>
+<img alt="_images/dirichlet-discrete_12_1.png" src="_images/dirichlet-discrete_12_1.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;DriveTrain&#39;</span><span class="p">)[</span><span class="s">&#39;Model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Cars&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Number of Cars by Drive Train&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117554e50&gt;
+</pre></div>
+</div>
+<img alt="_images/dirichlet-discrete_13_1.png" src="_images/dirichlet-discrete_13_1.png" />
+<p>If our categorical data has labels, we need to convert them to integer
+id&#8217;s</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">col_2_ids</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">ids</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_ids&#39;</span> <span class="o">%</span> <span class="n">col</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">ids</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cat_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Manufacturer&#39;</span><span class="p">,</span> <span class="s">&#39;DriveTrain&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cat_columns</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">c</span>
+    <span class="n">cars</span> <span class="o">=</span> <span class="n">col_2_ids</span><span class="p">(</span><span class="n">cars</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Manufacturer</span>
+<span class="n">DriveTrain</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span><span class="p">[[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">_ids&#39;</span> <span class="o">%</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cat_columns</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Manufacturer_ids</th>
+      <th>DriveTrain_ids</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Just as we model binary data with the beta Bernoulli distribution, we
+can model categorical data with the Dirichlet discrete distribution</p>
+<p>The beta Bernoulli distribution allows us to learn the underlying
+probability, <img class="math" src="_images/math/a9cfbeb8ebee1f365919e147a79e242dcb67ee5d.png" alt="\theta"/>, of the binary random variable, <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/></p>
+<div class="math">
+<p><img src="_images/math/4686e78e8d4a4770ec173c6c498d562d9bec7de6.png" alt="P(x=1) =\theta"/></p>
+</div><div class="math">
+<p><img src="_images/math/7f9f11af0a202e9fc9e0b674011397f5745aaec3.png" alt="P(x=0) = 1-\theta"/></p>
+</div><p>The Dirichlet discrete distribution extends the beta Bernoulli
+distribution to the case in which <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> can assume more than two
+states</p>
+<div class="math">
+<p><img src="_images/math/116fceda92c928b2e9d9d7b006ecc86d5e0e7f0c.png" alt="\forall i \in [0,1,...n] \hspace{2mm} P(x = i) = \theta_i"/></p>
+</div><div class="math">
+<p><img src="_images/math/5ccb12cc50a82c910b1f0ace4ab9303b81b306f4.png" alt="\sum_{i=0}^n \theta_i = 1"/></p>
+</div><p>Again, the Dirichlet distribution takes advantage of the fact that the
+Dirichlet distribution and the discrete distribution are conjugate. Note
+that the discrete distriution is sometimes called the categorical
+distribution or the multinomial distribution.</p>
+<p>To import the Dirichlet discrete distribution call</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">dd</span> <span class="k">as</span> <span class="n">dirichlet_discrete</span>
+</pre></div>
+</div>
+<p>Then given the specific model we&#8217;d want we&#8217;d import</p>
+<p><code class="docutils literal"><span class="pre">from</span> <span class="pre">microscopes.model_name.definition</span> <span class="pre">import</span> <span class="pre">model_definition</span></code></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.irm.definition</span> <span class="kn">import</span> <span class="n">model_definition</span> <span class="k">as</span> <span class="n">irm_definition</span>
+<span class="kn">from</span> <span class="nn">microscopes.mixture.definition</span> <span class="kn">import</span> <span class="n">model_definition</span> <span class="k">as</span> <span class="n">mm_definition</span>
+</pre></div>
+</div>
+<p>See <code class="docutils literal"><span class="pre">Defining</span> <span class="pre">Your</span> <span class="pre">Model</span></code> to learn more about model definitions</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
