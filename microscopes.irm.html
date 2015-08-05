@@ -111,8 +111,8 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">irm</a><ul>
-<li><a class="reference internal" href="#microscopes-irm-definition">microscopes.irm.definition</a></li>
-<li><a class="reference internal" href="#microscopes-irm-model">microscopes.irm.model</a></li>
+<li><a class="reference internal" href="#module-microscopes.irm.definition">microscopes.irm.definition</a></li>
+<li><a class="reference internal" href="#module-microscopes.irm.model">microscopes.irm.model</a></li>
 </ul>
 </li>
 </ul>
@@ -152,11 +152,191 @@
       
   <div class="section" id="irm">
 <h1>irm<a class="headerlink" href="#irm" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="microscopes-irm-definition">
-<h2>microscopes.irm.definition<a class="headerlink" href="#microscopes-irm-definition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-microscopes.irm.definition">
+<span id="microscopes-irm-definition"></span><h2>microscopes.irm.definition<a class="headerlink" href="#module-microscopes.irm.definition" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="microscopes.irm.definition.model_definition">
+<em class="property">class </em><tt class="descclassname">microscopes.irm.definition.</tt><tt class="descname">model_definition</tt><a class="headerlink" href="#microscopes.irm.definition.model_definition" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="microscopes.irm.definition.model_definition.domain_hyperpriors">
+<tt class="descname">domain_hyperpriors</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.definition.model_definition.domain_hyperpriors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.domains">
+<tt class="descname">domains</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.definition.model_definition.domains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.relation_hyperpriors">
+<tt class="descname">relation_hyperpriors</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.definition.model_definition.relation_hyperpriors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.relation_models">
+<tt class="descname">relation_models</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.definition.model_definition.relation_models" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.relations">
+<tt class="descname">relations</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.definition.model_definition.relations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.definition.model_definition.shape">
+<tt class="descname">shape</tt><big>(</big><em>self</em>, <em>relation</em><big>)</big><a class="headerlink" href="#microscopes.irm.definition.model_definition.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="microscopes-irm-model">
-<h2>microscopes.irm.model<a class="headerlink" href="#microscopes-irm-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-microscopes.irm.model">
+<span id="microscopes-irm-model"></span><h2>microscopes.irm.model<a class="headerlink" href="#module-microscopes.irm.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="microscopes.irm.model.state">
+<em class="property">class </em><tt class="descclassname">microscopes.irm.model.</tt><tt class="descname">state</tt><a class="headerlink" href="#microscopes.irm.model.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>The underlying state of an Infinite Relational Model.</p>
+<p>You should not explicitly construct a state object.
+Instead, use <a class="reference internal" href="#microscopes.irm.model.initialize" title="microscopes.irm.model.initialize"><tt class="xref py py-func docutils literal"><span class="pre">initialize()</span></tt></a>.</p>
+<p class="rubric">Notes</p>
+<p>This class is not meant to be sub-classed.</p>
+<dl class="method">
+<dt id="microscopes.irm.model.state.assignments">
+<tt class="descname">assignments</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.assignments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.empty_groups">
+<tt class="descname">empty_groups</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.empty_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.entity_data_positions">
+<tt class="descname">entity_data_positions</tt><big>(</big><em>self</em>, <em>int domain</em>, <em>int eid</em>, <em>relations</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.entity_data_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.get_domain_hp">
+<tt class="descname">get_domain_hp</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.get_domain_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.get_relation_hp">
+<tt class="descname">get_relation_hp</tt><big>(</big><em>self</em>, <em>int relation</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.get_relation_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.get_suffstats">
+<tt class="descname">get_suffstats</tt><big>(</big><em>self</em>, <em>int relation</em>, <em>gids</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.get_suffstats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.groups">
+<tt class="descname">groups</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.groupsize">
+<tt class="descname">groupsize</tt><big>(</big><em>self</em>, <em>int domain</em>, <em>int gid</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.groupsize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.isactivegroup">
+<tt class="descname">isactivegroup</tt><big>(</big><em>self</em>, <em>int domain</em>, <em>int gid</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.isactivegroup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.models">
+<tt class="descname">models</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.models" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.ndomains">
+<tt class="descname">ndomains</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.ndomains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.nentities">
+<tt class="descname">nentities</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.nentities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.ngroups">
+<tt class="descname">ngroups</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.ngroups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.nrelations">
+<tt class="descname">nrelations</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.nrelations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.score_assignment">
+<tt class="descname">score_assignment</tt><big>(</big><em>self</em>, <em>int domain</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.score_assignment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.score_likelihood">
+<tt class="descname">score_likelihood</tt><big>(</big><em>self</em>, <em>rng r</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.score_likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.serialize">
+<tt class="descname">serialize</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.set_domain_hp">
+<tt class="descname">set_domain_hp</tt><big>(</big><em>self</em>, <em>int domain</em>, <em>dict d</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.set_domain_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.irm.model.state.set_relation_hp">
+<tt class="descname">set_relation_hp</tt><big>(</big><em>self</em>, <em>int relation</em>, <em>dict d</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.state.set_relation_hp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.irm.model.initialize">
+<tt class="descclassname">microscopes.irm.model.</tt><tt class="descname">initialize</tt><big>(</big><em>model_definition defn</em>, <em>data</em>, <em>rng r</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize state to a random, valid point in the state space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p><strong>data</strong> : list of relation dataviews</p>
+<p class="last"><strong>rng</strong> : random state</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="microscopes.irm.model.bind">
+<tt class="descclassname">microscopes.irm.model.</tt><tt class="descname">bind</tt><big>(</big><em>state s</em>, <em>int domain</em>, <em>relations</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.bind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="microscopes.irm.model.deserialize">
+<tt class="descclassname">microscopes.irm.model.</tt><tt class="descname">deserialize</tt><big>(</big><em>model_definition defn</em>, <em>bytes</em><big>)</big><a class="headerlink" href="#microscopes.irm.model.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore a state object from a bytestring representation.</p>
+<p>Note that a serialized representation of a state object does
+not contain its own structural definition.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
+<p class="last"><strong>bytes</strong> : bytestring representation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 </div>
 
