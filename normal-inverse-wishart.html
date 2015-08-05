@@ -38,7 +38,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body role="document">
+  <body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -228,7 +228,7 @@ measurements from 150 flowers, 50 from each of the following species:</p>
     </tr>
   </tbody>
 </table>
-</div><p>In the case of the <code class="docutils literal"><span class="pre">iris</span></code> dataset, plotting the data shows that
+</div><p>In the case of the <tt class="docutils literal"><span class="pre">iris</span></tt> dataset, plotting the data shows that
 indiviudal species exhibit a typical range of measurements</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">irisplot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&quot;species&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s">&#39;Set2&#39;</span><span class="p">,</span> <span class="n">diag_kind</span><span class="o">=</span><span class="s">&quot;kde&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
 <span class="n">irisplot</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&#39;Scatter Plots and Kernel Density Estimate of Iris Data by Species&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">)</span>
@@ -241,22 +241,22 @@ use these real valued measurements and make assumptions about the
 structure of the data.</p>
 <p>In practice, real valued data is commonly assumed to be distributed
 normally, or Gaussian</p>
-<p>We could assume that conditioned on <code class="docutils literal"><span class="pre">species</span></code>, the measurement data
+<p>We could assume that conditioned on <tt class="docutils literal"><span class="pre">species</span></tt>, the measurement data
 follwed a multivariate normal</p>
 <div class="math">
-<p><img src="_images/math/b4f292d8c21e8d5deea85c592da8c698d3de548c.png" alt="P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})"/></p>
+<p><span class="math">P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})</span></p>
 </div><p>The normal inverse-Wishart distribution allows us to learn the
 underlying parameters of each normal distribution, its mean
-<img class="math" src="_images/math/a7fe9b759cd188e747e3c1682152e14b94e2b116.png" alt="\mu_s"/> and its covariance <img class="math" src="_images/math/7b71dca17fc811f27da43a8a20e3f1e50b82eba5.png" alt="\Sigma_s"/>. Since the normal
+<span class="math">\mu_s</span> and its covariance <span class="math">\Sigma_s</span>. Since the normal
 inverse-Wishart is the conjugate prior of the multivariate normal, the
 posterior distribution of a multivariate normal with a normal
 inverse-Wishart prior also follows a normal inverse-Wishart
 distribution. This allows us to infer the distirbution over values of
-<img class="math" src="_images/math/a7fe9b759cd188e747e3c1682152e14b94e2b116.png" alt="\mu_s"/> and <img class="math" src="_images/math/f8a3624d6045a52a845e8072a7b26b5c87449e10.png" alt="\Sigma_{s}"/> when we define our model.</p>
+<span class="math">\mu_s</span> and <span class="math">\Sigma_{s}</span> when we define our model.</p>
 <p>Note that if we have only one real valued variable, the normal
 inverse-Wishart distribution is often referred to as the normal
 inverse-gamma distribution. In this case, we learn the scalar valued
-mean <img class="math" src="_images/math/126e84ba38f7dece5f0ad64e929b9588b20f6440.png" alt="\mu"/> and variance <img class="math" src="_images/math/93c29bfedc993de115781b4fbb7e3a8b9e8d6b51.png" alt="\sigma^2"/> for each inferred
+mean <span class="math">\mu</span> and variance <span class="math">\sigma^2</span> for each inferred
 cluster.</p>
 <p>Univariate real data, however, should be modeled with our normal
 invese-chi-squared distribution, which is optimized for infering
@@ -285,7 +285,7 @@ inverse-Wishart distribution, we would import our likelihood model</p>
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -38,7 +38,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body role="document">
+  <body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -174,20 +174,20 @@ the data</p>
 </pre></div>
 </div>
 <p>We&#8217;ve made a set of utilities especially for this dataset,
-<code class="docutils literal"><span class="pre">enron_utils</span></code>. We&#8217;ll include these as well.</p>
+<tt class="docutils literal"><span class="pre">enron_utils</span></tt>. We&#8217;ll include these as well.</p>
 <p>We have downloaded the data and preprocessed it as suggested by
 <a class="reference external" href="http://www.kecl.ntt.co.jp/as/members/ishiguro/open/2012AISTATS.pdf">Ishiguro et al.
 2012</a>.
-The results of the scirpt have been stored in the <code class="docutils literal"><span class="pre">results.p</span></code>.</p>
-<p><code class="docutils literal"><span class="pre">enron_crawler.py</span></code> in the kernels repo includes the script to create
-<code class="docutils literal"><span class="pre">results.p</span></code></p>
+The results of the scirpt have been stored in the <tt class="docutils literal"><span class="pre">results.p</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">enron_crawler.py</span></tt> in the kernels repo includes the script to create
+<tt class="docutils literal"><span class="pre">results.p</span></tt></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">enron_utils</span>
 </pre></div>
 </div>
 <p>Let&#8217;s load the data and make a binary matrix to represent email
 communication between individuals</p>
-<p>In this matrix, <img class="math" src="_images/math/a63f5509b6863f7754ad027f05fec06ececfaa13.png" alt="X_{i,j} = 1"/> if and only if person<img class="math" src="_images/math/4ff6cb9c4b978652604dbf12fa73535acaddada5.png" alt="_{i}"/>
-sent an email to person<img class="math" src="_images/math/71934fc0d8b6f17a03d9be58d9cdd362b43c7007.png" alt="_{j}"/></p>
+<p>In this matrix, <span class="math">X_{i,j} = 1</span> if and only if person<span class="math">_{i}</span>
+sent an email to person<span class="math">_{j}</span></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;results.p&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
     <span class="n">communications</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">allnames</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
@@ -234,8 +234,8 @@ the runners (MCMC chains) 5. run the runners</p>
 <p>Our domains are described in a list of the cardinalities of each domain</p>
 <p>Our releations are in a list of tuples which refer to the indicies of
 each domain and the model type</p>
-<p>In this case, the our domain is users, which is of size <img class="math" src="_images/math/75e27f04188974063be3230dca208cd495b77ce1.png" alt="N"/></p>
-<p>Our relations are users to users, both of cardinality <img class="math" src="_images/math/75e27f04188974063be3230dca208cd495b77ce1.png" alt="N"/>, and we
+<p>In this case, the our domain is users, which is of size <span class="math">N</span></p>
+<p>Our relations are users to users, both of cardinality <span class="math">N</span>, and we
 model the relation with beta-bernoulli distribution since our data is
 binary</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">([</span><span class="n">N</span><span class="p">],</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">beta_bernoulli</span><span class="p">)])</span>
@@ -244,7 +244,7 @@ binary</p>
 </pre></div>
 </div>
 <p>Next, let&#8217;s initialize the model and define the runners.</p>
-<p>These runners are our MCMC chains. We&#8217;ll use <code class="docutils literal"><span class="pre">cpu_count</span></code> to define our
+<p>These runners are our MCMC chains. We&#8217;ll use <tt class="docutils literal"><span class="pre">cpu_count</span></tt> to define our
 number of chains.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
 <span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">views</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">cluster_hps</span><span class="o">=</span><span class="p">[{</span><span class="s">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">1e-3</span><span class="p">}])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nchains</span><span class="p">)]</span>
@@ -390,7 +390,7 @@ cluster together</p>
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>
