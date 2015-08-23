@@ -38,7 +38,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -174,7 +174,7 @@ sns.set_style(&#39;darkgrid&#39;)
 <span class="n">lynx</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -215,7 +215,7 @@ sns.set_style(&#39;darkgrid&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Lynx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x114d96210&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1129d0090&gt;
 </pre></div>
 </div>
 <img alt="_images/normal-inverse-chisquare_4_1.png" src="_images/normal-inverse-chisquare_4_1.png" />
@@ -226,18 +226,18 @@ sns.set_style(&#39;darkgrid&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Number of Lynx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x114d96e10&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1129d0410&gt;
 </pre></div>
 </div>
 <img alt="_images/normal-inverse-chisquare_6_1.png" src="_images/normal-inverse-chisquare_6_1.png" />
 <p>Our plot suggests there could be three modes in the Lynx data.</p>
 <p>In modeling this timeseries, we could assume that the number of lynx
-trapped in a given year is falls into one of <span class="math">k</span> states, which are
-normally distributed with some unknown mean <span class="math">\mu_i</span> and variance
-<span class="math">\sigma^2_i</span> for each state</p>
+trapped in a given year is falls into one of <img class="math" src="_images/math/e9203da50e1059455123460d4e716c9c7f440cc3.png" alt="k"/> states, which are
+normally distributed with some unknown mean <img class="math" src="_images/math/fe45a709c71e4160e1a09e3b4cc03d2d36d15644.png" alt="\mu_i"/> and variance
+<img class="math" src="_images/math/7af82c540112d04a12bed95744925acfebcedf6e.png" alt="\sigma^2_i"/> for each state</p>
 <p>In the case of our Lynx data</p>
 <div class="math">
-<p><span class="math">\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)</span></p>
+<p><img src="_images/math/f0255e5b4da79aef0f6737ee786d6cd7f6bdce6d.png" alt="\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)"/></p>
 </div><hr class="docutils" />
 <p>Now let&#8217;s consider demographics data from the Titanic Dataset</p>
 <p>The Titanic Dataset contains information about passengers of the
@@ -246,7 +246,7 @@ Titanic.</p>
 <span class="n">ti</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -366,7 +366,7 @@ examine the correlation matrix</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">ti</span><span class="p">[[</span><span class="s">&#39;age&#39;</span><span class="p">,</span><span class="s">&#39;fare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -395,7 +395,7 @@ these two real valued columns independently.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Passenger Age in the Titanic Datset&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1176e6810&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117426c50&gt;
 </pre></div>
 </div>
 <img alt="_images/normal-inverse-chisquare_12_1.png" src="_images/normal-inverse-chisquare_12_1.png" />
@@ -403,7 +403,7 @@ these two real valued columns independently.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Passenger Fare in the Titanic Datset&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117971dd0&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117475310&gt;
 </pre></div>
 </div>
 <img alt="_images/normal-inverse-chisquare_13_1.png" src="_images/normal-inverse-chisquare_13_1.png" />
@@ -413,7 +413,7 @@ variable on a log scale:</p>
 <span class="n">ti</span><span class="p">[[</span><span class="s">&#39;age&#39;</span><span class="p">,</span><span class="s">&#39;logfare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -435,28 +435,28 @@ variable on a log scale:</p>
     </tr>
   </tbody>
 </table>
-</div><p>Again, <tt class="docutils literal"><span class="pre">logfare</span></tt> and <tt class="docutils literal"><span class="pre">age</span></tt> have near zero correlation, so we can
+</div><p>Again, <code class="docutils literal"><span class="pre">logfare</span></code> and <code class="docutils literal"><span class="pre">age</span></code> have near zero correlation, so we can
 again model these two variables independently</p>
 <p>Let&#8217;s see what a kernel density estimate of log fare would look like</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">ti</span><span class="p">[</span><span class="s">&#39;logfare&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Log Passenger Fare in the Titanic Datset&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117f6aad0&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1175a5110&gt;
 </pre></div>
 </div>
 <img alt="_images/normal-inverse-chisquare_17_1.png" src="_images/normal-inverse-chisquare_17_1.png" />
 <p>In logspace, passenger fare is multimodal, suggesting that we could
 model this variable with a normal distirbution</p>
 <p>If we were to model the passenger list using our Mixture Model, we would
-have separate likelihoods for <tt class="docutils literal"><span class="pre">logfare</span></tt> and <tt class="docutils literal"><span class="pre">age</span></tt></p>
+have separate likelihoods for <code class="docutils literal"><span class="pre">logfare</span></code> and <code class="docutils literal"><span class="pre">age</span></code></p>
 <div class="math">
-<p><span class="math">\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})</span></p>
+<p><img src="_images/math/68ef118cda1c83ba3f3c5392de1bb18f8999fdb3.png" alt="\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})"/></p>
 </div><div class="math">
-<p><span class="math">\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})</span></p>
+<p><img src="_images/math/760a332c0ec82418caecb98095c0b50bdb6a0fc3.png" alt="\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})"/></p>
 </div><hr class="docutils" />
 <p>Often, real value data is assumed to be normally distributed.</p>
-<p>To learn the latent variables, <span class="math">\mu_i</span> <span class="math">\sigma^2_i</span>, we
+<p>To learn the latent variables, <img class="math" src="_images/math/fe45a709c71e4160e1a09e3b4cc03d2d36d15644.png" alt="\mu_i"/> <img class="math" src="_images/math/7af82c540112d04a12bed95744925acfebcedf6e.png" alt="\sigma^2_i"/>, we
 would use a normal inverse-chi-square likelihood</p>
 <p>The normal inverse-chi-square likelihood is the conjugate univariate
 normal likelihood in data microscopes. We also have normal likelihood,
@@ -471,7 +471,7 @@ modeled as univariate normal:</p>
 <li>Datasets containing real valued variables with near zero correlation</li>
 </ol>
 <p>To import our univariate normal inverse-chi-squared likelihood, call:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">niw</span> <span class="k">as</span> <span class="n">normal_inverse_chisquared</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">nich</span> <span class="k">as</span> <span class="n">normal_inverse_chisquared</span>
 </pre></div>
 </div>
 </div>
@@ -489,7 +489,7 @@ modeled as univariate normal:</p>
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>

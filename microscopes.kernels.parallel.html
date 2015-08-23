@@ -38,7 +38,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -146,8 +146,82 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="parallel">
-<h1>parallel<a class="headerlink" href="#parallel" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-microscopes.kernels.parallel">
+<span id="parallel"></span><h1>parallel<a class="headerlink" href="#module-microscopes.kernels.parallel" title="Permalink to this headline">¶</a></h1>
+<p>Contains a parallel runner implementation, with support
+for various backends</p>
+<dl class="class">
+<dt id="microscopes.kernels.parallel.runner">
+<em class="property">class </em><code class="descclassname">microscopes.kernels.parallel.</code><code class="descname">runner</code><span class="sig-paren">(</span><em>runners</em>, <em>backend='multiprocessing'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.parallel.runner" title="Permalink to this definition">¶</a></dt>
+<dd><p>A parallel runner. Note the parallelism is applied across runners
+(currently, each runner is assumed to be single-threaded).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>runners</strong> : list of runner objects</p>
+<p><strong>backend</strong> : string, one of {&#8216;multiprocessing&#8217;, &#8216;multyvac&#8217;}</p>
+<blockquote>
+<div><p>Indicates the parallelization strategy to be used across
+runners. Note for the &#8216;multiprocessing&#8217; backend, the only
+valid kwarg is &#8216;processes&#8217;. For the &#8216;multyvac&#8217; backend,
+the valid kwargs are &#8216;layer&#8217;, &#8216;core&#8217;, and &#8216;volume&#8217;.</p>
+</div></blockquote>
+<p><strong>processes</strong> : int, optional</p>
+<blockquote>
+<div><p>For the &#8216;multiprocessing&#8217; backend, the number of processes
+in the process pool. Defaults to the number of processes
+on the current machine.</p>
+</div></blockquote>
+<p><strong>layer</strong> : string</p>
+<blockquote>
+<div><p>The multyvac layer which has the datamicroscopes dependencies
+installed.</p>
+</div></blockquote>
+<p><strong>core</strong> : string</p>
+<blockquote>
+<div><p>The type of multyvac core to use. Defaults currently to &#8216;f2&#8217; (the most
+expensive, but powerful core type).</p>
+</div></blockquote>
+<p><strong>volume</strong> : string, optional</p>
+<blockquote class="last">
+<div><p>The volume is highly recommended to work around multyvac&#8217;s limitations
+regarding passing around large objects (e.g. dataviews). The volume
+must be created beforehand. The runner uses the root directory of the
+volume as a cache.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>To use the multyvac backend, you must first authenticate your machine (e.g.
+by running multyvac setup) beforehand.</p>
+<dl class="method">
+<dt id="microscopes.kernels.parallel.runner.get_latents">
+<code class="descname">get_latents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.parallel.runner.get_latents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the current state of each of the runners.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="microscopes.kernels.parallel.runner.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>r</em>, <em>niters=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.parallel.runner.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run each runner for <cite>niters</cite>, using the backend supplied in the
+constructor for parallelism.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>r</strong> : rng</p>
+<p class="last"><strong>niters</strong> : int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -163,7 +237,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>

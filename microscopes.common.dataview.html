@@ -38,7 +38,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -111,8 +111,8 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">dataviews</a><ul>
-<li><a class="reference internal" href="#microscopes-common-recarray-dataview">microscopes.common.recarray.dataview</a></li>
-<li><a class="reference internal" href="#microscopes-common-relation-dataview">microscopes.common.relation.dataview</a></li>
+<li><a class="reference internal" href="#module-microscopes.common.recarray.dataview">microscopes.common.recarray.dataview</a></li>
+<li><a class="reference internal" href="#module-microscopes.common.relation.dataview">microscopes.common.relation.dataview</a></li>
 </ul>
 </li>
 </ul>
@@ -152,11 +152,127 @@
       
   <div class="section" id="dataviews">
 <h1>dataviews<a class="headerlink" href="#dataviews" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="microscopes-common-recarray-dataview">
-<h2>microscopes.common.recarray.dataview<a class="headerlink" href="#microscopes-common-recarray-dataview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-microscopes.common.recarray.dataview">
+<span id="microscopes-common-recarray-dataview"></span><h2>microscopes.common.recarray.dataview<a class="headerlink" href="#module-microscopes.common.recarray.dataview" title="Permalink to this headline">¶</a></h2>
+<p>Dataviews for data structured in records</p>
+<p>These represent heterogenous data type feature vectors,
+and are used as inputs to the <code class="docutils literal"><span class="pre">mixturemodel</span></code> model.</p>
+<dl class="class">
+<dt id="microscopes.common.recarray.dataview.numpy_dataview">
+<em class="property">class </em><code class="descclassname">microscopes.common.recarray.dataview.</code><code class="descname">numpy_dataview</code><a class="headerlink" href="#microscopes.common.recarray.dataview.numpy_dataview" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dataview around a numpy recarray. Supports masked arrays.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>npd</strong> : array</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="microscopes.common.recarray.dataview.numpy_dataview.digest">
+<code class="descname">digest</code><span class="sig-paren">(</span><em>self</em>, <em>h</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.recarray.dataview.numpy_dataview.digest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.recarray.dataview.numpy_dataview.next">
+<code class="descname">next</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.recarray.dataview.numpy_dataview.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.recarray.dataview.numpy_dataview.size">
+<code class="descname">size</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.recarray.dataview.numpy_dataview.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="microscopes-common-relation-dataview">
-<h2>microscopes.common.relation.dataview<a class="headerlink" href="#microscopes-common-relation-dataview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-microscopes.common.relation.dataview">
+<span id="microscopes-common-relation-dataview"></span><h2>microscopes.common.relation.dataview<a class="headerlink" href="#module-microscopes.common.relation.dataview" title="Permalink to this headline">¶</a></h2>
+<p>Dataviews for relation (tensor) data</p>
+<p>These are the data inputs for the <code class="docutils literal"><span class="pre">irm</span></code> model.</p>
+<dl class="class">
+<dt id="microscopes.common.relation.dataview.numpy_dataview">
+<em class="property">class </em><code class="descclassname">microscopes.common.relation.dataview.</code><code class="descname">numpy_dataview</code><a class="headerlink" href="#microscopes.common.relation.dataview.numpy_dataview" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <code class="docutils literal"><span class="pre">numpy.ndarray</span></code> dataview.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>npd</strong> : array</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span> <span class="o">=</span> <span class="n">numpy_dataview</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">view</span><span class="o">.</span><span class="n">shape</span><span class="p">()</span>
+<span class="go">(2, 2)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.numpy_dataview.digest">
+<code class="descname">digest</code><span class="sig-paren">(</span><em>self</em>, <em>h</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.numpy_dataview.digest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.numpy_dataview.shape">
+<code class="descname">shape</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.numpy_dataview.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.numpy_dataview.toarray">
+<code class="descname">toarray</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.numpy_dataview.toarray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="microscopes.common.relation.dataview.sparse_2d_dataview">
+<em class="property">class </em><code class="descclassname">microscopes.common.relation.dataview.</code><code class="descname">sparse_2d_dataview</code><a class="headerlink" href="#microscopes.common.relation.dataview.sparse_2d_dataview" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <code class="docutils literal"><span class="pre">scipy.sparse</span></code> dataview</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rep</strong> : a <code class="docutils literal"><span class="pre">scipy.sparse</span></code> matrix</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span> <span class="o">=</span> <span class="n">sparse_2d_dataview</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">view</span><span class="o">.</span><span class="n">shape</span><span class="p">()</span>
+<span class="go">(3, 4)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.sparse_2d_dataview.digest">
+<code class="descname">digest</code><span class="sig-paren">(</span><em>self</em>, <em>h</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.sparse_2d_dataview.digest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.sparse_2d_dataview.shape">
+<code class="descname">shape</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.sparse_2d_dataview.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.sparse_2d_dataview.tocoo">
+<code class="descname">tocoo</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.sparse_2d_dataview.tocoo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.sparse_2d_dataview.tocsc">
+<code class="descname">tocsc</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.sparse_2d_dataview.tocsc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="microscopes.common.relation.dataview.sparse_2d_dataview.tocsr">
+<code class="descname">tocsr</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.common.relation.dataview.sparse_2d_dataview.tocsr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -173,7 +289,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>
