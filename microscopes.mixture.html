@@ -157,58 +157,6 @@
 <div class="section" id="module-microscopes.mixture.definition">
 <span id="microscopes-mixture-definition"></span><h2>microscopes.mixture.definition<a class="headerlink" href="#module-microscopes.mixture.definition" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="microscopes.mixture.definition.fixed_model_definition">
-<em class="property">class </em><code class="descclassname">microscopes.mixture.definition.</code><code class="descname">fixed_model_definition</code><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Structural definition for a fixed mixture model</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>n</strong> : int</p>
-<blockquote>
-<div><p>Number of observations</p>
-</div></blockquote>
-<p><strong>groups</strong> : int</p>
-<blockquote>
-<div><p>Number of groups (fixed)</p>
-</div></blockquote>
-<p><strong>models</strong> : iterable of model descriptors</p>
-<blockquote class="last">
-<div><p>The component likelihood models. Each element is either <cite>x</cite> or
-<cite>(x, y)</cite>, where <cite>x</cite> is a <code class="docutils literal"><span class="pre">model_descriptor</span></code> and <cite>y</cite> is a dict
-containing the hyperpriors. If <cite>y</cite> is not given, then the default
-hyperpriors are used per model.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Notes</p>
-<p>There is currently no interface to express a hyperprior on the dirichlet
-distribution which governs the clustering behavior.</p>
-<dl class="method">
-<dt id="microscopes.mixture.definition.fixed_model_definition.groups">
-<code class="descname">groups</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.groups" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.definition.fixed_model_definition.hyperpriors">
-<code class="descname">hyperpriors</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.hyperpriors" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.definition.fixed_model_definition.models">
-<code class="descname">models</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.models" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.definition.fixed_model_definition.n">
-<code class="descname">n</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.definition.fixed_model_definition.n" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="microscopes.mixture.definition.model_definition">
 <em class="property">class </em><code class="descclassname">microscopes.mixture.definition.</code><code class="descname">model_definition</code><a class="headerlink" href="#microscopes.mixture.definition.model_definition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Structural definition for a dirichlet process mixture model</p>
@@ -235,6 +183,8 @@ hyperpriors are used per model.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>This class is not meant to be sub-classable.</p>
 <dl class="method">
 <dt id="microscopes.mixture.definition.model_definition.cluster_hyperprior">
 <code class="descname">cluster_hyperprior</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.definition.model_definition.cluster_hyperprior" title="Permalink to this definition">¶</a></dt>
@@ -403,134 +353,6 @@ Instead, use <cite>initialize</cite>.</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="microscopes.mixture.model.fixed_state">
-<em class="property">class </em><code class="descclassname">microscopes.mixture.model.</code><code class="descname">fixed_state</code><a class="headerlink" href="#microscopes.mixture.model.fixed_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>The underlying state of a fixed group bayesian mixture model.</p>
-<p>You should not explicitly construct a fixed_state object.
-Instead, use <cite>initialize_fixed</cite>.</p>
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.add_value">
-<code class="descname">add_value</code><span class="sig-paren">(</span><em>self</em>, <em>int gid</em>, <em>int eid</em>, <em>y</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.add_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.assignments">
-<code class="descname">assignments</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.assignments" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.dcheck_consistency">
-<code class="descname">dcheck_consistency</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.dcheck_consistency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.get_cluster_hp">
-<code class="descname">get_cluster_hp</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.get_cluster_hp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.get_feature_dtypes">
-<code class="descname">get_feature_dtypes</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.get_feature_dtypes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.get_feature_hp">
-<code class="descname">get_feature_hp</code><span class="sig-paren">(</span><em>self</em>, <em>int i</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.get_feature_hp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.get_feature_types">
-<code class="descname">get_feature_types</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.get_feature_types" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.get_suffstats">
-<code class="descname">get_suffstats</code><span class="sig-paren">(</span><em>self</em>, <em>int gid</em>, <em>int fid</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.get_suffstats" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.groups">
-<code class="descname">groups</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.groups" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.groupsize">
-<code class="descname">groupsize</code><span class="sig-paren">(</span><em>self</em>, <em>int gid</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.groupsize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.is_group_empty">
-<code class="descname">is_group_empty</code><span class="sig-paren">(</span><em>self</em>, <em>int gid</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.is_group_empty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.nentities">
-<code class="descname">nentities</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.nentities" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.nfeatures">
-<code class="descname">nfeatures</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.nfeatures" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.ngroups">
-<code class="descname">ngroups</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.ngroups" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.remove_value">
-<code class="descname">remove_value</code><span class="sig-paren">(</span><em>self</em>, <em>int eid</em>, <em>y</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.remove_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.sample_post_pred">
-<code class="descname">sample_post_pred</code><span class="sig-paren">(</span><em>self</em>, <em>y_new</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.sample_post_pred" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.score_assignment">
-<code class="descname">score_assignment</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.score_assignment" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.score_data">
-<code class="descname">score_data</code><span class="sig-paren">(</span><em>self</em>, <em>features</em>, <em>groups</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.score_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.score_joint">
-<code class="descname">score_joint</code><span class="sig-paren">(</span><em>self</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.score_joint" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.score_value">
-<code class="descname">score_value</code><span class="sig-paren">(</span><em>self</em>, <em>y</em>, <em>rng r</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.score_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.serialize">
-<code class="descname">serialize</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.serialize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.set_cluster_hp">
-<code class="descname">set_cluster_hp</code><span class="sig-paren">(</span><em>self</em>, <em>dict raw</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.set_cluster_hp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.set_feature_hp">
-<code class="descname">set_feature_hp</code><span class="sig-paren">(</span><em>self</em>, <em>int i</em>, <em>dict d</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.set_feature_hp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="microscopes.mixture.model.fixed_state.set_suffstats">
-<code class="descname">set_suffstats</code><span class="sig-paren">(</span><em>self</em>, <em>int gid</em>, <em>int fid</em>, <em>dict d</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.fixed_state.set_suffstats" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="function">
 <dt id="microscopes.mixture.model.initialize">
 <code class="descclassname">microscopes.mixture.model.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>model_definition defn</em>, <em>abstract_dataview data</em>, <em>rng r</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.initialize" title="Permalink to this definition">¶</a></dt>
@@ -549,30 +371,8 @@ Instead, use <cite>initialize_fixed</cite>.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="microscopes.mixture.model.initialize_fixed">
-<code class="descclassname">microscopes.mixture.model.</code><code class="descname">initialize_fixed</code><span class="sig-paren">(</span><em>fixed_model_definition defn</em>, <em>abstract_dataview data</em>, <em>rng r</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.initialize_fixed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize state to a random, valid point in the state space</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : fixed model definition</p>
-<p><strong>data</strong> : recarray dataview</p>
-<p class="last"><strong>rng</strong> : random state</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
 <dt id="microscopes.mixture.model.bind">
 <code class="descclassname">microscopes.mixture.model.</code><code class="descname">bind</code><span class="sig-paren">(</span><em>state s</em>, <em>abstract_dataview data</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.bind" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="microscopes.mixture.model.bind_fixed">
-<code class="descclassname">microscopes.mixture.model.</code><code class="descname">bind_fixed</code><span class="sig-paren">(</span><em>fixed_state s</em>, <em>abstract_dataview data</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.bind_fixed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -580,24 +380,6 @@ Instead, use <cite>initialize_fixed</cite>.</p>
 <code class="descclassname">microscopes.mixture.model.</code><code class="descname">deserialize</code><span class="sig-paren">(</span><em>model_definition defn</em>, <em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.deserialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restore a state object from a bytestring representation.</p>
 <p>Note that a serialized representation of a state object does
-not contain its own structural definition.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : model definition</p>
-<p class="last"><strong>bytes</strong> : bytestring representation</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="microscopes.mixture.model.deserialize_fixed">
-<code class="descclassname">microscopes.mixture.model.</code><code class="descname">deserialize_fixed</code><span class="sig-paren">(</span><em>fixed_model_definition defn</em>, <em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.model.deserialize_fixed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Restore a fixed state object from a bytestring representation.</p>
-<p>Note that a serialized representation of a fixed state object does
 not contain its own structural definition.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -673,6 +455,26 @@ hyper-parameter sampling kernels.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="microscopes.mixture.runner.default_grid_feature_hp_kernel_config">
+<code class="descclassname">microscopes.mixture.runner.</code><code class="descname">default_grid_feature_hp_kernel_config</code><span class="sig-paren">(</span><em>defn</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.runner.default_grid_feature_hp_kernel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default kernel configuration for sampling the component
+(feature) model hyper-parameters via gridded gibbs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : mixturemodel definition</p>
+<blockquote class="last">
+<div><p>The hyper-priors set in the definition are used to configure the
+hyper-parameter sampling kernels.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="microscopes.mixture.runner.default_kernel_config">
 <code class="descclassname">microscopes.mixture.runner.</code><code class="descname">default_kernel_config</code><span class="sig-paren">(</span><em>defn</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.runner.default_kernel_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a default kernel configuration suitable for general purpose
@@ -696,7 +498,7 @@ component hyper-parameter sampler.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : <code class="docutils literal"><span class="pre">model_definition</span></code> or <code class="docutils literal"><span class="pre">fixed_model_definition</span></code></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>defn</strong> : <code class="docutils literal"><span class="pre">model_definition</span></code></p>
 <blockquote>
 <div><p>The structural definition.</p>
 </div></blockquote>
@@ -704,9 +506,10 @@ component hyper-parameter sampler.</p>
 <blockquote>
 <div><p>The observations.</p>
 </div></blockquote>
-<p><strong>latent</strong> : <code class="docutils literal"><span class="pre">state</span></code> or <code class="docutils literal"><span class="pre">fixed_state</span></code></p>
+<p><strong>latent</strong> : <code class="docutils literal"><span class="pre">state</span></code></p>
 <blockquote>
-<div><p>The initialization state.</p>
+<div><p>The initialization state. Note that a <em>copy</em> of <cite>latent</cite> is
+made. Use <a class="reference internal" href="#microscopes.mixture.runner.runner.get_latent" title="microscopes.mixture.runner.runner.get_latent"><code class="xref py py-meth docutils literal"><span class="pre">get_latent()</span></code></a> to access the modified state.</p>
 </div></blockquote>
 <p><strong>kernel_config</strong> : list</p>
 <blockquote class="last">
@@ -715,9 +518,9 @@ containing the name of the kernel and <cite>y</cite> is a dict which configures
 the particular kernel. In the former case where <cite>y</cite> is omitted, then
 the defaults parameters for each kernel are used.</p>
 <p>Possible values of <cite>x</cite> are:
-{&#8216;assign_fixed&#8217;, &#8216;assign&#8217;, &#8216;assign_resample&#8217;,</p>
+{assign&#8217;, &#8216;assign_resample&#8217;, &#8216;grid_feature_hp&#8217;, &#8216;slice_feature_hp&#8217;,</p>
 <blockquote>
-<div><p>&#8216;feature_hp&#8217;, &#8216;cluster_hp&#8217;}</p>
+<div><p>&#8216;slice_cluster_hp&#8217;}</p>
 </div></blockquote>
 </div></blockquote>
 </td>
@@ -738,6 +541,8 @@ the defaults parameters for each kernel are used.</p>
 <dt id="microscopes.mixture.runner.runner.get_latent">
 <code class="descname">get_latent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.mixture.runner.runner.get_latent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the current value of the underlying state object.</p>
+<p>Note that the returned value is a <em>copy</em>, so modifications to it will
+not be seen by the runner.</p>
 </dd></dl>
 
 <dl class="method">

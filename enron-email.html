@@ -186,8 +186,8 @@ The results of the scirpt have been stored in the <code class="docutils literal"
 </div>
 <p>Let&#8217;s load the data and make a binary matrix to represent email
 communication between individuals</p>
-<p>In this matrix, <img class="math" src="_images/math/a63f5509b6863f7754ad027f05fec06ececfaa13.png" alt="X_{i,j} = 1"/> if and only if person<img class="math" src="_images/math/4ff6cb9c4b978652604dbf12fa73535acaddada5.png" alt="_{i}"/>
-sent an email to person<img class="math" src="_images/math/71934fc0d8b6f17a03d9be58d9cdd362b43c7007.png" alt="_{j}"/></p>
+<p>In this matrix, <span class="math">X_{i,j} = 1</span> if and only if person<span class="math">_{i}</span>
+sent an email to person<span class="math">_{j}</span></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;results.p&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
     <span class="n">communications</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">allnames</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
@@ -234,8 +234,8 @@ the runners (MCMC chains) 5. run the runners</p>
 <p>Our domains are described in a list of the cardinalities of each domain</p>
 <p>Our releations are in a list of tuples which refer to the indicies of
 each domain and the model type</p>
-<p>In this case, the our domain is users, which is of size <img class="math" src="_images/math/75e27f04188974063be3230dca208cd495b77ce1.png" alt="N"/></p>
-<p>Our relations are users to users, both of cardinality <img class="math" src="_images/math/75e27f04188974063be3230dca208cd495b77ce1.png" alt="N"/>, and we
+<p>In this case, the our domain is users, which is of size <span class="math">N</span></p>
+<p>Our relations are users to users, both of cardinality <span class="math">N</span>, and we
 model the relation with beta-bernoulli distribution since our data is
 binary</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">([</span><span class="n">N</span><span class="p">],</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">beta_bernoulli</span><span class="p">)])</span>

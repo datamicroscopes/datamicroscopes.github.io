@@ -232,12 +232,12 @@ sns.set_style(&#39;darkgrid&#39;)
 <img alt="_images/normal-inverse-chisquare_6_1.png" src="_images/normal-inverse-chisquare_6_1.png" />
 <p>Our plot suggests there could be three modes in the Lynx data.</p>
 <p>In modeling this timeseries, we could assume that the number of lynx
-trapped in a given year is falls into one of <img class="math" src="_images/math/e9203da50e1059455123460d4e716c9c7f440cc3.png" alt="k"/> states, which are
-normally distributed with some unknown mean <img class="math" src="_images/math/fe45a709c71e4160e1a09e3b4cc03d2d36d15644.png" alt="\mu_i"/> and variance
-<img class="math" src="_images/math/7af82c540112d04a12bed95744925acfebcedf6e.png" alt="\sigma^2_i"/> for each state</p>
+trapped in a given year is falls into one of <span class="math">k</span> states, which are
+normally distributed with some unknown mean <span class="math">\mu_i</span> and variance
+<span class="math">\sigma^2_i</span> for each state</p>
 <p>In the case of our Lynx data</p>
 <div class="math">
-<p><img src="_images/math/f0255e5b4da79aef0f6737ee786d6cd7f6bdce6d.png" alt="\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)"/></p>
+<p><span class="math">\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)</span></p>
 </div><hr class="docutils" />
 <p>Now let&#8217;s consider demographics data from the Titanic Dataset</p>
 <p>The Titanic Dataset contains information about passengers of the
@@ -451,12 +451,12 @@ model this variable with a normal distirbution</p>
 <p>If we were to model the passenger list using our Mixture Model, we would
 have separate likelihoods for <code class="docutils literal"><span class="pre">logfare</span></code> and <code class="docutils literal"><span class="pre">age</span></code></p>
 <div class="math">
-<p><img src="_images/math/68ef118cda1c83ba3f3c5392de1bb18f8999fdb3.png" alt="\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})"/></p>
+<p><span class="math">\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})</span></p>
 </div><div class="math">
-<p><img src="_images/math/760a332c0ec82418caecb98095c0b50bdb6a0fc3.png" alt="\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})"/></p>
+<p><span class="math">\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})</span></p>
 </div><hr class="docutils" />
 <p>Often, real value data is assumed to be normally distributed.</p>
-<p>To learn the latent variables, <img class="math" src="_images/math/fe45a709c71e4160e1a09e3b4cc03d2d36d15644.png" alt="\mu_i"/> <img class="math" src="_images/math/7af82c540112d04a12bed95744925acfebcedf6e.png" alt="\sigma^2_i"/>, we
+<p>To learn the latent variables, <span class="math">\mu_i</span> <span class="math">\sigma^2_i</span>, we
 would use a normal inverse-chi-square likelihood</p>
 <p>The normal inverse-chi-square likelihood is the conjugate univariate
 normal likelihood in data microscopes. We also have normal likelihood,
