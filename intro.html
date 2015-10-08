@@ -78,10 +78,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html#datatypes-and-likelihood-models-in-datamicroscopes">Datatypes and likelihood models in datamicroscopes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dirichlet-discrete.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="normal-inverse-wishart.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="normal-inverse-chisquare.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
@@ -157,14 +157,14 @@
 <span id="intro"></span><h1>Discovering structure in your data: an overview of clustering<a class="headerlink" href="#discovering-structure-in-your-data-an-overview-of-clustering" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists <span class="math">\(K\)</span> latent classes in the data.  The goal of clustering is to classify the observations in the data into these <span class="math">\(K\)</span> latent classes.</p>
-<p>In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of available likelihood models.</p>
-<p>To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models</p>
+<p>In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of <a class="reference internal" href="docs.html#docs"><em>available likelihood models</em></a>.</p>
+<p>To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models.</p>
 <p>Let&#8217;s consider the example of 2-dimensional real valued data:</p>
 <img alt="_images/sim2d.png" src="_images/sim2d.png" />
-<p>Since the data is real valued, we&#8217;ll assume the data is distributed multivariate Gaussian:</p>
+<p>Since the data is real valued, we&#8217;ll assume the data is distributed <a class="reference internal" href="niw.html#niw"><em>multivariate Gaussian</em></a> :</p>
 <div class="math">
-\[P(\mathbf{x}|cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})\]</div>
-<p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model we learn the parameters of thes Gaussians.  With these parameters, we can estimate the probability that new data is generated from each of these <span class="math">\(K\)</span> clusters.</p>
+\[P(\mathbf{x} \mid cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})\]</div>
+<p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model, we learn the parameters of these Gaussians.   We&#8217;ll select our <a class="reference internal" href="niw.html#niw"><em>normal-inverse-Wishart</em></a> likelihood model since the normal-inverse-Wishart is the conjugate prior of the multivariate Gaussian distribution. With these parameters, we can estimate the probability that new data is generated from each of these <span class="math">\(K\)</span> clusters.</p>
 <p>Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, <span class="math">\(K\)</span> is assumed in advance so that the dimensionality of cluster assignments is finite.</p>
 <p>Using the Dirichlet Process, we can learn the number of clusters as we learn each cluster&#8217;s parameters.</p>
 <p>We will visualize our data to examine the cluster assignment</p>
@@ -200,9 +200,9 @@
 </div>
 <p>Let&#8217;s now peek again at the first state</p>
 <img alt="_images/gauss2d_20_0.png" src="_images/gauss2d_20_0.png" />
-<p>Because this model was run on simulated data, we can compare the results to our acutal underlying assignments:</p>
+<p>Because this model was run on simulated data, we can compare the results to our actual underlying assignments:</p>
 <img alt="_images/gauss2d_8_1.png" src="_images/gauss2d_8_1.png" />
-<p>To learn more about the code that generated this example, see Inferring Gaussians with the Dirichlet Process Mixture Model.</p>
+<p>To learn more about the code that generated this example, see <a class="reference internal" href="gauss2d.html#gauss2d"><em>Inferring Gaussians with the Dirichlet Process Mixture Model</em></a> .</p>
 </div>
 
 

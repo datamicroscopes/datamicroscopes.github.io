@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Univariate Data with the Normal Inverse Chi-Square Distribution</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="Tutorials" href="docs.html" />
+    <link rel="next" title="Inferring Gaussians with the Dirichlet Process Mixture Model" href="gauss2d.html" />
+    <link rel="prev" title="Real Valued Data and the Normal Inverse-Wishart Distribution" href="niw.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html#datatypes-and-likelihood-models-in-datamicroscopes">Datatypes and likelihood models in datamicroscopes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist-predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/nic.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="univariate-data-with-the-normal-inverse-chi-square-distribution">
+<h1>Univariate Data with the Normal Inverse Chi-Square Distribution<a class="headerlink" href="#univariate-data-with-the-normal-inverse-chi-square-distribution" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>One of the simplest examples of data is univariate data</p>
+<p>Let&#8217;s consider a timeseries example:</p>
+<p><a class="reference external" href="https://vincentarelbundock.github.io/Rdatasets/doc/datasets/lynx.html">The Annual Canadian Lynx Trappings
+Dataset</a>
+as described by <a class="reference external" href="http://www.jstor.org/stable/2345277">Campbel and Walker
+1977</a> contains the number of
+Lynx trapped near the McKenzie River in the Northwest Territories in
+Canada between 1821 and 1934.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+sns.set_context(&#39;talk&#39;)
+sns.set_style(&#39;darkgrid&#39;)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">lynx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/lynx.csv&#39;</span><span class="p">,</span>
+                   <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">lynx</span> <span class="o">=</span> <span class="n">lynx</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">lynx</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lynx</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1821</th>
+      <td>269</td>
+    </tr>
+    <tr>
+      <th>1822</th>
+      <td>321</td>
+    </tr>
+    <tr>
+      <th>1823</th>
+      <td>585</td>
+    </tr>
+    <tr>
+      <th>1824</th>
+      <td>871</td>
+    </tr>
+    <tr>
+      <th>1825</th>
+      <td>1475</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">lynx</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Annual Canadian Lynx Trappings 1821-1934&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Lynx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1129d0090&gt;
+</pre></div>
+</div>
+<img alt="_images/normal-inverse-chisquare_4_1.png" src="_images/normal-inverse-chisquare_4_1.png" />
+<p>Let&#8217;s plot the kernel density estimate of annual lynx trapping</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">lynx</span><span class="p">[</span><span class="s">&#39;lynx&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Annual Lynx Trapping&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Number of Lynx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1129d0410&gt;
+</pre></div>
+</div>
+<img alt="_images/normal-inverse-chisquare_6_1.png" src="_images/normal-inverse-chisquare_6_1.png" />
+<p>Our plot suggests there could be three modes in the Lynx data.</p>
+<p>In modeling this timeseries, we could assume that the number of lynx
+trapped in a given year is falls into one of <span class="math">\(k\)</span> states, which are
+normally distributed with some unknown mean <span class="math">\(\mu_i\)</span> and variance
+<span class="math">\(\sigma^2_i\)</span> for each state</p>
+<p>In the case of our Lynx data</p>
+<div class="math">
+\[\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)\]</div>
+<hr class="docutils" />
+<p>Now let&#8217;s consider demographics data from the Titanic Dataset</p>
+<p>The Titanic Dataset contains information about passengers of the
+Titanic.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ti</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s">&#39;titanic&#39;</span><span class="p">)</span>
+<span class="n">ti</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Passenger age and fare are both real valued. Are they related? Let&#8217;s
+examine the correlation matrix</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ti</span><span class="p">[[</span><span class="s">&#39;age&#39;</span><span class="p">,</span><span class="s">&#39;fare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>age</th>
+      <td>1.000000</td>
+      <td>0.096067</td>
+    </tr>
+    <tr>
+      <th>fare</th>
+      <td>0.096067</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Since the correlation is between the two variables is zero, we can model
+these two real valued columns independently.</p>
+<p>Let&#8217;s plot the kernel density estimate of each variable</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">ti</span><span class="p">[</span><span class="s">&#39;age&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Passenger Age in the Titanic Datset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117426c50&gt;
+</pre></div>
+</div>
+<img alt="_images/normal-inverse-chisquare_12_1.png" src="_images/normal-inverse-chisquare_12_1.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">ti</span><span class="p">[</span><span class="s">&#39;fare&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Passenger Fare in the Titanic Datset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x117475310&gt;
+</pre></div>
+</div>
+<img alt="_images/normal-inverse-chisquare_13_1.png" src="_images/normal-inverse-chisquare_13_1.png" />
+<p>Given the long tail in the fare price, we might want to model this
+variable on a log scale:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ti</span><span class="p">[</span><span class="s">&#39;logfare&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ti</span><span class="p">[</span><span class="s">&#39;fare&#39;</span><span class="p">])</span>
+<span class="n">ti</span><span class="p">[[</span><span class="s">&#39;age&#39;</span><span class="p">,</span><span class="s">&#39;logfare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>logfare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>age</th>
+      <td>1.000000</td>
+      <td>0.135352</td>
+    </tr>
+    <tr>
+      <th>logfare</th>
+      <td>0.135352</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Again, <tt class="docutils literal"><span class="pre">logfare</span></tt> and <tt class="docutils literal"><span class="pre">age</span></tt> have near zero correlation, so we can
+again model these two variables independently</p>
+<p>Let&#8217;s see what a kernel density estimate of log fare would look like</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">ti</span><span class="p">[</span><span class="s">&#39;logfare&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Kernel Density Estimate of Log Passenger Fare in the Titanic Datset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1175a5110&gt;
+</pre></div>
+</div>
+<img alt="_images/normal-inverse-chisquare_17_1.png" src="_images/normal-inverse-chisquare_17_1.png" />
+<p>In logspace, passenger fare is multimodal, suggesting that we could
+model this variable with a normal distirbution</p>
+<p>If we were to model the passenger list using our Mixture Model, we would
+have separate likelihoods for <tt class="docutils literal"><span class="pre">logfare</span></tt> and <tt class="docutils literal"><span class="pre">age</span></tt></p>
+<div class="math">
+\[\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})\]</div>
+<div class="math">
+\[\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})\]</div>
+<hr class="docutils" />
+<p>Often, real value data is assumed to be normally distributed.</p>
+<p>To learn the latent variables, <span class="math">\(\mu_i\)</span> <span class="math">\(\sigma^2_i\)</span>, we
+would use a normal inverse-chi-square likelihood</p>
+<p>The normal inverse-chi-square likelihood is the conjugate univariate
+normal likelihood in data microscopes. We also have normal likelihood,
+the normal inverse-wishart likelihood, optimized for multivariate
+datasets.</p>
+<p>It is important to model univariate normal data with this likelihood as
+it acheives superior performance on univariate data.</p>
+<p>In both these examples, we found variables that were amenable to being
+modeled as univariate normal:</p>
+<ol class="arabic simple">
+<li>Univariate datasets</li>
+<li>Datasets containing real valued variables with near zero correlation</li>
+</ol>
+<p>To import our univariate normal inverse-chi-squared likelihood, call:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">nich</span> <span class="k">as</span> <span class="n">normal_inverse_chisquared</span>
+</pre></div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
