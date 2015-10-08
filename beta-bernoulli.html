@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -188,8 +189,8 @@ dataset contains images of handwritten digits.</p>
 <img alt="_images/beta-bernoulli_3_1.png" src="_images/beta-bernoulli_3_1.png" />
 <p>Graphs can be represented as binary matrices</p>
 <p>In this email communication network from the enron dataset,
-<span class="math">X_{i,j} = 1</span> if and only if person<span class="math">_{i}</span> sent an email to
-person<span class="math">_{j}</span></p>
+<span class="math">\(X_{i,j} = 1\)</span> if and only if person<span class="math">\(_{i}\)</span> sent an email to
+person<span class="math">\(_{j}\)</span></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">enron_utils</span>
 
 
@@ -223,15 +224,15 @@ person<span class="math">_{j}</span></p>
 Bernoulli distribution</p>
 <p>The beta Bernoulli distribution is the posterior of the Bernoulli
 distribution and its conjugate prior the beta distribution</p>
-<p>Recall that the Bernouli distribution is the likelihood of <span class="math">x</span>
-given some probability <span class="math">\theta</span></p>
+<p>Recall that the Bernouli distribution is the likelihood of <span class="math">\(x\)</span>
+given some probability <span class="math">\(\theta\)</span></p>
 <div class="math">
-<p><span class="math">P(x=1)=\theta</span></p>
-</div><div class="math">
-<p><span class="math">P(x=0)=1-\theta</span></p>
-</div><div class="math">
-<p><span class="math">P(x|\theta)=\theta^x(1-\theta)^{1-x}</span></p>
-</div><p>If we wanted to learn the underlying probability <span class="math">\theta</span>, we
+\[P(x=1)=\theta\]</div>
+<div class="math">
+\[P(x=0)=1-\theta\]</div>
+<div class="math">
+\[P(x|\theta)=\theta^x(1-\theta)^{1-x}\]</div>
+<p>If we wanted to learn the underlying probability <span class="math">\(\theta\)</span>, we
 would use the beta distribution, which is the conjugate prior of the
 Bernouli distribution.</p>
 <hr class="docutils" />

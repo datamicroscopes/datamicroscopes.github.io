@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -192,8 +193,8 @@ The results of the scirpt have been stored in the <tt class="docutils literal"><
 </div>
 <p>Let&#8217;s load the data and make a binary matrix to represent email
 communication between individuals</p>
-<p>In this matrix, <span class="math">X_{i,j} = 1</span> if and only if person<span class="math">_{i}</span>
-sent an email to person<span class="math">_{j}</span></p>
+<p>In this matrix, <span class="math">\(X_{i,j} = 1\)</span> if and only if person<span class="math">\(_{i}\)</span>
+sent an email to person<span class="math">\(_{j}\)</span></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;results.p&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
     <span class="n">communications</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">allnames</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
@@ -240,8 +241,8 @@ the runners (MCMC chains) 5. run the runners</p>
 <p>Our domains are described in a list of the cardinalities of each domain</p>
 <p>Our releations are in a list of tuples which refer to the indicies of
 each domain and the model type</p>
-<p>In this case, the our domain is users, which is of size <span class="math">N</span></p>
-<p>Our relations are users to users, both of cardinality <span class="math">N</span>, and we
+<p>In this case, the our domain is users, which is of size <span class="math">\(N\)</span></p>
+<p>Our relations are users to users, both of cardinality <span class="math">\(N\)</span>, and we
 model the relation with beta-bernoulli distribution since our data is
 binary</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">([</span><span class="n">N</span><span class="p">],</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">beta_bernoulli</span><span class="p">)])</span>

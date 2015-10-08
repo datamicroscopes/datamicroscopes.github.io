@@ -24,18 +24,22 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="Tutorials" href="docs.html" />
+    <link rel="next" title="Network Modeling with the Infinite Relational Model" href="enron_blog.html" />
+    <link rel="prev" title="Tutorials" href="docs.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body role="document">
+  <body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -66,8 +70,13 @@
      href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
-<li class="toctree-l1"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul>
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#datatypes-and-likelihood-models-in-datamicroscopes">Datatypes and likelihood models in datamicroscopes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dirichlet-discrete.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
@@ -145,18 +154,18 @@
     <div class="col-md-12">
       
   <div class="section" id="discovering-structure-in-your-data-an-overview-of-clustering">
-<h1>Discovering structure in your data: an overview of clustering<a class="headerlink" href="#discovering-structure-in-your-data-an-overview-of-clustering" title="Permalink to this headline">¶</a></h1>
+<span id="intro"></span><h1>Discovering structure in your data: an overview of clustering<a class="headerlink" href="#discovering-structure-in-your-data-an-overview-of-clustering" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<p>Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> latent classes in the data.  The goal of clustering is to classify the observations in the data into these <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> latent classes.</p>
+<p>Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists <span class="math">\(K\)</span> latent classes in the data.  The goal of clustering is to classify the observations in the data into these <span class="math">\(K\)</span> latent classes.</p>
 <p>In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of available likelihood models.</p>
 <p>To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models</p>
 <p>Let&#8217;s consider the example of 2-dimensional real valued data:</p>
-<img alt="_images/sim2d.png" src="_images/sim2d.png" />
+<img alt="sim2d.png" src="sim2d.png" />
 <p>Since the data is real valued, we&#8217;ll assume the data is distributed multivariate Gaussian:</p>
 <div class="math">
-<p><img src="_images/math/973bda28d923f55d7143bc0217a3bd532b307702.png" alt="P(\mathbf{x}|cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})"/></p>
-</div><p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model we learn the parameters of thes Gaussians.  With these parameters, we can estimate the probability that new data is generated from each of these <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> clusters.</p>
-<p>Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> is assumed in advance so that the dimensionality of cluster assignments is finite.</p>
+\[P(\mathbf{x}|cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})\]</div>
+<p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model we learn the parameters of thes Gaussians.  With these parameters, we can estimate the probability that new data is generated from each of these <span class="math">\(K\)</span> clusters.</p>
+<p>Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, <span class="math">\(K\)</span> is assumed in advance so that the dimensionality of cluster assignments is finite.</p>
 <p>Using the Dirichlet Process, we can learn the number of clusters as we learn each cluster&#8217;s parameters.</p>
 <p>We will visualize our data to examine the cluster assignment</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_assignment</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">Y</span><span class="p">):</span>
@@ -209,7 +218,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
     </p>
   </div>
 </footer>

@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -238,13 +239,13 @@ sns.set_style(&#39;darkgrid&#39;)
 <img alt="_images/normal-inverse-chisquare_6_1.png" src="_images/normal-inverse-chisquare_6_1.png" />
 <p>Our plot suggests there could be three modes in the Lynx data.</p>
 <p>In modeling this timeseries, we could assume that the number of lynx
-trapped in a given year is falls into one of <span class="math">k</span> states, which are
-normally distributed with some unknown mean <span class="math">\mu_i</span> and variance
-<span class="math">\sigma^2_i</span> for each state</p>
+trapped in a given year is falls into one of <span class="math">\(k\)</span> states, which are
+normally distributed with some unknown mean <span class="math">\(\mu_i\)</span> and variance
+<span class="math">\(\sigma^2_i\)</span> for each state</p>
 <p>In the case of our Lynx data</p>
 <div class="math">
-<p><span class="math">\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)</span></p>
-</div><hr class="docutils" />
+\[\forall i \in [1,...,k] \hspace{2mm} p(\text{lynx trapped}| \text{state} = i) \sim \mathcal{N}(\mu_i, \sigma^2_i)\]</div>
+<hr class="docutils" />
 <p>Now let&#8217;s consider demographics data from the Titanic Dataset</p>
 <p>The Titanic Dataset contains information about passengers of the
 Titanic.</p>
@@ -457,12 +458,12 @@ model this variable with a normal distirbution</p>
 <p>If we were to model the passenger list using our Mixture Model, we would
 have separate likelihoods for <tt class="docutils literal"><span class="pre">logfare</span></tt> and <tt class="docutils literal"><span class="pre">age</span></tt></p>
 <div class="math">
-<p><span class="math">\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})</span></p>
-</div><div class="math">
-<p><span class="math">\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})</span></p>
-</div><hr class="docutils" />
+\[\forall i \in [1,...,k] \hspace{2mm} p(\text{logfare}|\text{cluster}=i)=\mathcal{N}(\mu_{i,l}, \sigma^2_{i,l})\]</div>
+<div class="math">
+\[\forall i \in [1,...,k] \hspace{2mm}  p(\text{age}|\text{cluster}=c)=\mathcal{N}(\mu_{i,a}, \sigma^2_{i,a})\]</div>
+<hr class="docutils" />
 <p>Often, real value data is assumed to be normally distributed.</p>
-<p>To learn the latent variables, <span class="math">\mu_i</span> <span class="math">\sigma^2_i</span>, we
+<p>To learn the latent variables, <span class="math">\(\mu_i\)</span> <span class="math">\(\sigma^2_i\)</span>, we
 would use a normal inverse-chi-square likelihood</p>
 <p>The normal inverse-chi-square likelihood is the conjugate univariate
 normal likelihood in data microscopes. We also have normal likelihood,

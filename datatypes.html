@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -258,8 +259,8 @@ mesurements, and assume that these measurements were distributed
 multivariate normal. In other words, the conditional probability of the
 measurements given the species would be normally distributed</p>
 <div class="math">
-<p><span class="math">P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})</span></p>
-</div><p>Bayesian Models allow us to leverage those assumptions.</p>
+\[P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})\]</div>
+<p>Bayesian Models allow us to leverage those assumptions.</p>
 <p>In the case of the iris dataset, we would be able to learn both the
 latent measurements of each Gaussian AND the number of species with a
 Dirichlet Process Mixture Model, <tt class="docutils literal"><span class="pre">microscopes.mituremodel</span></tt></p>
@@ -300,8 +301,8 @@ case they have a different interpretation than the iris dataset</p>
 <p>In this dataset, data is representated as a binary communication matrix
 where</p>
 <div class="math">
-<p><span class="math">\mathbf{X}_{i,j} = 1 \Leftrightarrow \text{person}_{i} \text{ sent an email to person}_{j}</span></p>
-</div><p>Let&#8217;s visualize the communication matrix</p>
+\[\mathbf{X}_{i,j} = 1 \Leftrightarrow \text{person}_{i} \text{ sent an email to person}_{j}\]</div>
+<p>Let&#8217;s visualize the communication matrix</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s">&#39;&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">communications_relation</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;person number&#39;</span><span class="p">)</span>
@@ -322,8 +323,8 @@ underlying social network.</p>
 <p>In the case of time series data, the index of the data describes the
 relationship between the observation and the rest of the data</p>
 <div class="math">
-<p><span class="math">\mathbf{x}_{t}\text{ s.t. }t \in \{0,...,T\}</span></p>
-</div><p>For example, let&#8217;s look at the Old Faithful Data</p>
+\[\mathbf{x}_{t}\text{ s.t. }t \in \{0,...,T\}\]</div>
+<p>For example, let&#8217;s look at the Old Faithful Data</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">old_faithful</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;https://vincentarelbundock.github.io/Rdatasets/csv/datasets/faithful.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">old_faithful</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>

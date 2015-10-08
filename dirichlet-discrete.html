@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -670,19 +671,19 @@ id&#8217;s</p>
 </div><p>Just as we model binary data with the beta Bernoulli distribution, we
 can model categorical data with the Dirichlet discrete distribution</p>
 <p>The beta Bernoulli distribution allows us to learn the underlying
-probability, <span class="math">\theta</span>, of the binary random variable, <span class="math">x</span></p>
+probability, <span class="math">\(\theta\)</span>, of the binary random variable, <span class="math">\(x\)</span></p>
 <div class="math">
-<p><span class="math">P(x=1) =\theta</span></p>
-</div><div class="math">
-<p><span class="math">P(x=0) = 1-\theta</span></p>
-</div><p>The Dirichlet discrete distribution extends the beta Bernoulli
-distribution to the case in which <span class="math">x</span> can assume more than two
+\[P(x=1) =\theta\]</div>
+<div class="math">
+\[P(x=0) = 1-\theta\]</div>
+<p>The Dirichlet discrete distribution extends the beta Bernoulli
+distribution to the case in which <span class="math">\(x\)</span> can assume more than two
 states</p>
 <div class="math">
-<p><span class="math">\forall i \in [0,1,...n] \hspace{2mm} P(x = i) = \theta_i</span></p>
-</div><div class="math">
-<p><span class="math">\sum_{i=0}^n \theta_i = 1</span></p>
-</div><p>Again, the Dirichlet distribution takes advantage of the fact that the
+\[\forall i \in [0,1,...n] \hspace{2mm} P(x = i) = \theta_i\]</div>
+<div class="math">
+\[\sum_{i=0}^n \theta_i = 1\]</div>
+<p>Again, the Dirichlet distribution takes advantage of the fact that the
 Dirichlet distribution and the discrete distribution are conjugate. Note
 that the discrete distriution is sometimes called the categorical
 distribution or the multinomial distribution.</p>

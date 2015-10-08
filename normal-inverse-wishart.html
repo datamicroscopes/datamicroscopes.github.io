@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -250,19 +251,19 @@ normally, or Gaussian</p>
 <p>We could assume that conditioned on <tt class="docutils literal"><span class="pre">species</span></tt>, the measurement data
 follwed a multivariate normal</p>
 <div class="math">
-<p><span class="math">P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})</span></p>
-</div><p>The normal inverse-Wishart distribution allows us to learn the
+\[P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})\]</div>
+<p>The normal inverse-Wishart distribution allows us to learn the
 underlying parameters of each normal distribution, its mean
-<span class="math">\mu_s</span> and its covariance <span class="math">\Sigma_s</span>. Since the normal
+<span class="math">\(\mu_s\)</span> and its covariance <span class="math">\(\Sigma_s\)</span>. Since the normal
 inverse-Wishart is the conjugate prior of the multivariate normal, the
 posterior distribution of a multivariate normal with a normal
 inverse-Wishart prior also follows a normal inverse-Wishart
 distribution. This allows us to infer the distirbution over values of
-<span class="math">\mu_s</span> and <span class="math">\Sigma_{s}</span> when we define our model.</p>
+<span class="math">\(\mu_s\)</span> and <span class="math">\(\Sigma_{s}\)</span> when we define our model.</p>
 <p>Note that if we have only one real valued variable, the normal
 inverse-Wishart distribution is often referred to as the normal
 inverse-gamma distribution. In this case, we learn the scalar valued
-mean <span class="math">\mu</span> and variance <span class="math">\sigma^2</span> for each inferred
+mean <span class="math">\(\mu\)</span> and variance <span class="math">\(\sigma^2\)</span> for each inferred
 cluster.</p>
 <p>Univariate real data, however, should be modeled with our normal
 invese-chi-squared distribution, which is optimized for infering

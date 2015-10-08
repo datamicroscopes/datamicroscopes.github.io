@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -235,15 +236,15 @@ recarray format</p>
 Model</p>
 <p>Since we converted the data into binary vectors for each pixel, we&#8217;ll
 define our likelihood of the model as a beta-bernouli. In this case, the
-likelihood is the probability that each of the <span class="math">D</span> pixels in the
+likelihood is the probability that each of the <span class="math">\(D\)</span> pixels in the
 image is <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>. Note, these pixel assignments are
 assumed to be <strong>independent</strong>.</p>
 <div class="math">
-<p><span class="math">\forall\hspace{2mm} d \in [0,1,..,D],\hspace{2mm} k \in [0,..,K], \hspace{2mm} P(pixel_d = True|cluster=k) \sim BetaBernoulli(\alpha_k,\beta_k)</span></p>
-</div><div class="math">
-<p><span class="math">\forall \hspace{2mm} d\neq c \hspace{2mm} P(pixel_d = True|cluster=k) \perp P(pixel_c = True|cluster=k)\hspace{2mm}</span></p>
-</div><p>Recall that since we&#8217;re using a Dirichlet Process Mixture Model,
-<span class="math">K</span> is also latent variable which we learn at these same time as
+\[\forall\hspace{2mm} d \in [0,1,..,D],\hspace{2mm} k \in [0,..,K], \hspace{2mm} P(pixel_d = True|cluster=k) \sim BetaBernoulli(\alpha_k,\beta_k)\]</div>
+<div class="math">
+\[\forall \hspace{2mm} d\neq c \hspace{2mm} P(pixel_d = True|cluster=k) \perp P(pixel_c = True|cluster=k)\hspace{2mm}\]</div>
+<p>Recall that since we&#8217;re using a Dirichlet Process Mixture Model,
+<span class="math">\(K\)</span> is also latent variable which we learn at these same time as
 the each cluster&#8217;s parameters</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">view</span> <span class="o">=</span> <span class="n">numpy_dataview</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
