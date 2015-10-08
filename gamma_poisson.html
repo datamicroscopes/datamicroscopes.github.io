@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Count Data and Ordinal Data with the Gamma-Poisson Distribution</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="Tutorials" href="docs.html" />
+    <link rel="next" title="Inferring Gaussians with the Dirichlet Process Mixture Model" href="gauss2d.html" />
+    <link rel="prev" title="Univariate Data with the Normal Inverse Chi-Square Distribution" href="nic.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html#datatypes-and-likelihood-models-in-datamicroscopes">Datatypes and likelihood models in datamicroscopes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/gamma_poisson.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="count-data-and-ordinal-data-with-the-gamma-poisson-distribution">
+<span id="gamma-poisson"></span><h1>Count Data and Ordinal Data with the Gamma-Poisson Distribution<a class="headerlink" href="#count-data-and-ordinal-data-with-the-gamma-poisson-distribution" title="Permalink to this headline">¶</a></h1>
+<p>Typically, we model count data, or integer valued data, with the
+gamma-Poisson distribution</p>
+<p>Recall that the Poisson distribution is a distribution over integer
+values parameterized by <span class="math">\(\lambda\)</span>. One interpretation behind
+<span class="math">\(\lambda\)</span> is that it parameterizes the rate at which events occur
+with a fixed interval, assuming these events occur independently. The
+gamma distribution is conjugate to the Poisson distribution, so the
+gamma-Poisson distribution allows us to learn both the distribution over
+counts and the rate parameter <span class="math">\(\lambda\)</span>.</p>
+<p>Let&#8217;s set up our environment and consider some examples of count data</p>
+<div class="code python highlight-python"><div class="highlight"><pre>import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+sns.set_context(&#39;talk&#39;)
+import csv
+import urllib2
+import StringIO
+
+%matplotlib inline
+</pre></div>
+</div>
+<p><a class="reference external" href="http://data.princeton.edu/wws509/datasets/#ceb">Children Ever Born</a>
+is a dataset of birthrates in Fiji from the <em>World Fertility Survey</em>
+with the following columns:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">dur</span></tt>: marriage duration</li>
+<li><tt class="docutils literal"><span class="pre">res</span></tt>: residence,</li>
+<li><tt class="docutils literal"><span class="pre">educ</span></tt>: level of education,</li>
+<li><tt class="docutils literal"><span class="pre">mean</span></tt>: mean number of born,</li>
+<li><tt class="docutils literal"><span class="pre">var</span></tt>: variance of children born</li>
+<li><tt class="docutils literal"><span class="pre">y</span></tt>: number of women</li>
+</ul>
+<p>Ordinal columns <tt class="docutils literal"><span class="pre">dur</span></tt>, <tt class="docutils literal"><span class="pre">res</span></tt>, and <tt class="docutils literal"><span class="pre">educ</span></tt> are shown as text in the
+following dataset</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ceb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;http://data.princeton.edu/wws509/datasets/ceb.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\s+&#39;</span><span class="p">)</span>
+<span class="n">ceb</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dur</th>
+      <th>res</th>
+      <th>educ</th>
+      <th>mean</th>
+      <th>var</th>
+      <th>n</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0-4</td>
+      <td>Suva</td>
+      <td>none</td>
+      <td>0.50</td>
+      <td>1.14</td>
+      <td>8</td>
+      <td>4.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0-4</td>
+      <td>Suva</td>
+      <td>lower</td>
+      <td>1.14</td>
+      <td>0.73</td>
+      <td>21</td>
+      <td>23.94</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0-4</td>
+      <td>Suva</td>
+      <td>upper</td>
+      <td>0.90</td>
+      <td>0.67</td>
+      <td>42</td>
+      <td>37.80</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0-4</td>
+      <td>Suva</td>
+      <td>sec+</td>
+      <td>0.73</td>
+      <td>0.48</td>
+      <td>51</td>
+      <td>37.23</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0-4</td>
+      <td>urban</td>
+      <td>none</td>
+      <td>1.17</td>
+      <td>1.06</td>
+      <td>12</td>
+      <td>14.04</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>With the these columns encoded, we can now represent them as integers</p>
+<p><tt class="docutils literal"><span class="pre">dur</span></tt> and <tt class="docutils literal"><span class="pre">educ</span></tt> are ordinal columns. Additionally, number of women,
+<tt class="docutils literal"><span class="pre">n</span></tt>, is integer valued.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ceb_int</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;http://data.princeton.edu/wws509/datasets/ceb.raw&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\s+&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;index&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">ceb</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ceb_int</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dur</th>
+      <th>res</th>
+      <th>educ</th>
+      <th>mean</th>
+      <th>var</th>
+      <th>n</th>
+    </tr>
+    <tr>
+      <th>index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.50</td>
+      <td>1.14</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1.14</td>
+      <td>0.73</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0.90</td>
+      <td>0.67</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0.73</td>
+      <td>0.48</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1.17</td>
+      <td>1.06</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>We can map these orderings of <tt class="docutils literal"><span class="pre">dur</span></tt> and <tt class="docutils literal"><span class="pre">educ</span></tt> to produce a crosstab
+heatmap of <tt class="docutils literal"><span class="pre">n</span></tt>, numbe of women</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">ceb_int</span><span class="p">[</span><span class="s">&#39;dur&#39;</span><span class="p">],</span> <span class="n">ceb_int</span><span class="p">[</span><span class="s">&#39;educ&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="n">ceb_int</span><span class="p">[</span><span class="s">&#39;n&#39;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">annot</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">ceb_int</span><span class="p">[</span><span class="s">&#39;dur&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">ceb</span><span class="p">[</span><span class="s">&#39;dur&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ceb_int</span><span class="p">[</span><span class="s">&#39;educ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">ceb</span><span class="p">[</span><span class="s">&#39;educ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;duration of marriage (years)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;level of education&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;heatmap of marriage duration by level of education&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x11a8f48d0&gt;
+</pre></div>
+</div>
+<img alt="_images/gamma_poisson_7_1.png" src="_images/gamma_poisson_7_1.png" />
+<p>Since <tt class="docutils literal"><span class="pre">dur</span></tt> and <tt class="docutils literal"><span class="pre">education</span></tt> are ordinal valued, the columns assume a
+small number of integer values</p>
+<p>Additionally, the <a class="reference external" href="http://stanford.edu/class/psych252/data/index.html">caffeine
+dataset</a> below
+measures caffeine intake and performance on a 10 question quiz. The
+variables are:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">coffee</span></tt>: coffee intake (1 = 0 cups, 2 = 2 cups, 3 = 4 cups)</li>
+<li><tt class="docutils literal"><span class="pre">perf</span></tt>: quiz score</li>
+<li><tt class="docutils literal"><span class="pre">numprob</span></tt>: problems attempted</li>
+<li><tt class="docutils literal"><span class="pre">accur</span></tt>: accuracy</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://stanford.edu/class/psych252/_downloads/caffeine.csv&#39;</span><span class="p">)</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">caf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">html</span><span class="p">[:</span><span class="o">-</span><span class="mi">16</span><span class="p">]))</span>
+<span class="n">caf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coffee</th>
+      <th>perf</th>
+      <th>accur</th>
+      <th>numprob</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>53</td>
+      <td>0.449877</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>9</td>
+      <td>0.499534</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>31</td>
+      <td>0.498590</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>38</td>
+      <td>0.454312</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>40</td>
+      <td>0.421212</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Based on the characteristics of each column, <tt class="docutils literal"><span class="pre">coffee</span></tt> and <tt class="docutils literal"><span class="pre">numprob</span></tt>
+easily fit into the category of count data appropriate to a
+gamma-Poisson distribution</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">caf</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coffee</th>
+      <th>perf</th>
+      <th>accur</th>
+      <th>numprob</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+      <td>60.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.000000</td>
+      <td>42.366667</td>
+      <td>0.510854</td>
+      <td>7.950000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.823387</td>
+      <td>18.350603</td>
+      <td>0.107704</td>
+      <td>1.185005</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>5.000000</td>
+      <td>0.240238</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000</td>
+      <td>31.000000</td>
+      <td>0.425859</td>
+      <td>7.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2.000000</td>
+      <td>40.000000</td>
+      <td>0.509806</td>
+      <td>8.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.000000</td>
+      <td>53.500000</td>
+      <td>0.594445</td>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>3.000000</td>
+      <td>89.000000</td>
+      <td>0.748692</td>
+      <td>10.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Note that while integer valued data with high values is sometimes
+modeled with a gamma-Poisson ditribution, remember that the
+gamma-Poisson distribution has equal mean and variance <span class="math">\(\lambda\)</span>:</p>
+<div class="math">
+\[E(X) = Var(X) = \lambda\]</div>
+<p>If you want to be more flexible with this assumption, you may want to
+consider using a normal inverse-chisquare or a normal inverse-Wishart
+distribution depending on your data</p>
+<p>To import the gamma-poisson likelihood, call:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">gp</span> <span class="k">as</span> <span class="n">gamma_poisson</span>
+</pre></div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
