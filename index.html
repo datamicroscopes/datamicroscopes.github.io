@@ -30,7 +30,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="None" href="#" />
-    <link rel="next" title="Tutorials" href="docs.html" />
+    <link rel="next" title="Discovering structure in your data: an overview of clustering" href="intro.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -69,6 +69,23 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="docs.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
@@ -84,8 +101,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mnist-predictions.html">Digit recognition with the MNIST dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
 </ul>
 </li>
@@ -115,7 +132,9 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">datamicroscopes: Bayesian nonparametric models in Python</a></li>
+<li><a class="reference internal" href="#">datamicroscopes: Bayesian nonparametric models in Python</a><ul>
+</ul>
+</li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </ul>
@@ -154,16 +173,42 @@
       
   <span class="target" id="index"></span><div class="section" id="datamicroscopes-bayesian-nonparametric-models-in-python">
 <h1>datamicroscopes: Bayesian nonparametric models in Python<a class="headerlink" href="#datamicroscopes-bayesian-nonparametric-models-in-python" title="Permalink to this headline">¶</a></h1>
-<p>datamicroscopes is a library for inference in various Bayesian nonparametric models for clustering, such as the Dirichlet Process Mixture Model (DPMM) and the Infinite Relational Model (IRM).  These models rely on the Dirichlet Process, which allow for the automatic learning of the number of clusters in a datset.  Our API allows for the flexible choice of likelihood models for various datatypes.  To read more about the models in datamicroscopes, please refer to our <a class="reference internal" href="datatypes.html#datatypes"><em>datatypes available</em></a>.</p>
+<p>datamicroscopes is a library for inference in various Bayesian nonparametric models for clustering, such as the Dirichlet Process Mixture Model (DPMM) and the Infinite Relational Model (IRM).  These models rely on the Dirichlet Process, which allow for the automatic learning of the number of clusters in a datset.  Our API allows for the flexible choice of likelihood models for various <a class="reference internal" href="docs.html#docs"><em>datatypes</em></a>.</p>
 <p>Please read our <a class="reference internal" href="intro.html#intro"><em>introduction</em></a> for an overview of clustering.</p>
-<p>With these models, one can perform:</p>
-<ul class="simple">
-<li>traditional clustering</li>
-<li>topic modeling</li>
-<li><a class="reference internal" href="enron_blog.html#enron-blog"><em>community detection</em></a></li>
+<div style="clear: both"></div>
+<div class="container-fluid">
+<div class="row">
+         <div class="col-md-4">
+        <h2>Tutorials</h2><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
 </ul>
-<p>For further information, please see our available <a class="reference internal" href="docs.html#docs"><em>likelihood documentation, examples,</em></a> and <a class="reference internal" href="api.html#api"><em>api</em></a>.</p>
 </div>
+</div>
+<div class="col-md-4">
+<h2>Datatypes and Likelihood Models</h2><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</div>
+</div>
+<div class="col-md-4">
+<h2>Examples</h2><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>First, install <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>. Then in the terminal type:</p>

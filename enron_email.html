@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Network Modeling with the Infinite Relational Model</title>
+    <title>Clustering the Enron e-mail corpus using the Infinite Relational Model</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -31,8 +31,8 @@
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="None" href="index.html" />
     <link rel="up" title="Tutorials" href="docs.html" />
-    <link rel="next" title="Datatypes and Bayesian Nonparametric Models" href="datatypes.html" />
-    <link rel="prev" title="Discovering structure in your data: an overview of clustering" href="intro.html" />
+    <link rel="next" title="Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process" href="hdp.html" />
+    <link rel="prev" title="Digit recognition with the MNIST dataset" href="mnist_predictions.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -70,9 +70,9 @@
      href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul class="current">
+      aria-labelledby="dLabelGlobalToc"><ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Network Modeling with the Infinite Relational Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
@@ -81,16 +81,16 @@
 <li class="toctree-l1"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="docs.html">Tutorials</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Network Modeling with the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html#datatypes-and-likelihood-models-in-datamicroscopes">Datatypes and likelihood models in datamicroscopes</a><ul>
@@ -101,10 +101,10 @@
 <li class="toctree-l2"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html#examples">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
 </ul>
 </li>
@@ -134,7 +134,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Network Modeling with the Infinite Relational Model</a></li>
+<li><a class="reference internal" href="#">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
 </ul>
 </ul>
 </li>
@@ -146,7 +146,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/enron_blog.txt"
+  <a href="_sources/enron_email.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -170,20 +170,99 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="network-modeling-with-the-infinite-relational-model">
-<span id="enron-blog"></span><h1>Network Modeling with the Infinite Relational Model<a class="headerlink" href="#network-modeling-with-the-infinite-relational-model" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="clustering-the-enron-e-mail-corpus-using-the-infinite-relational-model">
+<span id="enron-email"></span><h1>Clustering the <a class="reference external" href="http://www.cs.cmu.edu/~./enron/">Enron e-mail corpus</a> using the Infinite Relational Model<a class="headerlink" href="#clustering-the-enron-e-mail-corpus-using-the-infinite-relational-model" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<p>The <a class="reference external" href="http://www.cs.cmu.edu/~./enron/">Enron e-mail corpus</a> contains 500,00 emails between 150 individuals at Enron.  To analyze the communication network, we created a binary matrix to represent email
-communication between individuals.</p>
-<p>In this matrix, <span class="math">\(X_{i,j} = 1\)</span> if and only if person<span class="math">\(_{i}\)</span> sent an email to person<span class="math">\(_{j}\)</span></p>
+<p>Let&#8217;s setup our environment</p>
+<div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
+import pickle
+import time
+import itertools as it
+import numpy as np
+import matplotlib.pylab as plt
+import matplotlib.patches as patches
+from multiprocessing import cpu_count
+import seaborn as sns
+sns.set_context(&#39;talk&#39;)
+</pre></div>
+</div>
+<p>Below are the functions from datamicroscopes we&#8217;ll be using to cluster
+the data</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.common.rng</span> <span class="kn">import</span> <span class="n">rng</span>
+<span class="kn">from</span> <span class="nn">microscopes.common.relation.dataview</span> <span class="kn">import</span> <span class="n">numpy_dataview</span>
+<span class="kn">from</span> <span class="nn">microscopes.models</span> <span class="kn">import</span> <span class="n">bb</span> <span class="k">as</span> <span class="n">beta_bernoulli</span>
+<span class="kn">from</span> <span class="nn">microscopes.irm.definition</span> <span class="kn">import</span> <span class="n">model_definition</span>
+<span class="kn">from</span> <span class="nn">microscopes.irm</span> <span class="kn">import</span> <span class="n">model</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">query</span>
+<span class="kn">from</span> <span class="nn">microscopes.kernels</span> <span class="kn">import</span> <span class="n">parallel</span>
+<span class="kn">from</span> <span class="nn">microscopes.common.query</span> <span class="kn">import</span> <span class="n">groups</span><span class="p">,</span> <span class="n">zmatrix_heuristic_block_ordering</span><span class="p">,</span> <span class="n">zmatrix_reorder</span>
+</pre></div>
+</div>
+<p>We&#8217;ve made a set of utilities especially for this dataset,
+<tt class="docutils literal"><span class="pre">enron_utils</span></tt>. We&#8217;ll include these as well.</p>
+<p>We have downloaded the data and preprocessed it as suggested by
+<a class="reference external" href="http://www.kecl.ntt.co.jp/as/members/ishiguro/open/2012AISTATS.pdf">Ishiguro et al.
+2012</a>.
+The results of the scirpt have been stored in the <tt class="docutils literal"><span class="pre">results.p</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">enron_crawler.py</span></tt> in the kernels repo includes the script to create
+<tt class="docutils literal"><span class="pre">results.p</span></tt></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">enron_utils</span>
+</pre></div>
+</div>
+<p>Let&#8217;s load the data and make a binary matrix to represent email
+communication between individuals</p>
+<p>In this matrix, <span class="math">\(X_{i,j} = 1\)</span> if and only if person<span class="math">\(_{i}\)</span>
+sent an email to person<span class="math">\(_{j}\)</span></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;results.p&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">communications</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">allnames</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">o</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">allnames</span><span class="p">(</span><span class="n">communications</span><span class="p">)))</span>
+<span class="n">names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="n">namemap</span> <span class="o">=</span> <span class="p">{</span> <span class="n">name</span> <span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="p">}</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+<span class="n">communications_relation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sender</span><span class="p">,</span> <span class="n">receivers</span> <span class="ow">in</span> <span class="n">communications</span><span class="p">:</span>
+    <span class="n">sender_id</span> <span class="o">=</span> <span class="n">namemap</span><span class="p">[</span><span class="n">sender</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">receiver</span> <span class="ow">in</span> <span class="n">receivers</span><span class="p">:</span>
+        <span class="n">receiver_id</span> <span class="o">=</span> <span class="n">namemap</span><span class="p">[</span><span class="n">receiver</span><span class="p">]</span>
+        <span class="n">communications_relation</span><span class="p">[</span><span class="n">sender_id</span><span class="p">,</span> <span class="n">receiver_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> names in the corpus&quot;</span> <span class="o">%</span> <span class="n">N</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>115 names in the corpus
+</pre></div>
+</div>
+<p>Let&#8217;s visualize the communication matrix</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">blue_cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">light_palette</span><span class="p">(</span><span class="s">&quot;#34495e&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s">&#39;&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">communications_relation</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">blue_cmap</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;person number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;person number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Email Communication Matrix&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x10aacbf10&gt;
+</pre></div>
+</div>
 <img alt="_images/enron-email_9_1.png" src="_images/enron-email_9_1.png" />
-<p>We&#8217;ll learn the underlying clusters in this communication matrix using the Inifinite Relational
-Model.  In this model, the underlying clusters represents groups of indiviudals in the network based on the kinds of who they email.</p>
-<p>The domain of our model is the individuals in the email dataset.</p>
-<p>Our relations are emails between individuals, both of cardinality <span class="math">\(N\)</span>, and we
+<p>Now, let&#8217;s learn the underlying clusters using the Inifinite Relational
+Model</p>
+<p>Let&#8217;s import the necessary functions from datamicroscopes</p>
+<p>There are 5 steps necessary in inferring a model with datamicroscopes:
+1. define the model 2. load the data 3. initialize the model 4. define
+the runners (MCMC chains) 5. run the runners</p>
+<p>Let&#8217;s start by defining the model and loading the data</p>
+<p>To define our model, we need to specify our domains and relations</p>
+<p>Our domains are described in a list of the cardinalities of each domain</p>
+<p>Our releations are in a list of tuples which refer to the indicies of
+each domain and the model type</p>
+<p>In this case, the our domain is users, which is of size <span class="math">\(N\)</span></p>
+<p>Our relations are users to users, both of cardinality <span class="math">\(N\)</span>, and we
 model the relation with beta-bernoulli distribution since our data is
 binary</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">([</span><span class="n">N</span><span class="p">],</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">beta_bernoulli</span><span class="p">)])</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">([</span><span class="n">N</span><span class="p">],</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">beta_bernoulli</span><span class="p">)])</span>
 <span class="n">views</span> <span class="o">=</span> <span class="p">[</span><span class="n">numpy_dataview</span><span class="p">(</span><span class="n">communications_relation</span><span class="p">)]</span>
 <span class="n">prng</span> <span class="o">=</span> <span class="n">rng</span><span class="p">()</span>
 </pre></div>
@@ -191,7 +270,7 @@ binary</p>
 <p>Next, let&#8217;s initialize the model and define the runners.</p>
 <p>These runners are our MCMC chains. We&#8217;ll use <tt class="docutils literal"><span class="pre">cpu_count</span></tt> to define our
 number of chains.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
 <span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">views</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">cluster_hps</span><span class="o">=</span><span class="p">[{</span><span class="s">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">1e-3</span><span class="p">}])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nchains</span><span class="p">)]</span>
 <span class="n">kc</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">default_assign_kernel_config</span><span class="p">(</span><span class="n">defn</span><span class="p">)</span>
 <span class="n">runners</span> <span class="o">=</span> <span class="p">[</span><span class="n">runner</span><span class="o">.</span><span class="n">runner</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">views</span><span class="p">,</span> <span class="n">latent</span><span class="p">,</span> <span class="n">kc</span><span class="p">)</span> <span class="k">for</span> <span class="n">latent</span> <span class="ow">in</span> <span class="n">latents</span><span class="p">]</span>
@@ -199,19 +278,22 @@ number of chains.</p>
 </pre></div>
 </div>
 <p>From here, we can finally run each chain of the sampler 1000 times</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">r</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">niters</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">&quot;inference took {} seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre>inference took 128.098203897 seconds
+</pre></div>
+</div>
 <p>Now that we have learned our model let&#8217;s get our cluster assignments</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">infers</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_latents</span><span class="p">()</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">infers</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_latents</span><span class="p">()</span>
 <span class="n">clusters</span> <span class="o">=</span> <span class="n">groups</span><span class="p">(</span><span class="n">infers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">assignments</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">ordering</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">clusters</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Let&#8217;s sort the communications matrix to highlight our inferred clusters</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">z</span> <span class="o">=</span> <span class="n">communications_relation</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">z</span> <span class="o">=</span> <span class="n">communications_relation</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">ordering</span><span class="p">]</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[:,</span><span class="n">ordering</span><span class="p">]</span>
 <span class="n">sizes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
@@ -219,8 +301,8 @@ number of chains.</p>
 </pre></div>
 </div>
 <p>Our model finds suspicious cluster based on the communication data.
-We&#8217;ll color and label these clusters in our communications matrix.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cluster_with_name</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+Let&#8217;s color and label these clusters in our communications matrix.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cluster_with_name</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="n">ident</span> <span class="o">=</span> <span class="n">namemap</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ident</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">:</span>
@@ -245,13 +327,15 @@ We&#8217;ll color and label these clusters in our communications matrix.</p>
             <span class="n">width</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">suspicious</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;color&quot;</span><span class="p">])</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">blue_cmap</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">)</span>
-<span class="nd">@savefig</span> <span class="n">email_matrix_colored</span><span class="o">.</span><span class="n">png</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="ow">in</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.image.AxesImage at 0x10af923d0&gt;
 </pre></div>
 </div>
 <img alt="_images/enron-email_21_1.png" src="_images/enron-email_21_1.png" />
 <p>We&#8217;ve identified two suspicious clusters. Let&#8217;s look at the data to find
 out who these individuals are</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cluster_names</span><span class="p">(</span><span class="n">cluster</span><span class="p">):</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cluster_names</span><span class="p">(</span><span class="n">cluster</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">names</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
 <span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">enron_utils</span><span class="o">.</span><span class="n">FULLNAMES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -298,22 +382,23 @@ The VIP/executives group
 </pre></div>
 </div>
 <p>Given the uncertainty behind these latent clusters, we can visualize the
-variablity within these assignments with a z-matrix.  Ordering the z-matrix allows us to group members of each possible
-cluster together.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">zmat</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">zmatrix</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">latents</span><span class="o">=</span><span class="n">infers</span><span class="p">)</span>
+variablity within these assignments with a z-matrix</p>
+<p>Ordering the z-matrix allows us to group members of each possible
+cluster together</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">zmat</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">zmatrix</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">latents</span><span class="o">=</span><span class="n">infers</span><span class="p">)</span>
 <span class="n">zmat</span> <span class="o">=</span> <span class="n">zmatrix_reorder</span><span class="p">(</span><span class="n">zmat</span><span class="p">,</span> <span class="n">zmatrix_heuristic_block_ordering</span><span class="p">(</span><span class="n">zmat</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">zmat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">blue_cmap</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">zmat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">blue_cmap</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;people (sorted)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;people (sorted)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Z-Matrix of IRM Cluster Assignments&#39;</span><span class="p">)</span>
-<span class="nd">@savefig</span> <span class="n">zmatrix</span><span class="o">.</span><span class="n">png</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="ow">in</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x10bc8bc50&gt;
 </pre></div>
 </div>
 <img alt="_images/enron-email_26_1.png" src="_images/enron-email_26_1.png" />
-<p>To cluster network data using datamicroscopes, the IRM is available for installation from conda</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>conda install microscopes-irm
-</pre></div>
-</div>
 </div>
 
 
