@@ -180,7 +180,7 @@
 Dataset</a> is a standard
 machine learning data set dating back to the 1930s. It contains
 measurements from 150 flowers.</p>
-<img alt="iris_unlabeled.png" src="iris_unlabeled.png" />
+<img alt="_images/iris_unlabeled.png" src="_images/iris_unlabeled.png" />
 <p>If we wanted to learn these underlying species&#8217; measurements, we would
 use these real valued measurements and make assumptions about the
 structure of the data. We could assume that conditioned on assignment to <code class="docutils literal"><span class="pre">species</span></code>, the measurement data
@@ -308,10 +308,10 @@ greater than 0.99. When <span class="math">\(\alpha\)</span> is small, very few
 than <span class="math">\(0.01\)</span>. However, as <span class="math">\(\alpha\)</span> grows large, the sample
 becomes a more accurate (though still discrete) approximation of
 <span class="math">\(\mathcal{N}(0,1)\)</span>.</p>
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_0.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_0.png" />
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_1.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_1.png" />
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_2.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_2.png" />
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_3.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_3.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_0.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_0.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_1.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_1.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_2.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_2.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_3.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_5_3.png" />
 <p>Often we want to draw samples from a <em>distribution sampled from a
 Dirichlet Process</em> instead of from the Dirichlet process itself. Much of
 the literature on the topic unhelpful refers to this as sampling from a
@@ -387,10 +387,10 @@ Dirichlet processes with standard normal base distribution and varying
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;Alpha_Hist_</span><span class="si">%s</span><span class="s">.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_0.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_0.png" />
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_1.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_1.png" />
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_2.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_2.png" />
-<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_3.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_3.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_0.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_0.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_1.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_1.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_2.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_2.png" />
+<img alt="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_3.png" src="_images/2015-07-28-dirichlet-distribution-dirichlet-process_9_3.png" />
 <p>Note that these histograms look very similar to the corresponding plots
 of sampled distributions above. However, these histograms are plotting
 <em>points sampled from a distribution sampled from a Dirichlet process</em>
@@ -398,6 +398,7 @@ while the plots above were showing approximate <em>distributions samples
 from the Dirichlet process</em>. Of course, as the number of samples from
 each <span class="math">\(H\)</span> grows large, we would expect the histogram to be a very
 good empirical approximation of <span class="math">\(H\)</span>.</p>
+<p>For more information on the Dirichlet Process, please see our developer Tim Hopper&#8217;s <a class="reference external" href="https://github.com/tdhopper/notes-on-dirichlet-processes">additional notebooks</a>.</p>
 </div>
 
 
