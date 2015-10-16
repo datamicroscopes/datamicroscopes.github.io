@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Finding the number of clusters with the Dirichlet Process</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="up" title="Tutorials" href="docs.html" />
+    <link rel="next" title="Network Modeling with the Infinite Relational Model" href="enron_blog.html" />
+    <link rel="prev" title="Discovering structure in your data: an overview of clustering" href="intro.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma_poisson.html">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="docs.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Finding the number of clusters with the Dirichlet Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#datatypes-and-likelihood-models-in-datamicroscopes">Datatypes and likelihood models in datamicroscopes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dd.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="niw.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gamma_poisson.html">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Finding the number of clusters with the Dirichlet Process</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/ncluster.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="finding-the-number-of-clusters-with-the-dirichlet-process">
+<h1>Finding the number of clusters with the Dirichlet Process<a class="headerlink" href="#finding-the-number-of-clusters-with-the-dirichlet-process" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>The <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Iris">Iris Flower
+Dataset</a> is a standard
+machine learning data set dating back to the 1930s. It contains
+measurements from 150 flowers.</p>
+<img alt="iris_unlabeled.png" src="iris_unlabeled.png" />
+<p>If we wanted to learn these underlying species&#8217; measurements, we would
+use these real valued measurements and make assumptions about the
+structure of the data. We could assume that conditioned on assignment to <code class="docutils literal"><span class="pre">species</span></code>, the measurement data
+follwed a multivariate normal</p>
+<div class="math">
+\[P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})\]</div>
+<p>In this case, the data comes from three species of flowers:</p>
+<ul class="simple">
+<li>Iris Setosa</li>
+<li>Iris Versicolor</li>
+<li>Iris Virginica</li>
+</ul>
+<p>Plotting the data shows that indiviudal species exhibit a typical range of measurements</p>
+<img alt="_images/normal-inverse-wishart_5_0.png" src="_images/normal-inverse-wishart_5_0.png" />
+<p>The dimesnionality of a clustering model is equal to the number of clusters in the model. Bayesian clustering algorithms often rely of the Dirichlet Distribution to encode prior information about these cluster assignments. The <a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet
+distribution</a>
+(DD) can be considered a distribution of distributions. Each sample from
+the DD is a <a class="reference external" href="https://en.wikipedia.org/wiki/Categorical_distribution">categorial
+distribution</a>
+over <span class="math">\(K\)</span> categories. It is parameterized <span class="math">\(G_0\)</span>, a
+distribution over <span class="math">\(K\)</span> categories and <span class="math">\(\alpha\)</span>, a scale
+factor.</p>
+<p>The expected value of the DD is <span class="math">\(G_0\)</span>. The variance of the DD is a
+function of the scale factor. When <span class="math">\(\alpha\)</span> is large, samples from
+<span class="math">\(DD(\alpha\cdot G_0)\)</span> will be very close to <span class="math">\(G_0\)</span>. When
+<span class="math">\(\alpha\)</span> is small, samples will vary more widely.</p>
+<p>Most clustering algorithms require the number of clusters to be given in advance.  If we don&#8217;t know the number of species in the data, how would we be able to classify these flowers?</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_process">Dirichlet Process</a>  is a stochastic process used in Bayesian nonparametrics to cluster data without specifying the number of clusters in advance.  The Dirichlet Process Prior is used to mathematically descirbe prior information about the number of clusters in the data.</p>
+<p>The Dirichlet Process Prior is nonparametric because its dimensionality is infinite.  This characteristic is advantageous in clustering because it allows us to recognize new clusters when we observe new data.</p>
+<p>The Dirichlet Process can be considered a way to <em>generalize</em> the Dirichlet distribution. While the
+Dirichlet distribution is parameterized by a discrete distribution
+<span class="math">\(G_0\)</span> and generates samples that are similar discrete
+distributions, the Dirichlet process is parameterized by a generic
+distribution <span class="math">\(H_0\)</span> and generates samples which are distributions
+similar to <span class="math">\(H_0\)</span>. The Dirichlet process also has a parameter
+<span class="math">\(\alpha\)</span> that determines how similar how widely samples will vary
+from <span class="math">\(H_0\)</span>.</p>
+<p>When learning a culstering using a Dirichlet Process Prior, observations are probabilistically assigned to clusters based on the number of observations in that cluster <span class="math">\(n_k\)</span>.</p>
+<div class="math">
+\[P(\text{cluster=k})=\frac{n_k}{\alpha+n-1}\]</div>
+<p>Probability of new clusters are paramteterized by <span class="math">\(\alpha\)</span></p>
+<div class="math">
+\[P(\text{cluster=new})=\frac{\alpha}{\alpha+n-1}\]</div>
+<p>In other words, these culsters exhbit a rich get richer property.</p>
+<p>The expected number of clusters in a dataset clustered with the Dirichlet Process is <span class="math">\(O(\alpha\log(N))\)</span></p>
+<p>The expected number of clusters with <span class="math">\(m\)</span> observations <a class="reference external" href="https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ">(Arritia et al., 2003)</a> is <span class="math">\(\frac{\alpha}{m}\)</span></p>
+<p>We can construct a sample <span class="math">\(H\)</span> (recall that <span class="math">\(H\)</span> is a
+probability distribution) from a Dirichlet process
+<span class="math">\(\text{DP}(\alpha H_0)\)</span> by drawing a countably infinite number of
+samples <span class="math">\(\theta_k\)</span> from <span class="math">\(H_0\)</span>) and setting:</p>
+<div class="math">
+\[H=\sum_{k=1}^\infty \pi_k \cdot\delta(x-\theta_k)\]</div>
+<p>where the <span class="math">\(\pi_k\)</span> are carefully chosen weights (more later) that
+sum to 1. (<span class="math">\(\delta\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Dirac_delta_function">Dirac delta
+function</a>.)</p>
+<p><span class="math">\(H\)</span>, a sample from <span class="math">\(DP(\alpha H_0)\)</span>, is a <em>probability
+distribution</em> that looks similar to <span class="math">\(H_0\)</span> (also a distribution).
+In particular, <span class="math">\(H\)</span> is a <em>discrete</em> distribution that takes the
+value <span class="math">\(\theta_k\)</span> with probability <span class="math">\(\pi_k\)</span>. This sampled
+distribution <span class="math">\(H\)</span> is a discrete distribution <em>even if :math:`H_0`
+has continuous support</em>; the
+<a class="reference external" href="http://www.statlect.com/glossary/support_of_a_random_variable.htm">support</a>
+of <span class="math">\(H\)</span> is a countably infinite subset of the support <span class="math">\(H_0\)</span>.</p>
+<p>The weights (<span class="math">\(\pi_k\)</span> values) of a Dirichlet process sample related
+the Dirichlet <em>process</em> back to the Dirichlet <em>distribution</em>.</p>
+<p><a class="reference external" href="http://www.arbylon.net/publications/ilda.pdf">Gregor Heinrich</a>
+writes:</p>
+<blockquote>
+<div>The defining property of the DP is that its samples have weights
+<span class="math">\(\pi_k\)</span> and locations <span class="math">\(\theta_k\)</span> distributed in such a
+way that when partitioning <span class="math">\(S(H)\)</span> into finitely many arbitrary
+disjoint subsets <span class="math">\(S_1, \ldots, S_j\)</span> <span class="math">\(J&lt;\infty\)</span>, the sums
+of the weights <span class="math">\(\pi_k\)</span> in each of these <span class="math">\(J\)</span> subsets are
+distributed according to a Dirichlet distribution that is
+parameterized by <span class="math">\(\alpha\)</span> and a discrete base distribution
+(like <span class="math">\(G_0\)</span>) whose weights are equal to the integrals of the
+base distribution <span class="math">\(H_0\)</span> over the subsets <span class="math">\(S_n\)</span>.</div></blockquote>
+<p>As an example, Heinrich imagines a DP with a standard normal base
+measure <span class="math">\(H_0\sim \mathcal{N}(0,1)\)</span>. Let <span class="math">\(H\)</span> be a sample from
+<span class="math">\(DP(H_0)\)</span> and partition the real line (the support of a normal
+distribution) as <span class="math">\(S_1=(-\infty, -1]\)</span>, <span class="math">\(S_2=(-1, 1]\)</span>, and
+<span class="math">\(S_3=(1, \infty]\)</span> then</p>
+<div class="math">
+\[H(S_1),H(S_2), H(S_3) \sim \text{Dir}\left(\alpha\,\text{erf}(-1), \alpha\,(\text{erf}(1) - \text{erf}(-1)), \alpha\,(1-\text{erf}(1))\right)\]</div>
+<p>where <span class="math">\(H(S_n)\)</span> be the sum of the <span class="math">\(\pi_k\)</span> values whose
+<span class="math">\(\theta_k\)</span> lie in <span class="math">\(S_n\)</span>.</p>
+<p>These <span class="math">\(S_n\)</span> subsets are chosen for convenience, however similar
+results would hold for <em>any</em> choice of <span class="math">\(S_n\)</span>. For any sample from
+a Dirichlet <em>process</em>, we can construct a sample from a Dirichlet
+<em>distribution</em> by partitioning the support of the sample into a finite
+number of bins.</p>
+<p>There are several equivalent ways to choose the <span class="math">\(\pi_k\)</span> so that
+this property is satisfied: the Chinese restaurant process, the
+stick-breaking process, and the Pólya urn scheme.</p>
+<p>To generate <span class="math">\(\left\{\pi_k\right\}\)</span> according to a stick-breaking
+process we define <span class="math">\(\beta_k\)</span> to be a sample from
+<span class="math">\(\text{Beta}(1,\alpha)\)</span>. <span class="math">\(\pi_1\)</span> is equal to
+<span class="math">\(\beta_1\)</span>. Successive values are defined recursively as</p>
+<div class="math">
+\[\pi_k=\beta_k \prod_{j=1}^{k-1}(1-\beta_j).\]</div>
+<p>Thus, if we want to draw a sample from a Dirichlet process, we could, in
+theory, sample an infinite number of <span class="math">\(\theta_k\)</span> values from the
+base distribution <span class="math">\(H_0\)</span>, an infinite number of <span class="math">\(\beta_k\)</span>
+values from the Beta distribution. Of course, sampling an infinite
+number of values is easier in theory than in practice.</p>
+<p>However, by noting that the <span class="math">\(\pi_k\)</span> values are <em>positive</em> values
+summing to 1, we note that, in expectation, they must get increasingly
+small as <span class="math">\(k\rightarrow\infty\)</span>. Thus, we can reasonably approximate
+a sample <span class="math">\(H\sim DP(\alpha H_0)\)</span> by drawing <em>enough</em> samples such
+that <span class="math">\(\sum_{k=1}^K \pi_k\approx 1\)</span>.</p>
+<p>We use this method below to draw approximate samples from several
+Dirichlet processes with a standard normal (<span class="math">\(\mathcal{N}(0,1)\)</span>)
+base distribution but varying <span class="math">\(\alpha\)</span> values.</p>
+<p>Recall that a single sample from a Dirichlet process is a probability
+distribution over a countably infinite subset of the support of the base
+measure.</p>
+<p>The blue line is the PDF for a standard normal. The black lines
+represent the <span class="math">\(\theta_k\)</span> and <span class="math">\(\pi_k\)</span> values;
+<span class="math">\(\theta_k\)</span> is indicated by the position of the black line on the
+<span class="math">\(x\)</span>-axis; <span class="math">\(\pi_k\)</span> is proportional to the height of each
+line.</p>
+<p>We generate enough <span class="math">\(\pi_k\)</span> values are generated so their sum is
+greater than 0.99. When <span class="math">\(\alpha\)</span> is small, very few
+<span class="math">\(\theta_k\)</span>&#8216;s will have corresponding <span class="math">\(\pi_k\)</span> values larger
+than <span class="math">\(0.01\)</span>. However, as <span class="math">\(\alpha\)</span> grows large, the sample
+becomes a more accurate (though still discrete) approximation of
+<span class="math">\(\mathcal{N}(0,1)\)</span>.</p>
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_0.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_0.png" />
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_1.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_1.png" />
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_2.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_2.png" />
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_3.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_5_3.png" />
+<p>Often we want to draw samples from a <em>distribution sampled from a
+Dirichlet Process</em> instead of from the Dirichlet process itself. Much of
+the literature on the topic unhelpful refers to this as sampling from a
+Dirichlet process.</p>
+<p>Fortunately, we don&#8217;t have to draw an infinite number of samples from
+the base distribution and stick breaking process to do this. Instead, we
+can draw these samples <em>as they are needed</em>.</p>
+<p>Suppose, for example, we know a finite number of the <span class="math">\(\theta_k\)</span>
+and <span class="math">\(\pi_k\)</span> values for a sample
+<span class="math">\(H\sim \text{Dir}(\alpha H_0)\)</span>. For example, we know</p>
+<div class="math">
+\[\pi_1=0.5,\; \pi_3=0.3,\; \theta_1=0.1,\; \theta_2=-0.5.\]</div>
+<p>To sample from <span class="math">\(H\)</span>, we can generate a uniform random <span class="math">\(u\)</span>
+number between 0 and 1. If <span class="math">\(u\)</span> is less than 0.5, our sample is
+<span class="math">\(0.1\)</span>. If <span class="math">\(0.5&lt;=u&lt;0.8\)</span>, our sample is <span class="math">\(-0.5\)</span>. If
+<span class="math">\(u&gt;=0.8\)</span>, our sample (from <span class="math">\(H\)</span> will be a new sample
+<span class="math">\(\theta_3\)</span> from <span class="math">\(H_0\)</span>. At the same time, we should also
+sample and store <span class="math">\(\pi_3\)</span>. When we draw our next sample, we will
+again draw <span class="math">\(u\sim\text{Uniform}(0,1)\)</span> but will compare against
+<span class="math">\(\pi_1, \pi_2\)</span>, AND <span class="math">\(\pi_3\)</span>.</p>
+<p>The class below will take a base distribution <span class="math">\(H_0\)</span> and
+<span class="math">\(\alpha\)</span> as arguments to its constructor. The class instance can
+then be called to generate samples from
+<span class="math">\(H\sim \text{DP}(\alpha H_0)\)</span>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">choice</span>
+
+<span class="k">class</span> <span class="nc">DirichletProcessSample</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_measure</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_measure</span> <span class="o">=</span> <span class="n">base_measure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_stick_used</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">remaining</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_stick_used</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">DirichletProcessSample</span><span class="o">.</span><span class="n">roll_die</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">+</span> <span class="p">[</span><span class="n">remaining</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stick_piece</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span> <span class="o">*</span> <span class="n">remaining</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_stick_used</span> <span class="o">+=</span> <span class="n">stick_piece</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stick_piece</span><span class="p">)</span>
+            <span class="n">new_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_measure</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">new_value</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">roll_die</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">weights</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)),</span> <span class="n">p</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<p>This Dirichlet process class could be called <em>stochastic memoization</em>.
+This idea was first articulated in somewhat abstruse terms by <a class="reference external" href="http://danroy.org/papers/RoyManGooTen-ICMLNPB-2008.pdf">Daniel
+Roy, et al</a>.</p>
+<p>Below are histograms of 10000 samples drawn from <em>samples</em> drawn from
+Dirichlet processes with standard normal base distribution and varying
+<span class="math">\(\alpha\)</span> values.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="n">base_measure</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">norm</span><span class="p">()</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]:</span>
+    <span class="n">dirichlet_norm</span> <span class="o">=</span> <span class="n">DirichletProcessSample</span><span class="p">(</span><span class="n">base_measure</span><span class="o">=</span><span class="n">base_measure</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">dirichlet_norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)])</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Alpha: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;Alpha_Hist_</span><span class="si">%s</span><span class="s">.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_0.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_0.png" />
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_1.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_1.png" />
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_2.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_2.png" />
+<img alt="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_3.png" src="2015-07-28-dirichlet-distribution-dirichlet-process_files/2015-07-28-dirichlet-distribution-dirichlet-process_9_3.png" />
+<p>Note that these histograms look very similar to the corresponding plots
+of sampled distributions above. However, these histograms are plotting
+<em>points sampled from a distribution sampled from a Dirichlet process</em>
+while the plots above were showing approximate <em>distributions samples
+from the Dirichlet process</em>. Of course, as the number of samples from
+each <span class="math">\(H\)</span> grows large, we would expect the histogram to be a very
+good empirical approximation of <span class="math">\(H\)</span>.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
