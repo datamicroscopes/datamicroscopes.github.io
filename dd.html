@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -39,7 +39,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -397,7 +397,7 @@ sns.set_style(&#39;darkgrid&#39;)
     </tr>
   </tbody>
 </table>
-</div><p>One of the categorical variables in this dataset is <tt class="docutils literal"><span class="pre">embark_town</span></tt></p>
+</div><p>One of the categorical variables in this dataset is <code class="docutils literal"><span class="pre">embark_town</span></code></p>
 <p>Let&#8217;s plot the number of passengers departing from each town</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">&#39;embark_town&#39;</span><span class="p">])[</span><span class="s">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -605,8 +605,8 @@ Name: 1, dtype: object
 </div>
 <p>This dataset has multiple categorical variables</p>
 <p>Based on the description of the cars93 datatset, we&#8217;ll consider
-<tt class="docutils literal"><span class="pre">Manufacturer</span></tt>, and <tt class="docutils literal"><span class="pre">DriveTrain</span></tt> to be categorical variables</p>
-<p>Let&#8217;s plot <tt class="docutils literal"><span class="pre">Manufacturer</span></tt> and <tt class="docutils literal"><span class="pre">DriveTrain</span></tt></p>
+<code class="docutils literal"><span class="pre">Manufacturer</span></code>, and <code class="docutils literal"><span class="pre">DriveTrain</span></code> to be categorical variables</p>
+<p>Let&#8217;s plot <code class="docutils literal"><span class="pre">Manufacturer</span></code> and <code class="docutils literal"><span class="pre">DriveTrain</span></code></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">cars</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Manufacturer&#39;</span><span class="p">)[</span><span class="s">&#39;Model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Cars&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Number of Cars by Manufacturer&#39;</span><span class="p">)</span>
@@ -711,12 +711,12 @@ distribution or the multinomial distribution.</p>
 </pre></div>
 </div>
 <p>Then given the specific model we&#8217;d want we&#8217;d import</p>
-<p><tt class="docutils literal"><span class="pre">from</span> <span class="pre">microscopes.model_name.definition</span> <span class="pre">import</span> <span class="pre">model_definition</span></tt></p>
+<p><code class="docutils literal"><span class="pre">from</span> <span class="pre">microscopes.model_name.definition</span> <span class="pre">import</span> <span class="pre">model_definition</span></code></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">microscopes.irm.definition</span> <span class="kn">import</span> <span class="n">model_definition</span> <span class="k">as</span> <span class="n">irm_definition</span>
 <span class="kn">from</span> <span class="nn">microscopes.mixture.definition</span> <span class="kn">import</span> <span class="n">model_definition</span> <span class="k">as</span> <span class="n">mm_definition</span>
 </pre></div>
 </div>
-<p>See <tt class="docutils literal"><span class="pre">Defining</span> <span class="pre">Your</span> <span class="pre">Model</span></tt> to learn more about model definitions</p>
+<p>See <code class="docutils literal"><span class="pre">Defining</span> <span class="pre">Your</span> <span class="pre">Model</span></code> to learn more about model definitions</p>
 </div>
 
 
@@ -732,7 +732,7 @@ distribution or the multinomial distribution.</p>
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>

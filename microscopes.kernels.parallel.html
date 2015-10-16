@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -39,7 +39,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -178,7 +178,7 @@
 for various backends</p>
 <dl class="class">
 <dt id="microscopes.kernels.parallel.runner">
-<em class="property">class </em><tt class="descclassname">microscopes.kernels.parallel.</tt><tt class="descname">runner</tt><big>(</big><em>runners</em>, <em>backend='multiprocessing'</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#microscopes.kernels.parallel.runner" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">microscopes.kernels.parallel.</code><code class="descname">runner</code><span class="sig-paren">(</span><em>runners</em>, <em>backend='multiprocessing'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.parallel.runner" title="Permalink to this definition">¶</a></dt>
 <dd><p>A parallel runner. Note the parallelism is applied across runners
 (currently, each runner is assumed to be single-threaded).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -225,13 +225,13 @@ volume as a cache.</p>
 by running multyvac setup) beforehand.</p>
 <dl class="method">
 <dt id="microscopes.kernels.parallel.runner.get_latents">
-<tt class="descname">get_latents</tt><big>(</big><big>)</big><a class="headerlink" href="#microscopes.kernels.parallel.runner.get_latents" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_latents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.parallel.runner.get_latents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of the current state of each of the runners.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="microscopes.kernels.parallel.runner.run">
-<tt class="descname">run</tt><big>(</big><em>r</em>, <em>niters=10000</em><big>)</big><a class="headerlink" href="#microscopes.kernels.parallel.runner.run" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run</code><span class="sig-paren">(</span><em>r</em>, <em>niters=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#microscopes.kernels.parallel.runner.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run each runner for <cite>niters</cite>, using the backend supplied in the
 constructor for parallelism.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -263,7 +263,7 @@ constructor for parallelism.</p>
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>

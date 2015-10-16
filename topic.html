@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</title>
+    <title>Bayesian Nonparametric Topic Modeling with the Daily Kos</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -30,9 +30,6 @@
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="None" href="index.html" />
-    <link rel="up" title="Tutorials" href="docs.html" />
-    <link rel="next" title="API Reference" href="api.html" />
-    <link rel="prev" title="Clustering the Enron e-mail corpus using the Infinite Relational Model" href="enron_email.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -82,13 +79,13 @@
 <li class="toctree-l1"><a class="reference internal" href="nic.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gamma_poisson.html">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="docs.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html">Discovering structure in your data: an overview of clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="enron_blog.html">Network Modeling with the Infinite Relational Model</a></li>
@@ -103,11 +100,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gamma_poisson.html">Count Data and Ordinal Data with the Gamma-Poisson Distribution</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="docs.html#examples">Examples</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mnist_predictions.html">Digit recognition with the MNIST dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="enron_email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
@@ -136,7 +133,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+<li><a class="reference internal" href="#">Bayesian Nonparametric Topic Modeling with the Daily Kos</a></li>
 </ul>
 </ul>
 </li>
@@ -148,7 +145,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/hdp.txt"
+  <a href="_sources/topic.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -172,112 +169,14 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="learning-topics-in-the-daily-kos-with-the-hierarchical-dirichlet-process">
-<span id="hdp"></span><h1>Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process<a class="headerlink" href="#learning-topics-in-the-daily-kos-with-the-hierarchical-dirichlet-process" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="bayesian-nonparametric-topic-modeling-with-the-daily-kos">
+<span id="topic"></span><h1>Bayesian Nonparametric Topic Modeling with the Daily Kos<a class="headerlink" href="#bayesian-nonparametric-topic-modeling-with-the-daily-kos" title="Permalink to this headline">¶</a></h1>
 <p>The Hierarchical Dirichlet Process (HDP) is typically used for topic
-modeling when the number of topics is unknown</p>
+modeling when the number of topics is unknown and can be seen as an extension of Latent Dirichlet Allocation.</p>
+<p>n Bayesian topic modeling, individual words in each document are assigned to one of <span class="math">\(K\)</span> topics.  This means each document has its own distribution over topics and each topic has its own distribution over words.</p>
 <p>Let&#8217;s explore the topics of the political blog, The Daily Kos using data
 from the <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Bag+of+Words">UCI Machine Learning
 Repository</a>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>import itertools
-import pyLDAvis
-import pandas as pd
-import re
-import simplejson
-import seaborn as sns
-
-from microscopes.common.rng import rng
-from microscopes.lda.definition import model_definition
-from microscopes.lda.model import initialize
-from microscopes.lda import model, runner
-from random import shuffle
-import matplotlib.pyplot as plt
-
-sns.set_style(&#39;darkgrid&#39;)
-sns.set_context(&#39;talk&#39;)
-
-%matplotlib inline
-</pre></div>
-</div>
-<p>First, let&#8217;s grab the data from UCI:</p>
-<div class="code python highlight-python"><div class="highlight"><pre>!curl http://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/docword.kos.txt.gz | gunzip &gt; docword.kos.txt
-!head docword.kos.txt
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 1029k  100 1029k    0     0   129k      0  0:00:07  0:00:07 --:--:--  243k
-3430
-6906
-353160
-1 61 2
-1 76 1
-1 89 1
-1 211 1
-1 296 1
-1 335 1
-1 404 1
-</pre></div>
-</div>
-<div class="code python highlight-python"><div class="highlight"><pre>!curl http://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/vocab.kos.txt &gt; vocab.kos.txt
-!head vocab.kos.txt
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 55467  100 55467    0     0   163k      0 --:--:-- --:--:-- --:--:--  163k
-aarp
-abandon
-abandoned
-abandoning
-abb
-abc
-abcs
-abdullah
-ability
-aboard
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>The format of the docword.os.txt file is 3 header lines, followed by
-NNZ triples:
----
-D
-W
-NNZ
-docID wordID count
-docID wordID count
-docID wordID count
-docID wordID count
-...
-docID wordID count
-docID wordID count
-docID wordID count
----
-</pre></div>
-</div>
-<p>We&#8217;ll process the data into a list of lists of words ready to be fed
-into our algorithm:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">parse_bag_of_words_file</span><span class="p">(</span><span class="n">docword</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">kos_vocab</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
-        <span class="n">id_to_word</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">word</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kos_vocab</span><span class="p">)}</span>
-
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">docword</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">_</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()][</span><span class="mi">3</span><span class="p">:]</span>
-
-    <span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">doc</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">word_id</span><span class="p">,</span> <span class="n">word_cnt</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
-            <span class="n">doc</span> <span class="o">+=</span> <span class="n">word_cnt</span> <span class="o">*</span> <span class="p">[</span><span class="n">id_to_word</span><span class="p">[</span><span class="n">word_id</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
-        <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">docs</span><span class="p">,</span> <span class="n">id_to_word</span>
-</pre></div>
-</div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">docs</span><span class="p">,</span> <span class="n">id_to_word</span> <span class="o">=</span> <span class="n">parse_bag_of_words_file</span><span class="p">(</span><span class="s">&quot;docword.kos.txt&quot;</span><span class="p">,</span> <span class="s">&quot;vocab.kos.txt&quot;</span><span class="p">)</span>
-<span class="n">vocab_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">word</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">))</span>
-</pre></div>
-</div>
 <p>We must define our model before we intialize it. In this case, we need
 the number of docs and the number of words.</p>
 <p>From there, we can initialize our model and set the hyperparameters</p>
@@ -294,35 +193,7 @@ the number of docs and the number of words.</p>
 <div class="highlight-python"><div class="highlight"><pre>number of docs: 3430 vocabulary size: 6906
 </pre></div>
 </div>
-<p>Given the size of the dataset, it&#8217;ll take some time to run.</p>
-<p>We&#8217;ll run our model for 1000 iterations and save our results every 25
-iterations.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%%time
-step_size = 50
-steps = 500 / step_size
-
-print &quot;randomly initialized model:&quot;, &quot;perplexity:&quot;, kos_state.perplexity(), &quot;num topics:&quot;, kos_state.ntopics()
-for s in range(steps):
-    r.run(prng, step_size)
-    print &quot;iteration:&quot;, (s + 1) * step_size, &quot;perplexity:&quot;, kos_state.perplexity(), &quot;num topics:&quot;, kos_state.ntopics()
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>randomly initialized model: perplexity: 6908.4715103 num topics: 9
-iteration: 50 perplexity: 1590.22974737 num topics: 12
-iteration: 100 perplexity: 1584.21787143 num topics: 13
-iteration: 150 perplexity: 1578.62064887 num topics: 14
-iteration: 200 perplexity: 1576.42299865 num topics: 15
-iteration: 250 perplexity: 1575.98953602 num topics: 11
-iteration: 300 perplexity: 1575.71624243 num topics: 13
-iteration: 350 perplexity: 1575.37703244 num topics: 12
-iteration: 400 perplexity: 1575.47578721 num topics: 13
-iteration: 450 perplexity: 1575.69188913 num topics: 12
-iteration: 500 perplexity: 1575.02874469 num topics: 14
-CPU times: user 47min 46s, sys: 9.39 s, total: 47min 55s
-Wall time: 53min 11s
-</pre></div>
-</div>
-<p><a class="reference external" href="https://github.com/bmabey/pyLDAvis">pyLDAvis</a> is a Python
+<p>After running our model, we can visualze our topics using pyLDAvis.  <a class="reference external" href="https://github.com/bmabey/pyLDAvis">pyLDAvis</a> is a Python
 implementation of the <a class="reference external" href="https://github.com/cpsievert/LDAvis">LDAvis</a>
 tool created by <a class="reference external" href="https://github.com/cpsievert">Carson Sievert</a>.</p>
 <blockquote>
@@ -330,14 +201,6 @@ tool created by <a class="reference external" href="https://github.com/cpsievert
 model that has been fit to a corpus of text data. The package
 extracts information from a fitted LDA topic model to inform an
 interactive web-based visualization.</div></blockquote>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">prepared</span> <span class="o">=</span> <span class="n">pyLDAvis</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="o">**</span><span class="n">kos_state</span><span class="o">.</span><span class="n">pyldavis_data</span><span class="p">())</span>
-<span class="n">pyLDAvis</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">prepared</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>/Users/4d/anaconda/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it&#39;s probably safe to ignore them, but if they are large in magnitude, the results won&#39;t be useful. See the Notes section for more details. The smallest eigenvalue is -1.56349705634e-05 and the largest is 0.129220486809.
-  RuntimeWarning
-</pre></div>
-</div>
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
 
 
@@ -377,52 +240,7 @@ if(typeof(LDAvis) !== "undefined"){
             })
          });
 }
-</script><p><strong>Other Functionality</strong></p>
-<p><strong>*Model Serialization*</strong></p>
-<p>LDA <code class="docutils literal"><span class="pre">state</span></code> objects are fully serializable with Pickle and cPickle.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">cPickle</span> <span class="kn">as</span> <span class="nn">pickle</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;kos_state.pkl&#39;</span><span class="p">,</span><span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">kos_state</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;kos_state.pkl&#39;</span><span class="p">,</span><span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">new_state</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">kos_state</span><span class="o">.</span><span class="n">assignments</span><span class="p">()</span> <span class="o">==</span> <span class="n">new_state</span><span class="o">.</span><span class="n">assignments</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
-</pre></div>
-</div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">kos_state</span><span class="o">.</span><span class="n">dish_assignments</span><span class="p">()</span> <span class="o">==</span> <span class="n">new_state</span><span class="o">.</span><span class="n">dish_assignments</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
-</pre></div>
-</div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">kos_state</span><span class="o">.</span><span class="n">table_assignments</span><span class="p">()</span> <span class="o">==</span> <span class="n">new_state</span><span class="o">.</span><span class="n">table_assignments</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
-</pre></div>
-</div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">kos_state</span> <span class="o">=</span> <span class="n">new_state</span>
-</pre></div>
-</div>
-<p><strong>*Term Relevance*</strong></p>
-<p>We can generate term relevances (as defined by <a class="reference external" href="http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf">Sievert and Shirley
-2014</a>)
-for each topic.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">relevance</span> <span class="o">=</span> <span class="n">new_state</span><span class="o">.</span><span class="n">term_relevance_by_topic</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Here are the ten most relevant words for each topic:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">topics</span> <span class="ow">in</span> <span class="n">relevance</span><span class="p">:</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">topics</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
-    <span class="k">print</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
-</pre></div>
-</div>
+</script><p>Here are the ten most relevant words for each topic:</p>
 <div class="highlight-python"><div class="highlight"><pre>dean edwards clark gephardt iowa primary lieberman democratic deans kerry
 iraq war iraqi military troops soldiers saddam baghdad forces american
 cheney guard bush mccain boat swift john kerry service president
@@ -444,61 +262,20 @@ smallest demonstration located unusual zahn predebate auxiliary endangered merit
 arbitrary document.</p>
 <p>Let&#8217;s create a document from the 100 most relevant words in the 7th
 topic.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">doc7</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">relevance</span><span class="p">[</span><span class="mi">6</span><span class="p">][:</span><span class="mi">100</span><span class="p">]]</span>
-<span class="n">shuffle</span><span class="p">(</span><span class="n">doc7</span><span class="p">)</span>
-<span class="n">doc_text</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc7</span><span class="p">]</span>
-<span class="k">print</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc_text</span><span class="p">)</span>
-</pre></div>
-</div>
 <div class="highlight-python"><div class="highlight"><pre>local reading party channel radio guys america dnc school ive sense hour movie times conservative ndn tnr talking coverage political heard lot air tom liberal moment discussion youre campaign learn wont bloggers heres traffic thought live speech media network isnt makes means boston weve organizations kind community blogging schaller jul readers convention night love life write news family find left read years real piece guest side event politics internet youll blogs michael long line ads dlc blog audience black stuff flag article country message journalists book blogosphere time tonight put ill email film fun people online matter blades theyre web
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">predictions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">predictions</span><span class="p">[</span><span class="s">&#39;From Topic 7&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">kos_state</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">rng</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-<p>The prediction is that this document is mostly generated by topic 7.</p>
 <p>Similarly, if we create a document from words from the 1st and 7th
 topic, our prediction is that the document is generated mostly by those
-topics.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">doc17</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">relevance</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">100</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">relevance</span><span class="p">[</span><span class="mi">6</span><span class="p">][:</span><span class="mi">100</span><span class="p">]]</span>
-<span class="n">shuffle</span><span class="p">(</span><span class="n">doc17</span><span class="p">)</span>
-<span class="n">predictions</span><span class="p">[</span><span class="s">&#39;From Topics 1 and 7&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">kos_state</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">doc17</span><span class="p">,</span> <span class="n">r</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">predictions</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Prediced topic distribution&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">index</span><span class="p">))])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Topic Number&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Probability of Each Topic&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x12548f3d0&gt;
-</pre></div>
-</div>
+topics.  We&#8217;ll plot these two documents to compare their distribution over topics.</p>
 <img alt="_images/hdp_28_1.png" src="_images/hdp_28_1.png" />
 <p><strong>*Topic and Term Distributions*</strong></p>
 <p>Of course, we can also get the topic distribution for each document
 (commonly called <span class="math">\(\Theta\)</span>).</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">kos_state</span><span class="o">.</span><span class="n">topic_distribution_by_document</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Topic distribution for first document&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;</span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">index</span><span class="p">))])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Topic Number&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Probability of Each Topic&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x1259e8f50&gt;
-</pre></div>
-</div>
 <img alt="_images/hdp_31_1.png" src="_images/hdp_31_1.png" />
 <p>We can also get the raw word distribution for each topic (commonly
 called <span class="math">\(\Phi\)</span>). This is related to the <em>word relevance</em>. Here are
 the most common words in one of the topics.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">kos_state</span><span class="o">.</span><span class="n">word_distribution_by_topic</span><span class="p">()[</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;barh&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Top 10 Words in Topic 4&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Probability&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x125e2fd90&gt;
-</pre></div>
-</div>
 <img alt="_images/hdp_33_1.png" src="_images/hdp_33_1.png" />
 <p>To use our HDP, install our libary in conda:</p>
 <p><code class="docutils literal"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">install</span> <span class="pre">microscopes-lda</span></code></p>

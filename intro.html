@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -39,7 +39,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -176,14 +176,14 @@
 <span id="intro"></span><h1>Discovering structure in your data: an overview of clustering<a class="headerlink" href="#discovering-structure-in-your-data-an-overview-of-clustering" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists <span class="math">\(K\)</span> latent classes in the data.  The goal of clustering is to classify the observations in the data into these <span class="math">\(K\)</span> latent classes.</p>
-<p>In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of <a class="reference internal" href="docs.html#docs"><em>available likelihood models</em></a>.</p>
+<p>In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of <a class="reference internal" href="docs.html#docs"><span>available likelihood models</span></a>.</p>
 <p>To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models.</p>
 <p>Let&#8217;s consider the example of 2-dimensional real valued data:</p>
 <img alt="_images/sim2d.png" src="_images/sim2d.png" />
-<p>Since the data is real valued, we&#8217;ll assume the data is distributed <a class="reference internal" href="niw.html#niw"><em>multivariate Gaussian</em></a> :</p>
+<p>Since the data is real valued, we&#8217;ll assume the data is distributed <a class="reference internal" href="niw.html#niw"><span>multivariate Gaussian</span></a> :</p>
 <div class="math">
 \[P(\mathbf{x} \mid cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})\]</div>
-<p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model, we learn the parameters of these Gaussians.   We&#8217;ll select our <a class="reference internal" href="niw.html#niw"><em>normal-inverse-Wishart</em></a> likelihood model since the normal-inverse-Wishart is the conjugate prior of the multivariate Gaussian distribution. With these parameters, we can estimate the probability that new data is generated from each of these <span class="math">\(K\)</span> clusters.</p>
+<p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model, we learn the parameters of these Gaussians.   We&#8217;ll select our <a class="reference internal" href="niw.html#niw"><span>normal-inverse-Wishart</span></a> likelihood model since the normal-inverse-Wishart is the conjugate prior of the multivariate Gaussian distribution. With these parameters, we can estimate the probability that new data is generated from each of these <span class="math">\(K\)</span> clusters.</p>
 <p>Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, <span class="math">\(K\)</span> is assumed in advance so that the dimensionality of cluster assignments is finite.</p>
 <p>Using the Dirichlet Process, we can learn the number of clusters as we learn each cluster&#8217;s parameters.</p>
 <p>We will visualize our data to examine the cluster assignment</p>
@@ -221,7 +221,7 @@
 <img alt="_images/gauss2d_20_0.png" src="_images/gauss2d_20_0.png" />
 <p>Because this model was run on simulated data, we can compare the results to our actual underlying assignments:</p>
 <img alt="_images/gauss2d_8_1.png" src="_images/gauss2d_8_1.png" />
-<p>To learn more about the code that generated this example, see <a class="reference internal" href="gauss2d.html#gauss2d"><em>Inferring Gaussians with the Dirichlet Process Mixture Model</em></a> .</p>
+<p>To learn more about the code that generated this example, see <a class="reference internal" href="gauss2d.html#gauss2d"><span>Inferring Gaussians with the Dirichlet Process Mixture Model</span></a> .</p>
 </div>
 
 
@@ -237,7 +237,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>

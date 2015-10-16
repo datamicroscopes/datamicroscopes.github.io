@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
@@ -39,7 +39,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -249,14 +249,14 @@ recarray format</p>
 <li>Import the data</li>
 <li>Define the model</li>
 <li>Initialize the model</li>
-<li>Initialize the samplers, aka <tt class="docutils literal"><span class="pre">runners</span></tt></li>
+<li>Initialize the samplers, aka <code class="docutils literal"><span class="pre">runners</span></code></li>
 </ol>
 <p>For this classification task, we&#8217;ll use a Dirichlet Process Mixture
 Model</p>
 <p>Since we converted the data into binary vectors for each pixel, we&#8217;ll
 define our likelihood of the model as a beta-bernouli. In this case, the
 likelihood is the probability that each of the <span class="math">\(D\)</span> pixels in the
-image is <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>. Note, these pixel assignments are
+image is <code class="docutils literal"><span class="pre">True</span></code> or <code class="docutils literal"><span class="pre">False</span></code>. Note, these pixel assignments are
 assumed to be <strong>independent</strong>.</p>
 <div class="math">
 \[\forall\hspace{2mm} d \in [0,1,..,D],\hspace{2mm} k \in [0,..,K], \hspace{2mm} P(pixel_d = True|cluster=k) \sim BetaBernoulli(\alpha_k,\beta_k)\]</div>
@@ -410,7 +410,7 @@ with only the top half of the digit image</p>
     </p>
     <p>
         &copy; Copyright 2015, Qadium.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
     </p>
   </div>
 </footer>
