@@ -198,7 +198,7 @@ follwed a multivariate normal</p>
 </ul>
 <p>Plotting the data shows that indiviudal species exhibit a typical range of measurements</p>
 <img alt="_images/normal-inverse-wishart_5_0.png" src="_images/normal-inverse-wishart_5_0.png" />
-<p>The dimesnionality of a clustering model is equal to the number of clusters in the model. Bayesian clustering algorithms often rely of the Dirichlet Distribution to encode prior information about these cluster assignments. The <a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet
+<p>The dimensionality of a clustering model is equal to the number of clusters in the model. Bayesian clustering algorithms often rely of the Dirichlet Distribution to encode prior information about these cluster assignments. The <a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet
 distribution</a>
 (DD) can be considered a distribution of distributions. Each sample from
 the DD is a <a class="reference external" href="https://en.wikipedia.org/wiki/Categorical_distribution">categorial
@@ -221,7 +221,7 @@ distribution <span class="math">\(H_0\)</span> and generates samples which are d
 similar to <span class="math">\(H_0\)</span>. The Dirichlet process also has a parameter
 <span class="math">\(\alpha\)</span> that determines how similar how widely samples will vary
 from <span class="math">\(H_0\)</span>.</p>
-<p>When learning a culstering using a Dirichlet Process Prior, observations are probabilistically assigned to clusters based on the number of observations in that cluster <span class="math">\(n_k\)</span>.</p>
+<p>When learning a clustering using a Dirichlet Process Prior, observations are probabilistically assigned to clusters based on the number of observations in that cluster <span class="math">\(n_k\)</span>.</p>
 <div class="math">
 \[P(\text{cluster=k})=\frac{n_k}{\alpha+n-1}\]</div>
 <p>Probability of new clusters are paramteterized by <span class="math">\(\alpha\)</span></p>
@@ -229,7 +229,7 @@ from <span class="math">\(H_0\)</span>.</p>
 \[P(\text{cluster=new})=\frac{\alpha}{\alpha+n-1}\]</div>
 <p>In other words, these culsters exhbit a rich get richer property.</p>
 <p>The expected number of clusters in a dataset clustered with the Dirichlet Process is <span class="math">\(O(\alpha\log(N))\)</span></p>
-<p>The expected number of clusters with <span class="math">\(m\)</span> observations <a class="reference external" href="https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ">(Arritia et al., 2003)</a> is <span class="math">\(\frac{\alpha}{m}\)</span></p>
+<p>The expected number of clusters with <span class="math">\(m\)</span> observations <a class="reference external" href="https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ">(Arratia et al., 2003)</a> is <span class="math">\(\frac{\alpha}{m}\)</span></p>
 <p>We can construct a sample <span class="math">\(H\)</span> (recall that <span class="math">\(H\)</span> is a
 probability distribution) from a Dirichlet process
 <span class="math">\(\text{DP}(\alpha H_0)\)</span> by drawing a countably infinite number of
@@ -243,8 +243,8 @@ function</a>.)</p>
 distribution</em> that looks similar to <span class="math">\(H_0\)</span> (also a distribution).
 In particular, <span class="math">\(H\)</span> is a <em>discrete</em> distribution that takes the
 value <span class="math">\(\theta_k\)</span> with probability <span class="math">\(\pi_k\)</span>. This sampled
-distribution <span class="math">\(H\)</span> is a discrete distribution <em>even if :math:`H_0`
-has continuous support</em>; the
+distribution <span class="math">\(H\)</span> is a discrete distribution <em>even if</em> <span class="math">\(H_0\)</span>
+<em>has continuous support</em>; the
 <a class="reference external" href="http://www.statlect.com/glossary/support_of_a_random_variable.htm">support</a>
 of <span class="math">\(H\)</span> is a countably infinite subset of the support <span class="math">\(H_0\)</span>.</p>
 <p>The weights (<span class="math">\(\pi_k\)</span> values) of a Dirichlet process sample related
