@@ -181,10 +181,18 @@
 <hr class="docutils" />
 <p>The <a class="reference external" href="http://www.cs.cmu.edu/~./enron/">Enron e-mail corpus</a> contains 500,00 emails between 150 individuals at Enron.  To analyze the communication network, we created a binary matrix to represent email
 communication between individuals.</p>
-<p>In this matrix, <span class="math">\(X_{i,j} = 1\)</span> if and only if person<span class="math">\(_{i}\)</span> sent an email to person<span class="math">\(_{j}\)</span></p>
+<p>In this matrix, <span class="math">\(X_{i,j} = 1\)</span> if and only if person<span class="math">\(_{i}\)</span> sent an email to person<span class="math">\(_{j}\)</span> Note that we are
+only recording if an email was ever sent, not the number of emails. Thus our resulting matrix is a binary matrix.</p>
 <img alt="_images/enron-email_9_1.png" src="_images/enron-email_9_1.png" />
-<p>We&#8217;ll learn the underlying clusters in this communication matrix using the Inifinite Relational
-Model.  In this model, the underlying clusters represents groups of indiviudals in the network based on the kinds of who they email.</p>
+<p>We&#8217;d like to learn what the different classes of people are in the
+Enron dataset. Maybe some people (like salespeople) sent a lot of
+e-mails outside of the company, and some people (like HR) only sent
+e-mails to people inside of the company. Maybe some people received a
+lot of e-mail (like bosses) and others received virtually none.  We&#8217;ll
+learn the underlying clusters in this communication matrix using the
+Inifinite Relational Model.  In this model, the underlying clusters
+represents groups of indiviudals in the network based on the kinds of
+who they email.</p>
 <p>The domain of our model is the individuals in the email dataset.</p>
 <p>Our relations are emails between individuals, both of cardinality <span class="math">\(N\)</span>, and we
 model the relation with beta-bernoulli distribution since our data is
@@ -194,9 +202,8 @@ binary</p>
 <span class="n">prng</span> <span class="o">=</span> <span class="n">rng</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Next, let&#8217;s initialize the model and define the runners.</p>
-<p>These runners are our MCMC chains. We&#8217;ll use <code class="docutils literal"><span class="pre">cpu_count</span></code> to define our
-number of chains.</p>
+<p>We initialize our model and run a large number of samplers &#8211; one
+per CPU core.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
 <span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">views</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">cluster_hps</span><span class="o">=</span><span class="p">[{</span><span class="s">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">1e-3</span><span class="p">}])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nchains</span><span class="p">)]</span>
 <span class="n">kc</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">default_assign_kernel_config</span><span class="p">(</span><span class="n">defn</span><span class="p">)</span>
